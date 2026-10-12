@@ -1,0 +1,1 @@
+"""Requirement input normalization for the Smart EV safety project."""
