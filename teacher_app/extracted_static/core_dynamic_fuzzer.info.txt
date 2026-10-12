@@ -1,0 +1,242 @@
+=== core.dynamic_fuzzer ===
+
+Functions (28) :
+  CoverageReport
+  CoverageReport.__annotate__
+  CoverageReport.summary
+  __annotate__
+  run_with_coverage
+  run_with_coverage.<locals>.tracer
+  CrashCase
+  FuzzResult
+  __annotate__
+  _random_int
+  __annotate__
+  _random_str
+  _random_str.<locals>.<genexpr>
+  __annotate__
+  blackbox_fuzz
+  blackbox_fuzz.<locals>.<genexpr>
+  __annotate__
+  mutation_fuzz
+  mutation_fuzz.<locals>.mutate
+  mutation_fuzz.<locals>.<genexpr>
+  ConcolicResult
+  __annotate__
+  concolic_fuzz
+  concolic_fuzz.<locals>.<genexpr>
+  sample_func
+  risky
+  branch_predicates
+  crash_predicate
+
+Names used (96) :
+  Callable
+  ConcolicResult
+  CoverageReport
+  CrashCase
+  Dict
+  Exception
+  FuzzResult
+  ImportError
+  List
+  Not
+  Optional
+  Random
+  RuntimeError
+  Set
+  Solver
+  Tuple
+  __annotations__
+  __code__
+  __doc__
+  __firstlineno__
+  __future__
+  __module__
+  __name__
+  __qualname__
+  __static_attributes__
+  _python_cond_to_z3
+  _random_int
+  _random_str
+  add
+  annotations
+  append
+  as_long
+  blackbox_fuzz
+  branch_predicates
+  branches_hit
+  calls
+  check
+  choice
+  chr
+  co_filename
+  co_name
+  concolic_fuzz
+  core.static_smt
+  cov
+  cr
+  crash_input
+  crash_predicate
+  crashes
+  dataclass
+  dataclasses
+  dict
+  exception
+  f_code
+  f_lineno
+  field
+  format_exc
+  fr
+  get
+  gettrace
+  id
+  input_args
+  inputs_tried
+  int
+  isinstance
+  items
+  join
+  len
+  lines_hit
+  list
+  model
+  mutation_fuzz
+  paths_explored
+  pop
+  print
+  randint
+  random
+  randrange
+  range
+  return_value
+  risky
+  run_with_coverage
+  runs
+  sample_func
+  sat
+  set
+  settrace
+  static_smt
+  str
+  summary
+  sys
+  traceback
+  tuple
+  type
+  typing
+  unique_exception_types
+  z3
+
+String constants (113) :
+  'CoverageReport'
+  'Set[int]'
+  'lines_hit'
+  'Set[Tuple[int, int]]'
+  'branches_hit'
+  'List[str]'
+  'calls'
+  'Optional[str]'
+  'exception'
+  'object'
+  'return_value'
+  'total_lines'
+  'Optional[int]'
+  'return'
+  'str'
+  '.1f'
+  'Lines hit: '
+  ' | Branches hit: '
+  ' | Calls: '
+  ' | Exception: '
+  'CoverageReport'
+  'func'
+  'Callable'
+  'return'
+  'CoverageReport'
+  'Chay `func(*args, **kwargs)` va thu thap line/branch coverage + call trace\nbang sys.settrace. Chi theo doi cac dong thuoc chinh module dinh nghia func.'
+  'call'
+  'line'
+  'return'
+  'CrashCase'
+  'tuple'
+  'input_args'
+  'str'
+  'exception'
+  'traceback_str'
+  'CrashCase'
+  'FuzzResult'
+  'int'
+  'runs'
+  'List[CrashCase]'
+  'crashes'
+  'Set[str]'
+  'unique_exception_types'
+  'FuzzResult'
+  'rng'
+  'random.Random'
+  'return'
+  'int'
+  'rng'
+  'random.Random'
+  'return'
+  'str'
+  'func'
+  'Callable'
+  'arg_types'
+  'List[str]'
+  'iterations'
+  'int'
+  'seed'
+  'Optional[int]'
+  'return'
+  'FuzzResult'
+  'Fuzzing generation-based don gian: sinh ngau nhien `iterations` bo input\ntheo `arg_types` (danh sach "int" | "str") va goi func voi cac input do,\nghi lai moi truong hop gay exception (crash).'
+  'int'
+  'func'
+  'Callable'
+  'seed_inputs'
+  'List[tuple]'
+  'iterations'
+  'int'
+  'seed'
+  'Optional[int]'
+  'return'
+  'FuzzResult'
+  'Fuzzing mutation-based: bat dau tu cac seed input hop le, dot bien\n(thay doi mot phan tu) de tao input moi.'
+  'flip_sign'
+  'add_noise'
+  'extreme'
+  'dup'
+  'trunc'
+  'insert_null'
+  'ConcolicResult'
+  'List[Dict[str, int]]'
+  'inputs_tried'
+  'Optional[Dict[str, int]]'
+  'crash_input'
+  'Set[str]'
+  'paths_explored'
+  'ConcolicResult'
+  'branch_predicates'
+  'Callable[[Dict[str, int]], List[Tuple[str, bool]]]'
+  'crash_predicate'
+  'Callable[[Dict[str, int]], bool]'
+  'var_names'
+  'List[str]'
+  'max_iterations'
+  'int'
+  'return'
+  'ConcolicResult'
+  'z3-solver chưa được cài đặt'
+  '__main__'
+  'Coverage demo:'
+  'int'
+  '\nBlack-box fuzz: '
+  ' runs, '
+  ' crashes, types='
+  '  Vi du crash:'
+  'x == 1234'
+  'y == 5678'
+  '\nConcolic fuzz: crash_input='
+  ', số input đã thử='

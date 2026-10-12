@@ -1,0 +1,277 @@
+=== core.memory_analyzer ===
+
+Functions (25) :
+  StructField
+  StructLayout
+  StructLayout.__annotate__
+  StructLayout.report
+  __annotate__
+  _type_size_align
+  __annotate__
+  parse_struct_source
+  __annotate__
+  compute_layout
+  compute_layout.<locals>.<genexpr>
+  __annotate__
+  analyze_struct
+  __annotate__
+  _strip_c_comments
+  Finding
+  __annotate__
+  _split_functions
+  __annotate__
+  check_c_source
+  check_c_source.<locals>.<lambda>
+  __annotate__
+  analyze_file
+  __annotate__
+  findings_to_report
+
+Names used (87) :
+  ALLOC_FUNCS
+  DANGEROUS_FUNCS
+  Dict
+  FIELD_RE
+  FORMAT_STRING_FUNCS
+  Finding
+  List
+  M
+  S
+  StructField
+  StructLayout
+  TYPE_INFO
+  Tuple
+  ValueError
+  __annotations__
+  __conditional_annotations__
+  __doc__
+  __firstlineno__
+  __future__
+  __module__
+  __name__
+  __qualname__
+  __static_attributes__
+  _split_functions
+  _strip_c_comments
+  _type_size_align
+  align
+  analyze_file
+  analyze_struct
+  annotations
+  append
+  array_len
+  category
+  check_c_source
+  compile
+  compute_layout
+  count
+  dataclass
+  dataclasses
+  demo_c
+  demo_struct
+  end
+  enumerate
+  escape
+  field
+  field_name
+  fields
+  findings_to_report
+  finditer
+  fullmatch
+  group
+  int
+  is_pointer
+  items
+  join
+  layout
+  len
+  line
+  list
+  match
+  max
+  message
+  name
+  offset
+  open
+  padding_bytes
+  parse_struct_source
+  pop
+  print
+  re
+  read
+  replace
+  report
+  search
+  severity
+  size
+  sort
+  split
+  splitlines
+  start
+  startswith
+  strip
+  sum
+  total_align
+  total_size
+  type_name
+  typing
+
+String constants (161) :
+  'char'
+  'signed char'
+  'unsigned char'
+  '_Bool'
+  'bool'
+  'short'
+  'unsigned short'
+  'int'
+  'unsigned int'
+  'unsigned'
+  'float'
+  'long'
+  'unsigned long'
+  'long long'
+  'unsigned long long'
+  'double'
+  'long double'
+  'void*'
+  'char*'
+  'int*'
+  'Dict[str, Tuple[int, int]]'
+  'TYPE_INFO'
+  '^\\s*(?:const\\s+)?(?P<type>[A-Za-z_][A-Za-z0-9_ ]*?)\\s*(?P<ptr>\\*?)\\s*(?P<name>[A-Za-z_][A-Za-z0-9_]*)\\s*(\\[(?P<arr>\\d+)\\])?\\s*;'
+  'StructField'
+  'str'
+  'type_name'
+  'field_name'
+  'bool'
+  'is_pointer'
+  'int'
+  'array_len'
+  'size'
+  'align'
+  'offset'
+  'StructField'
+  'StructLayout'
+  'str'
+  'name'
+  'List[StructField]'
+  'fields'
+  'int'
+  'total_size'
+  'total_align'
+  'padding_bytes'
+  'return'
+  'str'
+  'struct '
+  ' {  // size='
+  ', align='
+  ', padding='
+  ' bytes'
+  '    offset '
+  ';  // size='
+  'StructLayout'
+  'type_name'
+  'str'
+  'is_pointer'
+  'bool'
+  'return'
+  'Tuple[int, int]'
+  'void*'
+  "Kiểu dữ liệu không được hỗ trợ: '"
+  'c_source'
+  'str'
+  'return'
+  'List[StructLayout]'
+  'Tim tat ca `struct Name { ... };` trong doan C source va tra ve StructLayout\n(chua tinh offset/padding — dung compute_layout() sau).'
+  'struct\\s+([A-Za-z_]\\w*)\\s*\\{(.*?)\\}\\s*;'
+  'type'
+  'ptr'
+  'name'
+  'arr'
+  'layout'
+  'StructLayout'
+  'return'
+  'Tinh offset, padding va tong kich thuoc struct theo quy tac alignment C chuan.'
+  'c_source'
+  'str'
+  'return'
+  'List[StructLayout]'
+  'sprintf'
+  'printf'
+  'fprintf'
+  'snprintf'
+  'syslog'
+  'source'
+  'str'
+  'return'
+  'Finding'
+  'int'
+  'line'
+  'str'
+  'severity'
+  'category'
+  'message'
+  'Finding'
+  'c_source'
+  'str'
+  'return'
+  'List[Tuple[str, int, str]]'
+  'Tach source thanh cac ham (tra ve (ten_ham, dong_bat_dau, than_ham)).\nHeuristic don gian dua tren dau ngoac { } can bang, du dung cho code mau.'
+  '^[ \\t]*[A-Za-z_][\\w\\s\\*]*?\\b([A-Za-z_]\\w*)\\s*\\([^;{}]*\\)\\s*\\{'
+  'c_source'
+  'str'
+  'return'
+  'List[Finding]'
+  '\\s*\\('
+  'HIGH'
+  'dangerous-function'
+  "Sử dụng hàm không an toàn '"
+  "()' — dễ gây buffer overflow. Goi y: dung "
+  'cpy'
+  'ncpy'
+  'cat'
+  'ncat'
+  'fgets'
+  ' thay the.'
+  '\\s*\\(\\s*([^()]*)\\)'
+  '[A-Za-z_]\\w*'
+  'format-string'
+  "Khả năng Format String Bug: '"
+  "()' nhận biến '"
+  "' làm chuỗi định dạng thay vì hằng chuỗi cố định — nên dùng '"
+  '("%s", '
+  ")'."
+  '(\\w+)\\s*=\\s*(?:\\([\\w\\s\\*]*\\)\\s*)?(malloc|calloc|realloc)\\s*\\('
+  '\\bfree\\s*\\(\\s*(\\w+)\\s*\\)'
+  'double-free'
+  "Double-free trên con trỏ '"
+  "' (đã free() tại dòng "
+  ') trong hàm '
+  '\\bfree\\s*\\('
+  '\\s*=\\s*'
+  'use-after-free'
+  "Khả năng sử dụng con trỏ '"
+  "' sau khi free() (freed tại dòng "
+  'MEDIUM'
+  'memory-leak'
+  "Con trỏ '"
+  "' được cấp phát (malloc/calloc/realloc) nhưng không thấy free() trong hàm "
+  '() — nghi ngờ rò rỉ bộ nhớ'
+  'path'
+  'str'
+  'return'
+  'List[Finding]'
+  'utf-8'
+  'replace'
+  'findings'
+  'List[Finding]'
+  'return'
+  'str'
+  'Không phát hiện lỗi nào (theo các quy tắc heuristic hiện có).'
+  'Phát hiện '
+  ' vấn đề:'
+  '  [dong '
+  '<16'
+  '__main__'
+  '\n    struct Example {\n        char a;\n        int b;\n        char c;\n        double d;\n        char *ptr;\n    };\n    '
