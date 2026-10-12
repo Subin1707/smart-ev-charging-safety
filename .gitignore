@@ -1,0 +1,28 @@
+﻿# Build artifacts
+*.o
+*.obj
+*.exe
+*.out
+*.dll
+*.so
+*.a
+bin/
+build/
+
+# Logs & reports
+logs/**/*.log
+!logs/**/.gitkeep
+reports/**/*.html
+reports/**/*.json
+!reports/**/.gitkeep
+
+# Environment & IDE
+.env
+.vscode/
+.idea/
+__pycache__/
+*.pyc
+
+# Fuzzing crashes
+fuzz/crashes/*
+!fuzz/crashes/.gitkeep
