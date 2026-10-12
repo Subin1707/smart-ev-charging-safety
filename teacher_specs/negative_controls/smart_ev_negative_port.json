@@ -1,0 +1,522 @@
+{
+  "name": "smart_ev_negative_port",
+  "description": "Negative control for PORT: reachable req_port_03_violation; expected related property violation.",
+  "requirements": [
+    {
+      "id": "REQ-AUTH-01",
+      "text": "Vehicle authentication may succeed only when the vehicle is connected and the token is valid.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-AUTH-02",
+      "text": "When a vehicle disconnects from the station, authentication must be cleared.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-SOC-01",
+      "text": "Vehicle SOC must remain between 0% and 100%.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-SOC-02",
+      "text": "A vehicle with SOC at 100% must not continue receiving charging power.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-TEMP-01",
+      "text": "When battery temperature reaches or exceeds 60 C, charging must stop.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-01",
+      "text": "A port may enter CHARGING only when a valid vehicle is connected.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-02",
+      "text": "At any time, one charging port may be linked to at most one vehicle.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-03",
+      "text": "A faulted port must not deliver charging power.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-CHG-01",
+      "text": "Charging may start only when the vehicle is connected, authenticated, battery and temperature are safe, the port is ready, and no emergency or fault is active.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-CHG-02",
+      "text": "Charging requires the complete safety gate to remain valid.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-EMG-01",
+      "text": "Emergency or fault conditions must stop charging and force charging power to zero.",
+      "category": "safety",
+      "priority": "HIGH"
+    }
+  ],
+  "state_machine": {
+    "states": [
+      "ev_disconnected",
+      "ev_connected",
+      "ev_auth_failed",
+      "ev_authenticated",
+      "ev_charging",
+      "ev_start_blocked_auth",
+      "ev_stopped_soc_full",
+      "ev_stopped_overheat",
+      "ev_stopped_port_fault",
+      "ev_stopped_emergency",
+      "ev_recovered_safe",
+      "ev_port_multi_vehicle_blocked",
+      "ev_soc_invalid_blocked",
+      "ev_temp_invalid_blocked",
+      "ev_boundary_soc_0",
+      "ev_boundary_soc_100",
+      "ev_boundary_temp_below_threshold",
+      "ev_boundary_temp_threshold",
+      "ev_boundary_temp_above_threshold",
+      "negative_port_req_port_03_violation"
+    ],
+    "initial": [
+      "ev_disconnected"
+    ],
+    "labeling": {
+      "ev_disconnected": [
+        "auth_clear",
+        "disconnected",
+        "kind_normal",
+        "port_idle",
+        "req_auth_02",
+        "safe",
+        "smart_ev"
+      ],
+      "ev_connected": [
+        "connected",
+        "kind_normal",
+        "port_occupied",
+        "req_auth_01",
+        "req_port_01",
+        "safe",
+        "smart_ev"
+      ],
+      "ev_auth_failed": [
+        "auth_failed",
+        "connected",
+        "kind_negative",
+        "req_auth_01",
+        "req_chg_01",
+        "safe",
+        "smart_ev",
+        "start_blocked"
+      ],
+      "ev_authenticated": [
+        "authenticated",
+        "connected",
+        "kind_normal",
+        "port_ready",
+        "req_auth_01",
+        "safe",
+        "smart_ev",
+        "token_valid"
+      ],
+      "ev_charging": [
+        "authenticated",
+        "charging",
+        "connected",
+        "kind_normal",
+        "port_ready",
+        "power_positive",
+        "req_chg_01",
+        "req_chg_02",
+        "safe",
+        "safety_gate_valid",
+        "smart_ev",
+        "soc_ok",
+        "temperature_safe",
+        "token_valid"
+      ],
+      "ev_start_blocked_auth": [
+        "auth_failed",
+        "connected",
+        "kind_negative",
+        "req_auth_01",
+        "req_chg_01",
+        "safe",
+        "smart_ev",
+        "start_blocked"
+      ],
+      "ev_stopped_soc_full": [
+        "authenticated",
+        "connected",
+        "kind_boundary",
+        "power_zero",
+        "req_soc_02",
+        "safe",
+        "smart_ev",
+        "soc_full",
+        "stopped"
+      ],
+      "ev_stopped_overheat": [
+        "authenticated",
+        "connected",
+        "kind_unsafe",
+        "power_zero",
+        "req_temp_01",
+        "safe",
+        "smart_ev",
+        "stopped",
+        "temperature_overheat"
+      ],
+      "ev_stopped_port_fault": [
+        "authenticated",
+        "connected",
+        "fault",
+        "kind_fault",
+        "port_fault",
+        "power_zero",
+        "req_emg_01",
+        "req_port_03",
+        "safe",
+        "smart_ev",
+        "stopped"
+      ],
+      "ev_stopped_emergency": [
+        "authenticated",
+        "connected",
+        "emergency",
+        "kind_emergency",
+        "power_zero",
+        "req_emg_01",
+        "safe",
+        "smart_ev",
+        "stopped"
+      ],
+      "ev_recovered_safe": [
+        "authenticated",
+        "connected",
+        "kind_normal",
+        "port_ready",
+        "recovered",
+        "req_chg_02",
+        "req_emg_01",
+        "safe",
+        "smart_ev"
+      ],
+      "ev_port_multi_vehicle_blocked": [
+        "connected",
+        "kind_negative",
+        "port_multi_vehicle_attempt",
+        "req_port_02",
+        "safe",
+        "smart_ev",
+        "start_blocked"
+      ],
+      "ev_soc_invalid_blocked": [
+        "authenticated",
+        "connected",
+        "kind_boundary",
+        "req_soc_01",
+        "safe",
+        "smart_ev",
+        "soc_invalid",
+        "start_blocked"
+      ],
+      "ev_temp_invalid_blocked": [
+        "authenticated",
+        "connected",
+        "kind_boundary",
+        "req_temp_01",
+        "safe",
+        "smart_ev",
+        "start_blocked",
+        "temperature_invalid"
+      ],
+      "ev_boundary_soc_0": [
+        "authenticated",
+        "connected",
+        "kind_boundary",
+        "req_soc_01",
+        "safe",
+        "smart_ev",
+        "soc_boundary_min",
+        "soc_ok"
+      ],
+      "ev_boundary_soc_100": [
+        "authenticated",
+        "connected",
+        "kind_boundary",
+        "power_zero",
+        "req_soc_01",
+        "req_soc_02",
+        "safe",
+        "smart_ev",
+        "soc_boundary_max",
+        "soc_full",
+        "stopped"
+      ],
+      "ev_boundary_temp_below_threshold": [
+        "authenticated",
+        "connected",
+        "kind_boundary",
+        "req_temp_01",
+        "safe",
+        "smart_ev",
+        "temp_below_threshold",
+        "temperature_safe"
+      ],
+      "ev_boundary_temp_threshold": [
+        "authenticated",
+        "connected",
+        "kind_boundary",
+        "power_zero",
+        "req_temp_01",
+        "safe",
+        "smart_ev",
+        "stopped",
+        "temp_threshold",
+        "temperature_overheat"
+      ],
+      "ev_boundary_temp_above_threshold": [
+        "authenticated",
+        "connected",
+        "kind_boundary",
+        "power_zero",
+        "req_temp_01",
+        "safe",
+        "smart_ev",
+        "stopped",
+        "temp_above_threshold",
+        "temperature_overheat"
+      ],
+      "negative_port_req_port_03_violation": [
+        "negative_control",
+        "port",
+        "req_port_03",
+        "req_port_03_violation",
+        "smart_ev"
+      ]
+    },
+    "transitions": [
+      [
+        "ev_disconnected",
+        "ev_connected"
+      ],
+      [
+        "ev_connected",
+        "ev_authenticated"
+      ],
+      [
+        "ev_connected",
+        "ev_auth_failed"
+      ],
+      [
+        "ev_auth_failed",
+        "ev_start_blocked_auth"
+      ],
+      [
+        "ev_authenticated",
+        "ev_charging"
+      ],
+      [
+        "ev_charging",
+        "ev_stopped_soc_full"
+      ],
+      [
+        "ev_charging",
+        "ev_stopped_overheat"
+      ],
+      [
+        "ev_charging",
+        "ev_stopped_port_fault"
+      ],
+      [
+        "ev_charging",
+        "ev_stopped_emergency"
+      ],
+      [
+        "ev_stopped_overheat",
+        "ev_recovered_safe"
+      ],
+      [
+        "ev_stopped_emergency",
+        "ev_recovered_safe"
+      ],
+      [
+        "ev_stopped_port_fault",
+        "ev_recovered_safe"
+      ],
+      [
+        "ev_recovered_safe",
+        "ev_charging"
+      ],
+      [
+        "ev_authenticated",
+        "ev_port_multi_vehicle_blocked"
+      ],
+      [
+        "ev_authenticated",
+        "ev_soc_invalid_blocked"
+      ],
+      [
+        "ev_authenticated",
+        "ev_temp_invalid_blocked"
+      ],
+      [
+        "ev_authenticated",
+        "ev_boundary_soc_0"
+      ],
+      [
+        "ev_boundary_soc_0",
+        "ev_charging"
+      ],
+      [
+        "ev_authenticated",
+        "ev_boundary_soc_100"
+      ],
+      [
+        "ev_authenticated",
+        "ev_boundary_temp_below_threshold"
+      ],
+      [
+        "ev_boundary_temp_below_threshold",
+        "ev_charging"
+      ],
+      [
+        "ev_charging",
+        "ev_boundary_temp_threshold"
+      ],
+      [
+        "ev_charging",
+        "ev_boundary_temp_above_threshold"
+      ],
+      [
+        "ev_authenticated",
+        "ev_disconnected"
+      ],
+      [
+        "ev_stopped_soc_full",
+        "ev_disconnected"
+      ],
+      [
+        "ev_disconnected",
+        "ev_disconnected"
+      ],
+      [
+        "ev_connected",
+        "ev_connected"
+      ],
+      [
+        "ev_auth_failed",
+        "ev_auth_failed"
+      ],
+      [
+        "ev_authenticated",
+        "ev_authenticated"
+      ],
+      [
+        "ev_charging",
+        "ev_charging"
+      ],
+      [
+        "ev_start_blocked_auth",
+        "ev_start_blocked_auth"
+      ],
+      [
+        "ev_stopped_soc_full",
+        "ev_stopped_soc_full"
+      ],
+      [
+        "ev_stopped_overheat",
+        "ev_stopped_overheat"
+      ],
+      [
+        "ev_stopped_port_fault",
+        "ev_stopped_port_fault"
+      ],
+      [
+        "ev_stopped_emergency",
+        "ev_stopped_emergency"
+      ],
+      [
+        "ev_recovered_safe",
+        "ev_recovered_safe"
+      ],
+      [
+        "ev_port_multi_vehicle_blocked",
+        "ev_port_multi_vehicle_blocked"
+      ],
+      [
+        "ev_soc_invalid_blocked",
+        "ev_soc_invalid_blocked"
+      ],
+      [
+        "ev_temp_invalid_blocked",
+        "ev_temp_invalid_blocked"
+      ],
+      [
+        "ev_boundary_soc_0",
+        "ev_boundary_soc_0"
+      ],
+      [
+        "ev_boundary_soc_100",
+        "ev_boundary_soc_100"
+      ],
+      [
+        "ev_boundary_temp_below_threshold",
+        "ev_boundary_temp_below_threshold"
+      ],
+      [
+        "ev_boundary_temp_threshold",
+        "ev_boundary_temp_threshold"
+      ],
+      [
+        "ev_boundary_temp_above_threshold",
+        "ev_boundary_temp_above_threshold"
+      ],
+      [
+        "ev_disconnected",
+        "negative_port_req_port_03_violation"
+      ],
+      [
+        "negative_port_req_port_03_violation",
+        "negative_port_req_port_03_violation"
+      ]
+    ]
+  },
+  "additional_flows": {},
+  "safety_properties": [
+    "AG(!req_auth_01_violation)",
+    "AG(!req_auth_02_violation)",
+    "AG(!req_soc_01_violation)",
+    "AG(!req_soc_02_violation)",
+    "AG(!req_temp_01_violation)",
+    "AG(!req_port_01_violation)",
+    "AG(!req_port_02_violation)",
+    "AG(!req_port_03_violation)",
+    "AG(!req_chg_01_violation)",
+    "AG(!req_chg_02_violation)",
+    "AG(!req_emg_01_violation)",
+    "EF(charging)",
+    "EF(stopped)",
+    "EF(start_blocked)",
+    "EF(recovered)"
+  ],
+  "mutual_exclusion": null,
+  "functions": [],
+  "arithmetic_checks": []
+}
