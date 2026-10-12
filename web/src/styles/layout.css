@@ -1,0 +1,253 @@
+.simulation-page {
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	grid-template-rows: 82px minmax(0, 1fr) 82px;
+	background: #0b1114;
+}
+
+.simulation-main {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 348px;
+	min-height: 0;
+	background: linear-gradient(110deg, #10191d, #0c1316);
+}
+
+.station-section {
+	min-width: 0;
+	min-height: 0;
+	position: relative;
+	padding: 14px;
+	background: radial-gradient(circle at 50% 40%, rgba(79, 145, 145, .08), transparent 55%), #10181b;
+	overflow: hidden;
+}
+
+.monitor-panel {
+	min-height: 0;
+	padding: 4px 0;
+	background: #131c20;
+	border-left: 1px solid #2b4148;
+	overflow-y: auto;
+}
+
+.monitor-panel::-webkit-scrollbar {
+	width: 5px;
+}
+
+.monitor-panel::-webkit-scrollbar-thumb {
+	background: #587279;
+}
+
+/* Header */
+
+.app-header {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	height: 76px;
+	padding: 0 24px;
+	background: #182024;
+	border-bottom: 1px solid var(--line);
+}
+
+.brand-area {
+	min-width: 196px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.logo-icon {
+	display: grid;
+	width: 36px;
+	height: 36px;
+	place-items: center;
+	border: 1px solid #4f7778;
+	border-radius: 10px;
+	color: var(--amber);
+	font-size: 20px;
+	background: #243235;
+}
+
+.brand-name {
+	color: var(--cyan);
+	font-size: 14px;
+	font-weight: 800;
+	letter-spacing: 3px;
+}
+
+.brand-subtitle {
+	margin-top: 3px;
+	color: var(--muted);
+	font-size: 8px;
+	letter-spacing: 2px;
+}
+
+.header-divider {
+	width: 1px;
+	height: 32px;
+	background: var(--line);
+}
+
+.header-metric {
+	min-width: 82px;
+}
+
+.metric-label {
+	color: var(--muted);
+	font-size: 9px;
+	letter-spacing: 2px;
+}
+
+.metric-value {
+	margin-top: 5px;
+	color: var(--text);
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.power-header {
+	width: 225px;
+}
+
+.power-value {
+	margin-top: 4px;
+	text-align: right;
+	color: var(--amber);
+	font-size: 11px;
+	font-weight: 700;
+}
+
+.header-power-bar {
+	height: 6px;
+	margin-top: 4px;
+	overflow: hidden;
+	border-radius: 4px;
+	background: #0e1416;
+}
+
+.header-power-fill {
+	height: 100%;
+	background: var(--amber);
+	transition: width 0.3s ease;
+}
+
+.header-spacer {
+	flex: 1;
+}
+
+.bridge-status {
+	padding: 7px 10px;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	font-size: 9px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	white-space: nowrap;
+}
+
+.bridge-status.mock {
+	color: #79a3c2;
+}
+
+.bridge-status.connected {
+	color: var(--green);
+	border-color: #47795b;
+}
+
+.bridge-status.disconnected,
+.bridge-error {
+	color: #ff5362;
+	border-color: #9d2634;
+}
+
+.telemetry-status {
+	font-size: 8px;
+	font-weight: 700;
+	letter-spacing: 1px;
+	white-space: nowrap;
+}
+
+.telemetry-status.live {
+	color: #00f58f;
+}
+
+.telemetry-status.stale {
+	color: #ffb45c;
+}
+
+.bridge-error {
+	padding: 6px 8px;
+	border: 1px solid;
+	border-radius: 4px;
+	font-size: 8px;
+	letter-spacing: 1px;
+}
+
+.safe-status {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 17px;
+	border: 1px solid #47795b;
+	border-radius: 999px;
+	color: var(--green);
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.estop-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	padding: 9px 16px;
+	background: transparent;
+	border: 1px solid #9e4e55;
+	border-radius: 999px;
+	color: var(--red);
+	font-size: 11px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.estop-button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.release-button {
+	padding: 9px 12px;
+	background: transparent;
+	border: 1px solid #47795b;
+	border-radius: 999px;
+	color: var(--green);
+	font-size: 10px;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.emergency-status {
+	border-color: #9e4e55;
+	color: var(--red);
+}
+
+@media (max-width: 1050px) {
+	.app-header { gap: 12px; padding: 0 14px; }
+	.header-metric:nth-of-type(n + 3), .power-header { display: none; }
+	.simulation-main { grid-template-columns: minmax(0, 1fr) 320px; }
+}
+
+@media (max-width: 760px) {
+	.simulation-page { height: auto; min-height: 100vh; overflow: auto; }
+	.simulation-main { display: block; }
+	.station-section { min-height: 680px; }
+	.monitor-panel { border-left: 0; border-top: 1px solid var(--line); overflow: visible; }
+	.app-header { flex-wrap: wrap; height: auto; min-height: 76px; padding: 12px 14px; }
+	.header-spacer { display: none; }
+	.bridge-status, .safe-status, .estop-button { margin-left: auto; }
+}
+
+.bottom-control { position: relative; }
+.control-error { position: absolute; bottom: 100%; left: 16px; right: 16px; padding: 10px; background: #35151a; color: #ffb0b8; z-index: 110; font-size: 12px; }
+
+.station-section { overflow: auto; }
