@@ -1,0 +1,196 @@
+{
+  "generatedAt": "2026-09-27T19:06:21.392847+00:00",
+  "scope": "Production verification harnesses for normalized Smart EV JSON requirements.",
+  "total": 11,
+  "passed": 11,
+  "failed": 0,
+  "records": [
+    {
+      "requirement_id": "REQ-AUTH-01",
+      "harness": "verification\\harness\\req_auth_01.c",
+      "executable": "bin\\production_verification\\req_auth_01.exe",
+      "compile": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "In file included from verification\\harness\\req_auth_01.c:1:\nverification\\harness\\harness_common.h:33:13: warning: 'harness_prepare_ready_to_charge' defined but not used [-Wunused-function]\n static void harness_prepare_ready_to_charge(TramSac *tram, XeDien *xe, int port_idx)\n             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+      },
+      "run": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "[AUTH] Dang xac thuc xe EV-AUTH01 voi token: 'invalid-token'...\n[AUTH][FAILED] Xe EV-AUTH01 xac thuc that bai! Token khong hop le.\n[AUTH] Dang xac thuc xe EV-AUTH01 voi token: 'TOKEN_EV-AUTH01'...\n[AUTH][SUCCESS] Xe EV-AUTH01 xac thuc thanh cong!\n[HARNESS PASS] REQ-AUTH-01\n"
+      },
+      "method": "native production harness with C assert",
+      "status": "PASS"
+    },
+    {
+      "requirement_id": "REQ-AUTH-02",
+      "harness": "verification\\harness\\req_auth_02.c",
+      "executable": "bin\\production_verification\\req_auth_02.exe",
+      "compile": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "In file included from verification\\harness\\req_auth_02.c:1:\nverification\\harness\\harness_common.h:33:13: warning: 'harness_prepare_ready_to_charge' defined but not used [-Wunused-function]\n static void harness_prepare_ready_to_charge(TramSac *tram, XeDien *xe, int port_idx)\n             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+      },
+      "run": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "[AUTH] Dang xac thuc xe EV-HARNESS voi token: 'TOKEN_EV-HARNESS'...\n[AUTH][SUCCESS] Xe EV-HARNESS xac thuc thanh cong!\n[HARNESS PASS] REQ-AUTH-02\n"
+      },
+      "method": "native production harness with C assert",
+      "status": "PASS"
+    },
+    {
+      "requirement_id": "REQ-CHG-01",
+      "harness": "verification\\harness\\req_chg_01.c",
+      "executable": "bin\\production_verification\\req_chg_01.exe",
+      "compile": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "In file included from verification\\harness\\req_chg_01.c:1:\nverification\\harness\\harness_common.h:33:13: warning: 'harness_prepare_ready_to_charge' defined but not used [-Wunused-function]\n static void harness_prepare_ready_to_charge(TramSac *tram, XeDien *xe, int port_idx)\n             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+      },
+      "run": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)\n[DENIED] Khong du dieu kien de bat dau sac xe EV-CHG01 tai cong 1.\n[CHARGING CHECK] DENIED: Xe EV-CHG01 chua duoc xac thuc.\n[DENIED] Khong du dieu kien de bat dau sac xe EV-CHG01 tai cong 1.\n[AUTH] Dang xac thuc xe EV-CHG01 voi token: 'TOKEN_EV-CHG01'...\n[AUTH][SUCCESS] Xe EV-CHG01 xac thuc thanh cong!\n[CHARGING] Bat dau sac thanh cong cho xe EV-CHG01 tai Cong 1 voi cong suat 22.0 kW.\n[HARNESS PASS] REQ-CHG-01\n"
+      },
+      "method": "native production harness with C assert",
+      "status": "PASS"
+    },
+    {
+      "requirement_id": "REQ-CHG-02",
+      "harness": "verification\\harness\\req_chg_02.c",
+      "executable": "bin\\production_verification\\req_chg_02.exe",
+      "compile": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": ""
+      },
+      "run": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "[AUTH] Dang xac thuc xe EV-HARNESS voi token: 'TOKEN_EV-HARNESS'...\n[AUTH][SUCCESS] Xe EV-HARNESS xac thuc thanh cong!\n[CHARGING] Bat dau sac thanh cong cho xe EV-HARNESS tai Cong 1 voi cong suat 22.0 kW.\n[HARNESS PASS] REQ-CHG-02\n"
+      },
+      "method": "native production harness with C assert",
+      "status": "PASS"
+    },
+    {
+      "requirement_id": "REQ-EMG-01",
+      "harness": "verification\\harness\\req_emg_01.c",
+      "executable": "bin\\production_verification\\req_emg_01.exe",
+      "compile": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "In file included from verification\\harness\\req_emg_01.c:1:\nverification\\harness\\harness_common.h:33:13: warning: 'harness_prepare_ready_to_charge' defined but not used [-Wunused-function]\n static void harness_prepare_ready_to_charge(TramSac *tram, XeDien *xe, int port_idx)\n             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+      },
+      "run": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "[AUTH] Dang xac thuc xe EV-EMG01A voi token: 'TOKEN_EV-EMG01A'...\n[AUTH][SUCCESS] Xe EV-EMG01A xac thuc thanh cong!\n[CHARGING] Bat dau sac thanh cong cho xe EV-EMG01A tai Cong 1 voi cong suat 22.0 kW.\n\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n[STATION EMERGENCY] KICH HOAT DUNG KHAN CAP TOAN BO TRAM SAC!\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n[STATION EMERGENCY] Tat ca cac cong da ngat cong suat ve 0 kW.\n\n[HARNESS PASS] REQ-EMG-01\n"
+      },
+      "method": "native production harness with C assert",
+      "status": "PASS"
+    },
+    {
+      "requirement_id": "REQ-PORT-01",
+      "harness": "verification\\harness\\req_port_01.c",
+      "executable": "bin\\production_verification\\req_port_01.exe",
+      "compile": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "In file included from verification\\harness\\req_port_01.c:1:\nverification\\harness\\harness_common.h:33:13: warning: 'harness_prepare_ready_to_charge' defined but not used [-Wunused-function]\n static void harness_prepare_ready_to_charge(TramSac *tram, XeDien *xe, int port_idx)\n             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+      },
+      "run": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)\n[DENIED] Khong du dieu kien de bat dau sac xe EV-PORT01 tai cong 1.\n[AUTH] Dang xac thuc xe EV-PORT01 voi token: 'TOKEN_EV-PORT01'...\n[AUTH][SUCCESS] Xe EV-PORT01 xac thuc thanh cong!\n[CHARGING] Bat dau sac thanh cong cho xe EV-PORT01 tai Cong 1 voi cong suat 22.0 kW.\n[HARNESS PASS] REQ-PORT-01\n"
+      },
+      "method": "native production harness with C assert",
+      "status": "PASS"
+    },
+    {
+      "requirement_id": "REQ-PORT-02",
+      "harness": "verification\\harness\\req_port_02.c",
+      "executable": "bin\\production_verification\\req_port_02.exe",
+      "compile": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "In file included from verification\\harness\\req_port_02.c:1:\nverification\\harness\\harness_common.h:33:13: warning: 'harness_prepare_ready_to_charge' defined but not used [-Wunused-function]\n static void harness_prepare_ready_to_charge(TramSac *tram, XeDien *xe, int port_idx)\n             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+      },
+      "run": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "[PORT 1] Error: Port already occupied by vehicle 1\n[HARNESS PASS] REQ-PORT-02\n"
+      },
+      "method": "native production harness with C assert",
+      "status": "PASS"
+    },
+    {
+      "requirement_id": "REQ-PORT-03",
+      "harness": "verification\\harness\\req_port_03.c",
+      "executable": "bin\\production_verification\\req_port_03.exe",
+      "compile": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": ""
+      },
+      "run": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "[AUTH] Dang xac thuc xe EV-HARNESS voi token: 'TOKEN_EV-HARNESS'...\n[AUTH][SUCCESS] Xe EV-HARNESS xac thuc thanh cong!\n[EMERGENCY][PORT 1] Emergency stop activated! Port power cut off to 0 kW.\n[HARNESS PASS] REQ-PORT-03\n"
+      },
+      "method": "native production harness with C assert",
+      "status": "PASS"
+    },
+    {
+      "requirement_id": "REQ-SOC-01",
+      "harness": "verification\\harness\\req_soc_01.c",
+      "executable": "bin\\production_verification\\req_soc_01.exe",
+      "compile": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "In file included from verification\\harness\\req_soc_01.c:1:\nverification\\harness\\harness_common.h:33:13: warning: 'harness_prepare_ready_to_charge' defined but not used [-Wunused-function]\n static void harness_prepare_ready_to_charge(TramSac *tram, XeDien *xe, int port_idx)\n             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+      },
+      "run": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "[HARNESS PASS] REQ-SOC-01\n"
+      },
+      "method": "native production harness with C assert",
+      "status": "PASS"
+    },
+    {
+      "requirement_id": "REQ-SOC-02",
+      "harness": "verification\\harness\\req_soc_02.c",
+      "executable": "bin\\production_verification\\req_soc_02.exe",
+      "compile": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": ""
+      },
+      "run": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "[AUTH] Dang xac thuc xe EV-HARNESS voi token: 'TOKEN_EV-HARNESS'...\n[AUTH][SUCCESS] Xe EV-HARNESS xac thuc thanh cong!\n[CHARGING CHECK] DENIED: Pin xe EV-HARNESS da day (SOC=100.0%).\n[CHARGING CHECK] DENIED: Pin xe EV-HARNESS da day (SOC=100.0%).\n[DENIED] Khong du dieu kien de bat dau sac xe EV-HARNESS tai cong 1.\n[SAFETY][INFO] EV-HARNESS battery full (100%). PORT 1 power off -> STOPPED\n[HARNESS PASS] REQ-SOC-02\n"
+      },
+      "method": "native production harness with C assert",
+      "status": "PASS"
+    },
+    {
+      "requirement_id": "REQ-TEMP-01",
+      "harness": "verification\\harness\\req_temp_01.c",
+      "executable": "bin\\production_verification\\req_temp_01.exe",
+      "compile": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": ""
+      },
+      "run": {
+        "status": "PASS",
+        "exit_code": 0,
+        "output": "[AUTH] Dang xac thuc xe EV-HARNESS voi token: 'TOKEN_EV-HARNESS'...\n[AUTH][SUCCESS] Xe EV-HARNESS xac thuc thanh cong!\n[CHARGING CHECK] DENIED: Pin xe EV-HARNESS qua nhiet (60.0 C >= 60.0 C).\n[CHARGING CHECK] DENIED: Pin xe EV-HARNESS qua nhiet (60.0 C >= 60.0 C).\n[DENIED] Khong du dieu kien de bat dau sac xe EV-HARNESS tai cong 1.\n[SAFETY][CRITICAL] EV-HARNESS battery overheat (60.0 C >= 60.0 C)! PORT 1 power disabled -> FAULT\n[HARNESS PASS] REQ-TEMP-01\n"
+      },
+      "method": "native production harness with C assert",
+      "status": "PASS"
+    }
+  ]
+}
