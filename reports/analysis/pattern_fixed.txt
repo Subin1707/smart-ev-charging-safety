@@ -1,0 +1,8 @@
+
+==================================================
+ SCANNING DIRECTORY: static_analysis/fixed
+==================================================
+[+] FILE: sua_id_xe.c -> CLEAN (0 issues)
+[+] FILE: sua_phan_tich_thong_diep.c -> CLEAN (0 issues)
+[+] FILE: sua_tinh_nang_luong.c -> CLEAN (0 issues)
+Total vulnerabilities found: 0

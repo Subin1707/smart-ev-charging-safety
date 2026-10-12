@@ -1,0 +1,18 @@
+src\logging\logger.c:46:16: style: Variable 'tm_info' can be declared as pointer to const [constVariablePointer]
+    struct tm *tm_info = localtime(&now);
+               ^
+src\safety\giam_sat_an_toan.c:5:71: style: Parameter 'tram' can be declared as pointer to const [constParameterPointer]
+KetQuaGiamSat giam_sat_xe_va_cong(XeDien *xe, CongSac *cong, TramSac *tram) {
+                                                                      ^
+src\simulation\mo_phong.c:165:25: style: The if condition is the same as the previous if condition [duplicateCondition]
+                    if (overheat_trip_moi) {
+                        ^
+src\simulation\mo_phong.c:155:25: note: First condition
+                    if (overheat_trip_moi) {
+                        ^
+src\simulation\mo_phong.c:165:25: note: Second condition
+                    if (overheat_trip_moi) {
+                        ^
+src\station\quan_ly_cong_suat.c:99:18: style: Variable 'cong' can be declared as pointer to const [constVariablePointer]
+        CongSac *cong = &tram->cong[i];
+                 ^

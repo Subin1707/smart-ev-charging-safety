@@ -1,0 +1,3 @@
+static_analysis/vulnerable/loi_tinh_nang_luong.c:10:25: runtime error: signed integer overflow: 3 * 1000000000 cannot be represented in type 'int'
+[VULNERABLE] Tinh toan micro-Watt cho cong suat 3 kW...
+[VULNERABLE] Ket qua: -1294967296 micro-Watt (BI TRAN SO THANH SO AM!)

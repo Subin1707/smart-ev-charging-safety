@@ -1,0 +1,44 @@
+static_analysis\fixed\sua_id_xe.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+﻿#include <stdio.h>
+ ^
+static_analysis\fixed\sua_id_xe.c:2:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+static_analysis\fixed\sua_id_xe.c:23:26: style: Parameter 'argv' can be declared as const array [constParameter]
+int main(int argc, char *argv[]) {
+                         ^
+static_analysis\fixed\sua_phan_tich_thong_diep.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+﻿#include <stdio.h>
+ ^
+static_analysis\fixed\sua_phan_tich_thong_diep.c:2:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+static_analysis\fixed\sua_phan_tich_thong_diep.c:3:2: information: Include file: <stdlib.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <stdlib.h>
+ ^
+static_analysis\fixed\sua_phan_tich_thong_diep.c:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+static_analysis\fixed\sua_phan_tich_thong_diep.c:20:11: style: Variable 'token' can be declared as pointer to const [constVariablePointer]
+    char *token = strtok_r(buffer, "|", &saveptr);
+          ^
+static_analysis\fixed\sua_tinh_nang_luong.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+﻿#include <stdio.h>
+ ^
+static_analysis\fixed\sua_tinh_nang_luong.c:2:2: information: Include file: <limits.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <limits.h>
+ ^
+static_analysis\fixed\sua_tinh_nang_luong.c:3:2: information: Include file: <stdint.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <stdint.h>
+ ^
+static_analysis\fixed\sua_id_xe.c:10:5: style: The function 'cap_nhat_id_xe_an_toan' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+int cap_nhat_id_xe_an_toan(HoSoXeAnToan *xe, const char *input_id) {
+    ^
+static_analysis\fixed\sua_phan_tich_thong_diep.c:12:5: style: The function 'phan_tich_thong_diep_an_toan' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+int phan_tich_thong_diep_an_toan(const char *raw_msg, ThongDiepAnToan *msg) {
+    ^
+static_analysis\fixed\sua_tinh_nang_luong.c:6:9: style: The function 'tinh_micro_watt_an_toan' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+int64_t tinh_micro_watt_an_toan(int cong_suat_kw) {
+        ^
+nofile:0:0: information: Active checkers: 119/186 (use --checkers-report=<filename> to see details) [checkersReport]
+
