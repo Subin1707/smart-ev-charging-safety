@@ -1,0 +1,184 @@
+{
+  "id": "PORT",
+  "name": "Charging port safety and occupancy",
+  "description": "Charging port connection, occupancy, charging state, fault state, and mutual-exclusion constraints.",
+
+  "source_references": [
+    "src/station/cong_sac.c",
+    "src/station/tram_sac.c"
+  ],
+
+  "parameters": [
+    {
+      "symbol": "C",
+      "name": "connected",
+      "domain": [0, 1]
+    },
+    {
+      "symbol": "O",
+      "name": "occupied",
+      "domain": [0, 1]
+    },
+    {
+      "symbol": "P",
+      "name": "charging",
+      "domain": [0, 1]
+    },
+    {
+      "symbol": "F",
+      "name": "fault",
+      "domain": [0, 1]
+    }
+  ],
+
+  "state_encoding": ["C", "O", "P", "F"],
+
+  "initial_state": {
+    "C": 0,
+    "O": 0,
+    "P": 0,
+    "F": 0
+  },
+
+  "derived": {
+    "port_available": "O == 0 and F == 0",
+    "charging_allowed": "C == 1 and O == 1 and F == 0"
+  },
+
+  "constraints": [
+    {
+      "id": "PORT-01",
+      "formula": "P -> C",
+      "expression": "(not P) or C",
+      "scope": "state",
+      "description": "A charging port requires a connected vehicle."
+    },
+    {
+      "id": "PORT-02",
+      "formula": "P -> O",
+      "expression": "(not P) or O",
+      "scope": "state",
+      "description": "A charging port must be occupied."
+    },
+    {
+      "id": "PORT-03",
+      "formula": "F -> !P",
+      "expression": "(not F) or (not P)",
+      "scope": "state",
+      "description": "A faulted port must not be charging."
+    },
+    {
+      "id": "PORT-04",
+      "formula": "vehicles_per_port <= 1",
+      "scope": "global",
+      "description": "A charging port may be linked to at most one vehicle at a time."
+    },
+    {
+      "id": "PORT-05",
+      "formula": "ports_per_vehicle <= 1",
+      "scope": "global",
+      "description": "A vehicle may occupy at most one charging port at a time."
+    }
+  ],
+
+  "requirements": [
+    {
+      "id": "REQ-PORT-01",
+      "type": "safety",
+      "priority": "HIGH",
+      "text": "A port may enter CHARGING only when a valid vehicle is connected.",
+      "formal": "P -> C",
+      "constraints": ["PORT-01"]
+    },
+    {
+      "id": "REQ-PORT-02",
+      "type": "safety",
+      "priority": "HIGH",
+      "text": "At any time, one charging port may be linked to at most one vehicle.",
+      "formal": "vehicles_per_port <= 1",
+      "constraints": ["PORT-04", "PORT-05"]
+    },
+    {
+      "id": "REQ-PORT-03",
+      "type": "safety",
+      "priority": "HIGH",
+      "text": "A faulted port must not deliver charging power.",
+      "formal": "F -> !P",
+      "constraints": ["PORT-03"]
+    }
+  ],
+
+  "example_states": [
+    {
+      "id": "P0",
+      "bits": "0000",
+      "meaning": "Port is idle and available",
+      "valid": true
+    },
+    {
+      "id": "P1",
+      "bits": "1100",
+      "meaning": "Vehicle is connected and port is occupied, but not charging",
+      "valid": true
+    },
+    {
+      "id": "P2",
+      "bits": "1110",
+      "meaning": "Vehicle is connected, port is occupied, and charging",
+      "valid": true
+    },
+    {
+      "id": "P3",
+      "bits": "1101",
+      "meaning": "Occupied port has entered fault state and charging is stopped",
+      "valid": true
+    },
+    {
+      "id": "P4",
+      "bits": "0010",
+      "meaning": "Invalid: charging without a connected and occupied vehicle",
+      "valid": false,
+      "violates": ["PORT-01", "PORT-02"]
+    },
+    {
+      "id": "P5",
+      "bits": "1111",
+      "meaning": "Invalid: faulted port is still charging",
+      "valid": false,
+      "violates": ["PORT-03"]
+    }
+  ],
+
+  "transitions": [
+    {
+      "from": "P0",
+      "event": "vehicle_connect",
+      "to": "P1"
+    },
+    {
+      "from": "P1",
+      "event": "start_charging",
+      "to": "P2"
+    },
+    {
+      "from": "P2",
+      "event": "stop_charging",
+      "to": "P1"
+    },
+    {
+      "from": "P2",
+      "event": "fault_detected",
+      "to": "P3"
+    },
+    {
+      "from": "P3",
+      "event": "fault_cleared",
+      "to": "P1"
+    },
+    {
+      "from": "P1",
+      "event": "vehicle_disconnect",
+      "to": "P0"
+    }
+  ]
+}

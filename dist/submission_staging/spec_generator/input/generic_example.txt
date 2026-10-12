@@ -1,0 +1,3 @@
+ID | Type | Priority | Content
+REQ-01 | safety | HIGH | Pressure must not exceed 200 kPa.
+REQ-02 | safety | HIGH | When temperature >= 80 C, valve must be CLOSED.

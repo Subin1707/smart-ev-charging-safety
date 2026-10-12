@@ -1,0 +1,206 @@
+{
+  "id": "BATTERY",
+  "name": "Battery and temperature condition checks",
+  "description": "Equivalence partitions for SOC and temperature instead of enumerating continuous sensor values.",
+
+  "source_references": [
+    "src/core/hang_so.h",
+    "src/charging/dieu_khien_sac.c",
+    "src/safety/giam_sat_an_toan.c"
+  ],
+
+  "raw_parameters": [
+    {
+      "name": "soc",
+      "type": "float",
+      "unit": "%",
+      "valid_range": [0, 100]
+    },
+    {
+      "name": "temperature",
+      "type": "float",
+      "unit": "C",
+      "valid_range": [-20, 60]
+    }
+  ],
+
+  "parameters": [
+    {
+      "symbol": "SOC",
+      "name": "soc_class",
+      "domain": [
+        "SOC_INVALID",
+        "SOC_OK",
+        "SOC_FULL"
+      ]
+    },
+    {
+      "symbol": "TEMP",
+      "name": "temperature_class",
+      "domain": [
+        "TEMP_INVALID",
+        "TEMP_SAFE",
+        "TEMP_OVERHEAT"
+      ]
+    }
+  ],
+
+  "partitions": {
+    "SOC": [
+      {
+        "class": "SOC_INVALID",
+        "condition": "soc < 0 or soc > 100"
+      },
+      {
+        "class": "SOC_OK",
+        "condition": "0 <= soc < 100"
+      },
+      {
+        "class": "SOC_FULL",
+        "condition": "soc == 100"
+      }
+    ],
+    "TEMP": [
+      {
+        "class": "TEMP_INVALID",
+        "condition": "temperature < -20"
+      },
+      {
+        "class": "TEMP_SAFE",
+        "condition": "-20 <= temperature < 60"
+      },
+      {
+        "class": "TEMP_OVERHEAT",
+        "condition": "temperature >= 60"
+      }
+    ]
+  },
+
+  "state_encoding": [
+    "SOC",
+    "TEMP"
+  ],
+
+  "derived": {
+    "charging_allowed": "SOC == 'SOC_OK' and TEMP == 'TEMP_SAFE'"
+  },
+
+  "constraints": [
+    {
+      "id": "BAT-01",
+      "formula": "0 <= soc <= 100",
+      "expression": "SOC != 'SOC_INVALID'",
+      "scope": "state",
+      "description": "SOC sensor value must remain in the valid range."
+    },
+    {
+      "id": "BAT-02",
+      "formula": "SOC_FULL -> !CHARGING",
+      "expression": "SOC != 'SOC_FULL'",
+      "scope": "state",
+      "description": "A full battery must not continue charging."
+    },
+    {
+      "id": "BAT-03",
+      "formula": "TEMP_OVERHEAT -> !CHARGING",
+      "expression": "TEMP != 'TEMP_OVERHEAT'",
+      "scope": "state",
+      "description": "Temperature at or above 60 C blocks charging."
+    },
+    {
+      "id": "BAT-04",
+      "formula": "SOC_INVALID -> !CHARGING",
+      "expression": "SOC != 'SOC_INVALID'",
+      "scope": "state",
+      "description": "Invalid SOC data blocks charging."
+    },
+    {
+      "id": "BAT-05",
+      "formula": "TEMP_INVALID -> !CHARGING",
+      "expression": "TEMP != 'TEMP_INVALID'",
+      "scope": "state",
+      "description": "Invalid temperature data blocks charging."
+    }
+  ],
+
+  "requirements": [
+    {
+      "id": "REQ-SOC-01",
+      "type": "safety",
+      "priority": "HIGH",
+      "text": "Vehicle SOC must remain between 0% and 100%.",
+      "formal": "0 <= soc <= 100",
+      "constraints": [
+        "BAT-01"
+      ]
+    },
+    {
+      "id": "REQ-SOC-02",
+      "type": "safety",
+      "priority": "HIGH",
+      "text": "A vehicle with SOC at 100% must not continue receiving charging power.",
+      "formal": "SOC_FULL -> !CHARGING",
+      "constraints": [
+        "BAT-02"
+      ]
+    },
+    {
+      "id": "REQ-TEMP-01",
+      "type": "safety",
+      "priority": "HIGH",
+      "text": "When battery temperature reaches or exceeds 60 C, charging must stop.",
+      "formal": "TEMP_OVERHEAT -> !CHARGING",
+      "constraints": [
+        "BAT-03"
+      ]
+    }
+  ],
+
+  "example_states": [
+    {
+      "id": "B0",
+      "values": {
+        "SOC": "SOC_OK",
+        "TEMP": "TEMP_SAFE"
+      },
+      "meaning": "Battery conditions are safe for charging",
+      "charging_allowed": true
+    },
+    {
+      "id": "B1",
+      "values": {
+        "SOC": "SOC_FULL",
+        "TEMP": "TEMP_SAFE"
+      },
+      "meaning": "Battery is full",
+      "charging_allowed": false
+    },
+    {
+      "id": "B2",
+      "values": {
+        "SOC": "SOC_OK",
+        "TEMP": "TEMP_OVERHEAT"
+      },
+      "meaning": "Battery temperature is too high",
+      "charging_allowed": false
+    },
+    {
+      "id": "B3",
+      "values": {
+        "SOC": "SOC_INVALID",
+        "TEMP": "TEMP_SAFE"
+      },
+      "meaning": "SOC sensor value is invalid",
+      "charging_allowed": false
+    },
+    {
+      "id": "B4",
+      "values": {
+        "SOC": "SOC_OK",
+        "TEMP": "TEMP_INVALID"
+      },
+      "meaning": "Temperature sensor value is invalid",
+      "charging_allowed": false
+    }
+  ]
+}

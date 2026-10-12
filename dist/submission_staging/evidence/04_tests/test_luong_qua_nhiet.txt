@@ -1,0 +1,15 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_luong_qua_nhiet.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.13250310000148602}
+=== RUNNING E2E TEST: OVERHEAT SAFETY INTERVENTION ===
+[AUTH] Dang xac thuc xe EV02 voi token: 'TOKEN_EV02'...
+[AUTH][SUCCESS] Xe EV02 xac thuc thanh cong!
+[CHARGING] Bat dau sac thanh cong cho xe EV02 tai Cong 2 voi cong suat 22.0 kW.
+  [PASS] Port 2 is charging
+[SAFETY][CRITICAL] EV02 battery overheat (65.0 C >= 60.0 C)! PORT 2 power disabled -> FAULT
+  [PASS] Safety monitor detects overheat violation (SR03)
+  [PASS] Port 2 automatically transitions to FAULT
+  [PASS] Port 2 power immediately cut off to 0 kW
+--------------------------------------------------
+TEST SUITE: E2E_OVERHEAT_FLOW
+Total: 4 | Passed: 4 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

@@ -1,0 +1,96 @@
+[
+  {
+    "requirement_id": "REQ-01",
+    "source": {
+      "file": "generic_example.txt",
+      "row": 2
+    },
+    "content": "Pressure must not exceed 200 kPa.",
+    "ir": {
+      "requirement_id": "REQ-01",
+      "verifiable": true,
+      "property_type": "invariant",
+      "preconditions": [],
+      "trigger": null,
+      "expected": [
+        {
+          "variable": "pressure",
+          "operator": "<=",
+          "value": 200,
+          "unit": "kPa"
+        }
+      ]
+    },
+    "strategy": {
+      "static": [
+        "CBMC",
+        "SMT/Z3"
+      ],
+      "dynamic": [
+        "Boundary Test"
+      ]
+    },
+    "artifacts": {
+      "cbmc": "evidence/static/cbmc/REQ_01_cbmc.c",
+      "z3": "evidence/static/z3/REQ_01_z3.py",
+      "boundary": "evidence/dynamic/boundary/test_REQ_01.py",
+      "counterexample": "evidence/generation/counterexamples/REQ_01_z3.txt"
+    },
+    "execution": {
+      "static": "FAIL",
+      "dynamic": "PASS"
+    },
+    "result": "FAIL"
+  },
+  {
+    "requirement_id": "REQ-02",
+    "source": {
+      "file": "generic_example.txt",
+      "row": 3
+    },
+    "content": "When temperature >= 80 C, valve must be CLOSED.",
+    "ir": {
+      "requirement_id": "REQ-02",
+      "verifiable": true,
+      "property_type": "conditional",
+      "preconditions": [],
+      "trigger": {
+        "variable": "temperature",
+        "operator": ">=",
+        "value": 80,
+        "unit": "C"
+      },
+      "expected": [
+        {
+          "variable": "valve",
+          "operator": "==",
+          "value": "CLOSED",
+          "unit": null
+        }
+      ]
+    },
+    "strategy": {
+      "static": [
+        "CBMC",
+        "SMT/Z3"
+      ],
+      "dynamic": [
+        "Boundary Test",
+        "Runtime",
+        "Fuzz"
+      ]
+    },
+    "artifacts": {
+      "cbmc": "evidence/static/cbmc/REQ_02_cbmc.c",
+      "z3": "evidence/static/z3/REQ_02_z3.py",
+      "boundary": "evidence/dynamic/boundary/test_REQ_02.py",
+      "fuzz": "evidence/dynamic/fuzz/fuzz_REQ_02.c",
+      "counterexample": "evidence/generation/counterexamples/REQ_02_z3.txt"
+    },
+    "execution": {
+      "static": "FAIL",
+      "dynamic": "PASS"
+    },
+    "result": "FAIL"
+  }
+]

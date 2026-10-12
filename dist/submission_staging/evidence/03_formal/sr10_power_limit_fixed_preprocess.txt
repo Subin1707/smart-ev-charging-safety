@@ -1,0 +1,1 @@
+{"command": ["gcc", "-E", "-P", "formal/bmc/sr10_power_limit_fixed.c", "-o", "E:\\smart-ev-charging-safety\\bin\\verification\\sr10_power_limit_fixed.i"], "exitCode": 0, "status": "PASS", "seconds": 0.14862459999858402}

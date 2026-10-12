@@ -1,0 +1,242 @@
+.monitor-card {
+	margin: 12px 14px;
+	padding: 15px;
+	border: 1px solid #304850;
+	border-radius: 12px;
+	background: linear-gradient(145deg, #202d31, #172226);
+	box-shadow: 0 12px 24px rgba(0, 0, 0, .18), inset 0 1px rgba(255, 255, 255, .04);
+}
+
+.monitor-card h3 {
+	margin: 0 0 14px;
+	color: var(--text);
+	font-size: 12px;
+	letter-spacing: 2px;
+}
+
+.monitor-summary {
+	display: flex;
+	justify-content: space-between;
+	margin: -4px 0 12px;
+	color: var(--cyan);
+	font-size: 9px;
+	letter-spacing: 1px;
+}
+
+.vehicle-inspector {
+	position: relative;
+	border-color: rgba(76, 150, 160, .55);
+}
+
+.vehicle-inspector-empty {
+	min-height: 104px;
+}
+
+.vehicle-inspector-empty p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 10px;
+	line-height: 1.5;
+}
+
+.vehicle-inspector-header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.vehicle-inspector-heading h3,
+.vehicle-inspector-header h3 {
+	margin: 4px 0 0;
+	color: var(--cyan);
+	font-size: 17px;
+	letter-spacing: 2px;
+}
+
+.vehicle-inspector-eyebrow {
+	color: var(--muted);
+	font-size: 8px;
+	font-weight: 700;
+	letter-spacing: 1.6px;
+}
+
+.vehicle-inspector-close {
+	width: 26px;
+	height: 26px;
+	padding: 0;
+	border: 1px solid #49646b;
+	border-radius: 6px;
+	background: transparent;
+	color: var(--muted);
+	font-size: 18px;
+	line-height: 1;
+	cursor: pointer;
+}
+
+.vehicle-inspector-close:hover {
+	border-color: var(--cyan);
+	color: var(--cyan);
+}
+
+.vehicle-inspector-state {
+	display: inline-block;
+	margin: 12px 0 3px;
+	padding: 4px 8px;
+	border: 1px solid #47795b;
+	border-radius: 4px;
+	color: var(--green);
+	font-size: 9px;
+	font-weight: 800;
+	letter-spacing: 1.5px;
+}
+
+.vehicle-inspector-fault .vehicle-inspector-state {
+	border-color: #9e4e55;
+	color: var(--red);
+}
+
+.vehicle-inspector-section {
+	margin-top: 14px;
+	padding-top: 10px;
+	border-top: 1px solid rgba(67, 91, 97, .55);
+}
+
+.vehicle-inspector-section h4 {
+	margin: 0 0 7px;
+	color: #7ca8b0;
+	font-size: 8px;
+	letter-spacing: 1.5px;
+}
+
+.vehicle-detail-row {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 4px 0;
+	color: var(--muted);
+	font-size: 10px;
+}
+
+.vehicle-detail-row strong {
+	color: var(--text);
+	font-size: 10px;
+	font-weight: 700;
+	text-align: right;
+}
+
+.vehicle-inspector-alert {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	margin-top: 14px;
+	padding: 10px;
+	border: 1px solid rgba(240, 120, 120, .55);
+	border-radius: 7px;
+	background: rgba(90, 15, 24, .3);
+	color: #ff9b96;
+	font-size: 9px;
+}
+
+.vehicle-inspector-alert strong {
+	color: #ff6970;
+	letter-spacing: .8px;
+}
+
+.event-list {
+	max-height: 220px;
+	overflow-y: auto;
+}
+
+.safety-rule-list {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+}
+
+.safety-rule {
+	padding: 10px 11px;
+	border-radius: 8px;
+	font-size: 10px;
+}
+
+.safety-rule.pass {
+	color: var(--green);
+	border: 1px solid #47795b;
+	background: rgba(121, 214, 156, .08);
+}
+
+.safety-rule.fail {
+	color: var(--red);
+	border: 1px solid #9e4e55;
+	background: rgba(240, 120, 120, .08);
+}
+
+.event-card {
+	min-height: 200px;
+}
+
+.event-item {
+	display: flex;
+	gap: 10px;
+	padding: 10px 5px 10px 12px;
+	border-left: 2px solid var(--cyan);
+	border-radius: 0 7px 7px 0;
+	background: rgba(102, 217, 208, .035);
+}
+
+.event-marker {
+	flex: 0 0 7px;
+	height: 7px;
+	margin-top: 4px;
+	border-radius: 50%;
+	background: var(--cyan);
+	box-shadow: 0 0 0 3px rgba(102, 217, 208, .12);
+}
+
+.event-warning .event-marker { background: var(--amber); box-shadow: 0 0 0 3px rgba(242, 178, 99, .12); }
+.event-critical .event-marker { background: var(--red); box-shadow: 0 0 0 3px rgba(240, 120, 120, .12); }
+.event-content { min-width: 0; }
+.event-meta { display: flex; gap: 10px; align-items: center; margin-bottom: 4px; }
+.event-code { color: var(--muted); font-size: 8px; font-weight: 700; letter-spacing: 1px; }
+
+.event-time {
+	color: var(--amber);
+	font-size: 9px;
+}
+
+.event-text {
+	color: var(--text);
+	font-size: 10px;
+}
+
+.form-label {
+	display: block;
+	margin-top: 15px;
+	margin-bottom: 7px;
+	color: var(--muted);
+	font-size: 9px;
+	letter-spacing: 2px;
+}
+
+.control-select {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #43565c;
+	border-radius: 8px;
+	outline: none;
+	background: #101719;
+	color: var(--text);
+}
+
+.inject-button {
+	width: 100%;
+	margin-top: 16px;
+	padding: 10px;
+	background: transparent;
+	border: 1px solid #9e4e55;
+	border-radius: 8px;
+	color: var(--red);
+	font-weight: 700;
+	cursor: pointer;
+}

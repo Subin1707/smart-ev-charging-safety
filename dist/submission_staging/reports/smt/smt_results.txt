@@ -1,0 +1,40 @@
+SMT-01: SOC RANGE VERIFICATION
+[VULNERABLE] SAT - SOC range counterexample
+  current_soc=51, delta_soc=50, new_soc=101
+[FIXED] UNSAT - No counterexample; 0 <= SOC <= 100
+SMT-02: TEMPERATURE SAFETY
+[VULNERABLE] SAT - overheat while charging
+  counterexample: temperature=60, charging=True
+[FIXED] UNSAT - No counterexample; OVERHEAT -> NOT CHARGING
+SMT-03/04: POWER ALLOCATION VERIFICATION
+[VULNERABLE] SAT - station overload possible
+  total power=101 kW
+[FIXED] UNSAT - No counterexample; SUM(PORT_POWER) <= 100 kW
+SMT-05: ENERGY CALCULATION
+[VULNERABLE] SAT - negative energy counterexample
+  model: [power_kw = -21, duration_h = 1, energy_kwh = -21]
+[FIXED] UNSAT - No counterexample; energy is non-negative
+SMT-06: SOC PRIORITY ALLOCATION
+[UNSAT] No counterexample; Low-SOC priority preserved
+============================================================
+                 SMT / Z3 SUMMARY
+============================================================
+
+smt_soc: Vulnerable: SAT (counterexample found); Fixed: UNSAT (no counterexample); PASS
+Evidence: smt_soc.txt
+
+smt_temperature: Vulnerable: SAT (counterexample found); Fixed: UNSAT (no counterexample); PASS
+Evidence: smt_temperature.txt
+
+smt_power_allocation: Vulnerable: SAT (counterexample found); Fixed: UNSAT (no counterexample); PASS
+Evidence: smt_power_allocation.txt
+
+smt_energy: Vulnerable: SAT (counterexample found); Fixed: UNSAT (no counterexample); PASS
+Evidence: smt_energy.txt
+
+smt_soc_priority: Fixed: UNSAT (no counterexample); PASS
+Evidence: smt_soc_priority.txt
+
+============================================================
+FINAL RESULT: NUMERIC SAFETY PROPERTIES VERIFIED
+============================================================

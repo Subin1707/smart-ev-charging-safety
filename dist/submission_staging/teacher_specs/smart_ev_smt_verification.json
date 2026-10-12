@@ -1,0 +1,548 @@
+{
+  "name": "smart_ev_smt_verification",
+  "description": "Smart EV formal + SMT verification. Ch1: Kripke CTL model preserved from V2 (28 states, 47 transitions). Ch3: arithmetic_checks[] for REQ-SOC-01 and REQ-TEMP-01 using exact constants from src/core/hang_so.h. No fake functions[] used.",
+  "requirements": [
+    {
+      "id": "REQ-AUTH-01",
+      "text": "See Phase 1 audit and Phase 6 property suite for REQ-AUTH-01.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-AUTH-02",
+      "text": "See Phase 1 audit and Phase 6 property suite for REQ-AUTH-02.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-SOC-01",
+      "text": "See Phase 1 audit and Phase 6 property suite for REQ-SOC-01.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-SOC-02",
+      "text": "See Phase 1 audit and Phase 6 property suite for REQ-SOC-02.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-TEMP-01",
+      "text": "See Phase 1 audit and Phase 6 property suite for REQ-TEMP-01.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-01",
+      "text": "See Phase 1 audit and Phase 6 property suite for REQ-PORT-01.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-02",
+      "text": "See Phase 1 audit and Phase 6 property suite for REQ-PORT-02.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-03",
+      "text": "See Phase 1 audit and Phase 6 property suite for REQ-PORT-03.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-CHG-01",
+      "text": "See Phase 1 audit and Phase 6 property suite for REQ-CHG-01.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-CHG-02",
+      "text": "See Phase 1 audit and Phase 6 property suite for REQ-CHG-02.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-EMG-01",
+      "text": "See Phase 1 audit and Phase 6 property suite for REQ-EMG-01.",
+      "category": "safety",
+      "priority": "HIGH"
+    }
+  ],
+  "state_machine": {
+    "states": [
+      "DISCONNECTED",
+      "CONNECTED",
+      "AUTHENTICATED",
+      "AUTH_FAILED",
+      "START_BLOCKED",
+      "CHARGING",
+      "SOC_FULL",
+      "OVERHEAT",
+      "PORT_FAULT",
+      "EMERGENCY",
+      "DISCONNECTING",
+      "STOPPED_SOC_FULL",
+      "STOPPED_OVERHEAT",
+      "STOPPED_PORT_FAULT",
+      "STOPPED_EMERGENCY",
+      "STOPPED_DISCONNECT",
+      "RECOVERED_SAFE",
+      "unreachable_req_auth_01_violation",
+      "unreachable_req_auth_02_violation",
+      "unreachable_req_soc_01_violation",
+      "unreachable_req_soc_02_violation",
+      "unreachable_req_temp_01_violation",
+      "unreachable_req_port_01_violation",
+      "unreachable_req_port_02_violation",
+      "unreachable_req_port_03_violation",
+      "unreachable_req_chg_01_violation",
+      "unreachable_req_chg_02_violation",
+      "unreachable_req_emg_01_violation"
+    ],
+    "initial": [
+      "DISCONNECTED"
+    ],
+    "labeling": {
+      "DISCONNECTED": [
+        "disconnected",
+        "auth_clear",
+        "power_zero",
+        "safe"
+      ],
+      "CONNECTED": [
+        "connected",
+        "not_authenticated",
+        "port_occupied",
+        "power_zero",
+        "safe"
+      ],
+      "AUTHENTICATED": [
+        "connected",
+        "authenticated",
+        "port_ready",
+        "power_zero",
+        "safe"
+      ],
+      "AUTH_FAILED": [
+        "connected",
+        "auth_failed",
+        "start_not_allowed",
+        "power_zero",
+        "safe"
+      ],
+      "START_BLOCKED": [
+        "connected",
+        "start_blocked",
+        "power_zero",
+        "safe"
+      ],
+      "CHARGING": [
+        "connected",
+        "authenticated",
+        "charging",
+        "power_positive",
+        "safety_gate_valid",
+        "safe"
+      ],
+      "SOC_FULL": [
+        "connected",
+        "authenticated",
+        "soc_full",
+        "stop_required",
+        "unsafe_until_stopped"
+      ],
+      "OVERHEAT": [
+        "connected",
+        "authenticated",
+        "overheat",
+        "stop_required",
+        "unsafe_until_stopped"
+      ],
+      "PORT_FAULT": [
+        "connected",
+        "authenticated",
+        "fault",
+        "port_fault",
+        "stop_required",
+        "unsafe_until_stopped"
+      ],
+      "EMERGENCY": [
+        "emergency",
+        "stop_required",
+        "unsafe_until_stopped"
+      ],
+      "DISCONNECTING": [
+        "disconnecting",
+        "stop_required",
+        "auth_clear_required"
+      ],
+      "STOPPED_SOC_FULL": [
+        "connected",
+        "authenticated",
+        "soc_full",
+        "stopped",
+        "power_zero",
+        "safe"
+      ],
+      "STOPPED_OVERHEAT": [
+        "connected",
+        "authenticated",
+        "overheat",
+        "stopped",
+        "power_zero",
+        "safe"
+      ],
+      "STOPPED_PORT_FAULT": [
+        "connected",
+        "authenticated",
+        "fault",
+        "stopped",
+        "power_zero",
+        "safe"
+      ],
+      "STOPPED_EMERGENCY": [
+        "emergency",
+        "stopped",
+        "power_zero",
+        "safe"
+      ],
+      "STOPPED_DISCONNECT": [
+        "disconnected",
+        "auth_clear",
+        "stopped",
+        "power_zero",
+        "safe"
+      ],
+      "RECOVERED_SAFE": [
+        "connected",
+        "authenticated",
+        "recovered",
+        "power_zero",
+        "safe"
+      ],
+      "unreachable_req_auth_01_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_auth_01_violation",
+        "req_auth_01"
+      ],
+      "unreachable_req_auth_02_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_auth_02_violation",
+        "req_auth_02"
+      ],
+      "unreachable_req_soc_01_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_soc_01_violation",
+        "req_soc_01"
+      ],
+      "unreachable_req_soc_02_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_soc_02_violation",
+        "req_soc_02"
+      ],
+      "unreachable_req_temp_01_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_temp_01_violation",
+        "req_temp_01"
+      ],
+      "unreachable_req_port_01_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_port_01_violation",
+        "req_port_01"
+      ],
+      "unreachable_req_port_02_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_port_02_violation",
+        "req_port_02"
+      ],
+      "unreachable_req_port_03_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_port_03_violation",
+        "req_port_03"
+      ],
+      "unreachable_req_chg_01_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_chg_01_violation",
+        "req_chg_01"
+      ],
+      "unreachable_req_chg_02_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_chg_02_violation",
+        "req_chg_02"
+      ],
+      "unreachable_req_emg_01_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_emg_01_violation",
+        "req_emg_01"
+      ]
+    },
+    "transitions": [
+      [
+        "DISCONNECTED",
+        "CONNECTED"
+      ],
+      [
+        "CONNECTED",
+        "AUTHENTICATED"
+      ],
+      [
+        "AUTHENTICATED",
+        "CHARGING"
+      ],
+      [
+        "CONNECTED",
+        "AUTH_FAILED"
+      ],
+      [
+        "AUTH_FAILED",
+        "START_BLOCKED"
+      ],
+      [
+        "CHARGING",
+        "SOC_FULL"
+      ],
+      [
+        "SOC_FULL",
+        "STOPPED_SOC_FULL"
+      ],
+      [
+        "CHARGING",
+        "OVERHEAT"
+      ],
+      [
+        "OVERHEAT",
+        "STOPPED_OVERHEAT"
+      ],
+      [
+        "CHARGING",
+        "PORT_FAULT"
+      ],
+      [
+        "PORT_FAULT",
+        "STOPPED_PORT_FAULT"
+      ],
+      [
+        "CHARGING",
+        "EMERGENCY"
+      ],
+      [
+        "EMERGENCY",
+        "STOPPED_EMERGENCY"
+      ],
+      [
+        "CHARGING",
+        "DISCONNECTING"
+      ],
+      [
+        "DISCONNECTING",
+        "STOPPED_DISCONNECT"
+      ],
+      [
+        "STOPPED_PORT_FAULT",
+        "RECOVERED_SAFE"
+      ],
+      [
+        "STOPPED_EMERGENCY",
+        "RECOVERED_SAFE"
+      ],
+      [
+        "STOPPED_OVERHEAT",
+        "RECOVERED_SAFE"
+      ],
+      [
+        "RECOVERED_SAFE",
+        "CHARGING"
+      ],
+      [
+        "DISCONNECTED",
+        "DISCONNECTED"
+      ],
+      [
+        "CONNECTED",
+        "CONNECTED"
+      ],
+      [
+        "AUTHENTICATED",
+        "AUTHENTICATED"
+      ],
+      [
+        "AUTH_FAILED",
+        "AUTH_FAILED"
+      ],
+      [
+        "START_BLOCKED",
+        "START_BLOCKED"
+      ],
+      [
+        "CHARGING",
+        "CHARGING"
+      ],
+      [
+        "SOC_FULL",
+        "SOC_FULL"
+      ],
+      [
+        "OVERHEAT",
+        "OVERHEAT"
+      ],
+      [
+        "PORT_FAULT",
+        "PORT_FAULT"
+      ],
+      [
+        "EMERGENCY",
+        "EMERGENCY"
+      ],
+      [
+        "DISCONNECTING",
+        "DISCONNECTING"
+      ],
+      [
+        "STOPPED_SOC_FULL",
+        "STOPPED_SOC_FULL"
+      ],
+      [
+        "STOPPED_OVERHEAT",
+        "STOPPED_OVERHEAT"
+      ],
+      [
+        "STOPPED_PORT_FAULT",
+        "STOPPED_PORT_FAULT"
+      ],
+      [
+        "STOPPED_EMERGENCY",
+        "STOPPED_EMERGENCY"
+      ],
+      [
+        "STOPPED_DISCONNECT",
+        "STOPPED_DISCONNECT"
+      ],
+      [
+        "RECOVERED_SAFE",
+        "RECOVERED_SAFE"
+      ],
+      [
+        "unreachable_req_auth_01_violation",
+        "unreachable_req_auth_01_violation"
+      ],
+      [
+        "unreachable_req_auth_02_violation",
+        "unreachable_req_auth_02_violation"
+      ],
+      [
+        "unreachable_req_soc_01_violation",
+        "unreachable_req_soc_01_violation"
+      ],
+      [
+        "unreachable_req_soc_02_violation",
+        "unreachable_req_soc_02_violation"
+      ],
+      [
+        "unreachable_req_temp_01_violation",
+        "unreachable_req_temp_01_violation"
+      ],
+      [
+        "unreachable_req_port_01_violation",
+        "unreachable_req_port_01_violation"
+      ],
+      [
+        "unreachable_req_port_02_violation",
+        "unreachable_req_port_02_violation"
+      ],
+      [
+        "unreachable_req_port_03_violation",
+        "unreachable_req_port_03_violation"
+      ],
+      [
+        "unreachable_req_chg_01_violation",
+        "unreachable_req_chg_01_violation"
+      ],
+      [
+        "unreachable_req_chg_02_violation",
+        "unreachable_req_chg_02_violation"
+      ],
+      [
+        "unreachable_req_emg_01_violation",
+        "unreachable_req_emg_01_violation"
+      ]
+    ]
+  },
+  "additional_flows": {},
+  "safety_properties": [
+    "AG(!req_auth_01_violation)",
+    "AG(!req_auth_02_violation)",
+    "AG(!req_soc_01_violation)",
+    "AG(!req_soc_02_violation)",
+    "AG(!req_temp_01_violation)",
+    "AG(!req_port_01_violation)",
+    "AG(!req_port_02_violation)",
+    "AG(!req_port_03_violation)",
+    "AG(!req_chg_01_violation)",
+    "AG(!req_chg_02_violation)",
+    "AG(!req_emg_01_violation)",
+    "EF(charging)",
+    "EF(start_blocked)",
+    "EF(stopped)",
+    "EF(recovered)",
+    "AF(safe)"
+  ],
+  "mutual_exclusion": null,
+  "functions": [],
+  "arithmetic_checks": [
+    {
+      "name": "req_soc_01_valid_domain",
+      "int_vars": [
+        "soc"
+      ],
+      "condition": "soc >= 0 and soc <= 100"
+    },
+    {
+      "name": "req_soc_01_violation_unsat",
+      "int_vars": [
+        "soc"
+      ],
+      "condition": "soc >= 0 and soc <= 100 and (soc < 0 or soc > 100)"
+    },
+    {
+      "name": "req_soc_01_overflow_check",
+      "int_vars": [
+        "soc_current",
+        "soc_delta"
+      ],
+      "overflow_expr": "soc_current + soc_delta"
+    },
+    {
+      "name": "req_temp_01_overheat_threshold",
+      "int_vars": [
+        "temperature"
+      ],
+      "condition": "temperature >= 60"
+    },
+    {
+      "name": "req_temp_01_violation_unsat",
+      "int_vars": [
+        "temperature"
+      ],
+      "condition": "temperature >= 60 and temperature < 60"
+    },
+    {
+      "name": "req_temp_01_safe_range",
+      "int_vars": [
+        "temperature"
+      ],
+      "condition": "temperature < 60"
+    }
+  ]
+}

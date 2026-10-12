@@ -1,0 +1,2 @@
+SMT-06: SOC PRIORITY ALLOCATION
+[UNSAT] No counterexample; Low-SOC priority preserved

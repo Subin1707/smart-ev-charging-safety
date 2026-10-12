@@ -1,0 +1,8 @@
+{
+  "generatedAt": "2026-09-11T08:06:43.748525+00:00",
+  "stages": {
+    "postgres-test": "PASS"
+  },
+  "status": "PASS",
+  "scope": "Results apply to the documented model bounds and executed inputs. Browser and PostgreSQL have separate evidence; this is not an unbounded proof of the whole C program."
+}

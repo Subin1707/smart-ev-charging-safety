@@ -1,0 +1,15 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_xe_dien.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.17399029998341575}
+=== RUNNING UNIT TEST: XE DIEN ===
+  [PASS] Vehicle ID should be 1
+  [PASS] Vehicle code should be EV01
+  [PASS] Initial SOC should be 35.0%
+  [PASS] Initial connected state should be NO
+  [PASS] Initial auth state should be NO
+  [PASS] Initial state should be XE_CHO
+  [PASS] First vehicle should be EV01
+  [PASS] Fifth vehicle should be EV05
+--------------------------------------------------
+TEST SUITE: UNIT_XE_DIEN
+Total: 8 | Passed: 8 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

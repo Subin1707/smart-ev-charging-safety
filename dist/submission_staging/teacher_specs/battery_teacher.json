@@ -1,0 +1,148 @@
+{
+  "name": "battery",
+  "description": "Equivalence partitions for SOC and temperature instead of enumerating continuous sensor values.",
+  "requirements": [
+    {
+      "id": "REQ-SOC-01",
+      "text": "Vehicle SOC must remain between 0% and 100%.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-SOC-02",
+      "text": "A vehicle with SOC at 100% must not continue receiving charging power.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-TEMP-01",
+      "text": "When battery temperature reaches or exceeds 60 C, charging must stop.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-BAT-CODE-01",
+      "text": "Generated battery telemetry code must handle bounded SOC and temperature calculations.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-BAT-CODE-02",
+      "text": "Generated SOC ratio code must tolerate zero capacity values during fuzzing.",
+      "category": "functional",
+      "priority": "MEDIUM"
+    }
+  ],
+  "state_machine": {
+    "states": [
+      "B0",
+      "B1",
+      "B2",
+      "B3",
+      "B4"
+    ],
+    "initial": [
+      "B0"
+    ],
+    "labeling": {
+      "B0": [
+        "b0",
+        "battery",
+        "charging_allowed",
+        "safe"
+      ],
+      "B1": [
+        "b1",
+        "battery",
+        "charging_blocked",
+        "safe"
+      ],
+      "B2": [
+        "b2",
+        "battery",
+        "charging_blocked",
+        "safe"
+      ],
+      "B3": [
+        "b3",
+        "battery",
+        "charging_blocked",
+        "safe"
+      ],
+      "B4": [
+        "b4",
+        "battery",
+        "charging_blocked",
+        "safe"
+      ]
+    },
+    "transitions": [
+      [
+        "B0",
+        "B0"
+      ],
+      [
+        "B1",
+        "B1"
+      ],
+      [
+        "B2",
+        "B2"
+      ],
+      [
+        "B3",
+        "B3"
+      ],
+      [
+        "B4",
+        "B4"
+      ]
+    ]
+  },
+  "additional_flows": {},
+  "safety_properties": [
+    "AG(!violation)"
+  ],
+  "mutual_exclusion": null,
+  "functions": [
+    {
+      "name": "copy_battery_sensor_frame",
+      "language": "c",
+      "kind": "buffer_copy",
+      "params": [
+        "raw_frame"
+      ],
+      "buffer_size": 24,
+      "bug": null
+    },
+    {
+      "name": "sum_soc_temperature",
+      "language": "c",
+      "kind": "arithmetic",
+      "params": [
+        "soc",
+        "temperature"
+      ]
+    },
+    {
+      "name": "soc_capacity_ratio",
+      "language": "python",
+      "kind": "divide",
+      "params": [
+        "soc_percent",
+        "capacity_percent"
+      ]
+    }
+  ],
+  "arithmetic_checks": [
+    {
+      "name": "battery_sensor_sum",
+      "int_vars": [
+        "soc_scaled",
+        "temperature_scaled"
+      ],
+      "condition": "soc_scaled >= 0 and temperature_scaled >= -2000",
+      "overflow_expr": "soc_scaled + temperature_scaled"
+    }
+  ]
+}

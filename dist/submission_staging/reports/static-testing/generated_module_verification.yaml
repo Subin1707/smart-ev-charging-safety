@@ -1,0 +1,54 @@
+phase: "Generated 4-module verification code"
+scope: "Generated static and dynamic artifacts from specification/*.json"
+
+inputs:
+  - "specification/auth.json"
+  - "specification/battery.json"
+  - "specification/port.json"
+  - "specification/charging.json"
+
+generators:
+  state_space: "generator/state_generator.py"
+  static: "generator/static_generator.py"
+  dynamic: "generator/dynamic_generator.py"
+
+generated_static:
+  auth:
+    file: "generated/static/verify_auth.c"
+    cbmc_parse: "PASS"
+    note: "CBMC --show-properties lists AUTH-01..AUTH-04 assertions."
+  battery:
+    file: "generated/static/verify_battery.c"
+    cbmc_parse: "PASS"
+    note: "CBMC --show-properties lists SOC and temperature assertions."
+  port:
+    file: "generated/static/verify_port.c"
+    cbmc_parse: "PASS"
+    note: "CBMC --show-properties lists PORT-01..PORT-03 assertions."
+  charging:
+    file: "generated/static/verify_charging.c"
+    cbmc_parse: "PASS"
+    note: "CBMC --show-properties lists CHG-01 assertion."
+
+generated_dynamic:
+  auth:
+    file: "generated/dynamic/test_auth.c"
+    compile: "PASS"
+    run: "PASS"
+  battery:
+    file: "generated/dynamic/test_battery.c"
+    compile: "PASS"
+    run: "PASS"
+  port:
+    file: "generated/dynamic/test_port.c"
+    compile: "PASS"
+    run: "PASS"
+  charging:
+    file: "generated/dynamic/test_charging.c"
+    compile: "PASS"
+    run: "PASS"
+
+notes:
+  - "Generated static files are property templates produced from specification/*.json and parsed by CBMC."
+  - "Generated dynamic files are executable production-code tests and all four compiled and ran successfully."
+  - "Full CBMC PASS for unconstrained static templates requires adding model assumptions or binding them to generated state-space labels."

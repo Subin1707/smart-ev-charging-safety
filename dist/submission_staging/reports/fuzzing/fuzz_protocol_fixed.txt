@@ -1,0 +1,12 @@
+============================================================
+                  BLACK-BOX PROTOCOL FUZZING
+============================================================
+Seed corpus       : 6
+Generated inputs  : 1000
+Normal executions : 1000
+Rejected inputs   : 805
+Crashes           : 0
+Timeouts          : 0
+
+RESULT             : PASS
+============================================================

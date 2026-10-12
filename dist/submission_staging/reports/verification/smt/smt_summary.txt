@@ -1,0 +1,22 @@
+============================================================
+                 SMT / Z3 SUMMARY
+============================================================
+
+smt_soc: Vulnerable: SAT (counterexample found); Fixed: UNSAT (no counterexample); PASS
+Evidence: smt_soc.txt
+
+smt_temperature: Vulnerable: SAT (counterexample found); Fixed: UNSAT (no counterexample); PASS
+Evidence: smt_temperature.txt
+
+smt_power_allocation: Vulnerable: SAT (counterexample found); Fixed: UNSAT (no counterexample); PASS
+Evidence: smt_power_allocation.txt
+
+smt_energy: Vulnerable: SAT (counterexample found); Fixed: UNSAT (no counterexample); PASS
+Evidence: smt_energy.txt
+
+smt_soc_priority: Fixed: UNSAT (no counterexample); PASS
+Evidence: smt_soc_priority.txt
+
+============================================================
+FINAL RESULT: NUMERIC SAFETY PROPERTIES VERIFIED
+============================================================

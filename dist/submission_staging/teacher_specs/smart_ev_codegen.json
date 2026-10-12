@@ -1,0 +1,77 @@
+{
+  "name": "smart_ev_codegen",
+  "description": "Smart EV teacher-app code-generation compatibility artifact. No fake Ch2 functions are emitted; functions[] contains only requirements with a semantically valid DIRECTLY_SUPPORTED mapping.",
+  "requirements": [
+    {
+      "id": "REQ-AUTH-01",
+      "text": "Vehicle authentication may succeed only when the vehicle is connected and the token is valid.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-AUTH-02",
+      "text": "When a vehicle disconnects from the station, authentication must be cleared.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-SOC-01",
+      "text": "Vehicle SOC must remain between 0% and 100%.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-SOC-02",
+      "text": "A vehicle with SOC at 100% must not continue receiving charging power.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-TEMP-01",
+      "text": "When battery temperature reaches or exceeds 60 C, charging must stop.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-01",
+      "text": "A port may enter CHARGING only when a valid vehicle is connected.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-02",
+      "text": "At any time, one charging port may be linked to at most one vehicle.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-03",
+      "text": "A faulted port must not deliver charging power.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-CHG-01",
+      "text": "Charging may start only when the vehicle is connected, authenticated, battery and temperature are safe, the port is ready, and no emergency or fault is active.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-CHG-02",
+      "text": "Charging requires the complete safety gate to remain valid.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-EMG-01",
+      "text": "Emergency or fault conditions must stop charging and force charging power to zero.",
+      "category": "safety",
+      "priority": "HIGH"
+    }
+  ],
+  "state_machine": null,
+  "safety_properties": [],
+  "mutual_exclusion": null,
+  "functions": [],
+  "arithmetic_checks": []
+}

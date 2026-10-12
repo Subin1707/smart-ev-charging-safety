@@ -1,0 +1,20 @@
+{"command": ["E:\\smart-ev-charging-safety\\tools\\cbmc\\extracted\\cbmc\\bin\\cbmc.exe", "--gcc", "E:\\smart-ev-charging-safety\\bin\\verification\\sr07_exclusivity_fixed.i", "--trace", "--unwind", "12", "--unwinding-assertions"], "exitCode": 0, "status": "PASS", "seconds": 0.40508300001965836}
+CBMC version 6.11.0 (cbmc-6.11.0) 64-bit x86_64 windows
+Type-checking sr07_exclusivity_fixed
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Starting Bounded Model Checking
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+SAT checker: instance is UNSATISFIABLE
+
+** Results:
+E:\smart-ev-charging-safety\bin\verification\sr07_exclusivity_fixed.i function main
+[main.assertion.1] line 90 assertion port_vehicle == first_vehicle: SUCCESS
+[main.assertion.2] line 91 assertion second_connection_accepted == 0: SUCCESS
+
+** 0 of 2 failed (1 iterations)
+VERIFICATION SUCCESSFUL

@@ -1,0 +1,165 @@
+{
+  "name": "port",
+  "description": "Charging port connection, occupancy, charging state, fault state, and mutual-exclusion constraints.",
+  "requirements": [
+    {
+      "id": "REQ-PORT-01",
+      "text": "A port may enter CHARGING only when a valid vehicle is connected.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-02",
+      "text": "At any time, one charging port may be linked to at most one vehicle.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-03",
+      "text": "A faulted port must not deliver charging power.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-CODE-01",
+      "text": "Generated port identifier parsing code must not overflow its fixed-size buffer.",
+      "category": "memory",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-CODE-02",
+      "text": "Generated port allocation cleanup code must release allocated memory exactly once.",
+      "category": "memory",
+      "priority": "HIGH"
+    }
+  ],
+  "state_machine": {
+    "states": [
+      "P0",
+      "P1",
+      "P2",
+      "P3",
+      "P4",
+      "P5"
+    ],
+    "initial": [
+      "P0"
+    ],
+    "labeling": {
+      "P0": [
+        "p0",
+        "port",
+        "safe"
+      ],
+      "P1": [
+        "p1",
+        "port",
+        "safe"
+      ],
+      "P2": [
+        "p2",
+        "port",
+        "safe"
+      ],
+      "P3": [
+        "p3",
+        "port",
+        "safe"
+      ],
+      "P4": [
+        "PORT-01",
+        "PORT-02",
+        "p4",
+        "port",
+        "rejected",
+        "violation"
+      ],
+      "P5": [
+        "PORT-03",
+        "p5",
+        "port",
+        "rejected",
+        "violation"
+      ]
+    },
+    "transitions": [
+      [
+        "P0",
+        "P1"
+      ],
+      [
+        "P1",
+        "P2"
+      ],
+      [
+        "P2",
+        "P1"
+      ],
+      [
+        "P2",
+        "P3"
+      ],
+      [
+        "P3",
+        "P1"
+      ],
+      [
+        "P1",
+        "P0"
+      ],
+      [
+        "P4",
+        "P4"
+      ],
+      [
+        "P5",
+        "P5"
+      ]
+    ]
+  },
+  "additional_flows": {},
+  "safety_properties": [
+    "AG(!violation)"
+  ],
+  "mutual_exclusion": null,
+  "functions": [
+    {
+      "name": "parse_port_identifier",
+      "language": "c",
+      "kind": "buffer_copy",
+      "params": [
+        "raw_port_id"
+      ],
+      "buffer_size": 16,
+      "bug": null
+    },
+    {
+      "name": "release_port_assignment",
+      "language": "c",
+      "kind": "alloc_release",
+      "params": [],
+      "buffer_size": 12,
+      "bug": null
+    },
+    {
+      "name": "port_load_ratio",
+      "language": "python",
+      "kind": "divide",
+      "params": [
+        "occupied_ports",
+        "total_ports"
+      ]
+    }
+  ],
+  "arithmetic_checks": [
+    {
+      "name": "port_vehicle_assignment_counter",
+      "int_vars": [
+        "ports",
+        "vehicles"
+      ],
+      "condition": "ports >= 0 and vehicles >= 0",
+      "overflow_expr": "ports + vehicles"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+﻿services:
+  database:
+    image: postgres:16
+    container_name: smart_ev_database
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-smart_ev}
+      POSTGRES_USER: ${POSTGRES_USER:-smart_ev_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-smart_ev_password}
+    ports:
+      - "${POSTGRES_PORT:-5433}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-smart_ev_user} -d ${POSTGRES_DB:-smart_ev}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    container_name: smart_ev_app
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_NAME: ${POSTGRES_DB:-smart_ev}
+      DB_USER: ${POSTGRES_USER:-smart_ev_user}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-smart_ev_password}
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./logs:/app/logs
+      - ./reports:/app/reports
+
+volumes:
+  postgres_data:

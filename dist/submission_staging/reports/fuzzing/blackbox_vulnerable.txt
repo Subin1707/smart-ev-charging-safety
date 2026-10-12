@@ -1,0 +1,15 @@
+============================================================
+                  BLACK-BOX PROTOCOL FUZZING
+============================================================
+Target            : vulnerable
+Seed corpus       : 6
+Generated inputs  : 5000
+Normal executions : 3757
+Rejected inputs   : 0
+Crashes           : 993
+Timeouts          : 250
+Safety violations: 1565
+Execution time (s): 449.720
+
+RESULT             : FAIL
+============================================================

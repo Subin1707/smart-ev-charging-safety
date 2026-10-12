@@ -1,0 +1,35 @@
+﻿============================================================
+             FORMAL VERIFICATION SUMMARY
+============================================================
+
+sr02_auth Charging/Safety Property
+Vulnerable : FAIL - counterexample found
+Fixed      : PASS
+Evidence   : sr02_auth_vulnerable.txt / sr02_auth_fixed.txt
+
+sr03_overheat Charging/Safety Property
+Vulnerable : FAIL - counterexample found
+Fixed      : PASS
+Evidence   : sr03_overheat_vulnerable.txt / sr03_overheat_fixed.txt
+
+sr04_full Charging/Safety Property
+Vulnerable : FAIL - counterexample found
+Fixed      : PASS
+Evidence   : sr04_full_vulnerable.txt / sr04_full_fixed.txt
+
+sr05_emergency Charging/Safety Property
+Vulnerable : FAIL - counterexample found
+Fixed      : PASS
+Evidence   : sr05_emergency_vulnerable.txt / sr05_emergency_fixed.txt
+
+sr07_exclusivity Charging/Safety Property
+Vulnerable : FAIL - counterexample found
+Fixed      : PASS
+Evidence   : sr07_exclusivity_vulnerable.txt / sr07_exclusivity_fixed.txt
+
+sr10_power_limit Charging/Safety Property
+Vulnerable : FAIL - counterexample found
+Fixed      : PASS
+Evidence   : sr10_power_limit_vulnerable.txt / sr10_power_limit_fixed.txt
+
+============================================================

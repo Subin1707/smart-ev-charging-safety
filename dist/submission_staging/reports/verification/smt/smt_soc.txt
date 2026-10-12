@@ -1,0 +1,4 @@
+SMT-01: SOC RANGE VERIFICATION
+[VULNERABLE] SAT - SOC range counterexample
+  current_soc=51, delta_soc=50, new_soc=101
+[FIXED] UNSAT - No counterexample; 0 <= SOC <= 100

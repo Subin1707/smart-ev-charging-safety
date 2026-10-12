@@ -1,0 +1,21 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_nhieu_xe.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.5077871999819763}
+=== RUNNING INTEGRATION TEST: 5 VEHICLES SIMULTANEOUS CONNECTION ===
+  [PASS] Vehicle successfully assigned to designated port
+  [PASS] Port vehicle ID matches
+  [PASS] Vehicle successfully assigned to designated port
+  [PASS] Port vehicle ID matches
+  [PASS] Vehicle successfully assigned to designated port
+  [PASS] Port vehicle ID matches
+  [PASS] Vehicle successfully assigned to designated port
+  [PASS] Port vehicle ID matches
+  [PASS] Vehicle successfully assigned to designated port
+  [PASS] Port vehicle ID matches
+  [PASS] Overflow vehicles must wait instead of accessing nonexistent ports
+  [PASS] Waiting vehicle remains disconnected
+  [PASS] Overflow vehicles must wait instead of accessing nonexistent ports
+  [PASS] Waiting vehicle remains disconnected
+--------------------------------------------------
+TEST SUITE: INTEGRATION_MULTI_VEHICLE
+Total: 14 | Passed: 14 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

@@ -1,0 +1,454 @@
+{
+  "variables": {
+    "temperature": {
+      "language": "c",
+      "source": "src/safety/quy_tac_an_toan.c",
+      "header": "src/safety/quy_tac_an_toan.h",
+      "access": {
+        "type": "field",
+        "object": "xe->pin",
+        "field": "nhiet_do"
+      },
+      "c_type": "float"
+    },
+    "soc": {
+      "language": "c",
+      "source": "src/vehicle/pin.c",
+      "header": "src/vehicle/pin.h",
+      "access": {
+        "type": "field",
+        "object": "xe->pin",
+        "field": "soc"
+      },
+      "c_type": "float"
+    },
+    "total_power": {
+      "language": "c",
+      "source": "src/station/tram_sac.c",
+      "header": "src/station/tram_sac.h",
+      "access": {
+        "type": "field",
+        "object": "tram",
+        "member_operator": "->",
+        "field": "cong_suat_hien_tai"
+      },
+      "c_type": "float"
+    },
+    "power": {
+      "language": "c",
+      "source": "src/safety/giam_sat_an_toan.c",
+      "header": "src/station/cong_sac.h",
+      "access": {
+        "type": "field",
+        "object": "cong",
+        "field": "cong_suat_kw",
+        "member_operator": "->"
+      },
+      "c_type": "float"
+    },
+    "port_power": {
+      "language": "c",
+      "source": "src/station/quan_ly_cong_suat.c",
+      "header": "src/station/quan_ly_cong_suat.h",
+      "access": {
+        "type": "field",
+        "object": "tram->cong[port_index]",
+        "field": "cong_suat_kw"
+      },
+      "c_type": "float"
+    },
+    "charging": {
+      "language": "c",
+      "source": "src/safety/giam_sat_an_toan.c",
+      "header": "src/safety/giam_sat_an_toan.h",
+      "access": {
+        "type": "expression",
+        "expression": "(cong->trang_thai == CONG_DANG_SAC)"
+      },
+      "c_type": "bool"
+    },
+    "state": {
+      "language": "c",
+      "source": "src/safety/giam_sat_an_toan.c",
+      "header": "src/safety/giam_sat_an_toan.h",
+      "access": {
+        "type": "field",
+        "object": "cong",
+        "member_operator": "->",
+        "field": "trang_thai"
+      },
+      "c_type": "TrangThaiCong"
+    }
+  },
+  "actions": {
+    "allocate": "if (allocator == 0) phan_phoi_cong_suat_chia_deu(tram); else phan_phoi_cong_suat_theo_soc(tram, vehicles, SO_CONG_SAC);",
+    "monitor": "(void)giam_sat_xe_va_cong(xe, cong, tram);",
+    "update_soc": "cap_nhat_pin(&xe->pin, power_tenths / 10.0f, minutes / 60.0f);"
+  },
+  "enums": {
+    "state": {
+      "FAULT": "CONG_LOI",
+      "CHARGING": "CONG_DANG_SAC"
+    }
+  },
+  "objects": {
+    "tram": {
+      "declaration": "TramSac tram_obj = {0}; TramSac *tram = &tram_obj;"
+    },
+    "xe": {
+      "declaration": "XeDien xe_obj = {0}; XeDien *xe = &xe_obj;"
+    },
+    "cong": {
+      "declaration": "CongSac *cong = &tram->cong[0];"
+    }
+  },
+  "harnesses": {
+    "SR10": {
+      "objects": [
+        "tram"
+      ],
+      "variables": [
+        "total_power",
+        "port_power"
+      ],
+      "headers": [
+        "src/station/quan_ly_cong_suat.h"
+      ],
+      "sources": [
+        "src/station/quan_ly_cong_suat.c",
+        "src/station/tram_sac.c",
+        "src/station/cong_sac.c",
+        "src/station/dieu_phoi.c"
+      ],
+      "include_dirs": [
+        ".",
+        "src/auth",
+        "src/charging",
+        "src/communication",
+        "src/components",
+        "src/core",
+        "src/data",
+        "src/database",
+        "src/hooks",
+        "src/logging",
+        "src/monitoring",
+        "src/pages",
+        "src/safety",
+        "src/services",
+        "src/simulation",
+        "src/station",
+        "src/store",
+        "src/styles",
+        "src/utils",
+        "src/vehicle"
+      ],
+      "inputs": [
+        {
+          "name": "active_mask",
+          "min": 0,
+          "max": 31,
+          "samples": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ]
+        },
+        {
+          "name": "allocator",
+          "min": 0,
+          "max": 1,
+          "samples": [
+            0,
+            1
+          ]
+        }
+      ],
+      "setup": [
+        "khoi_tao_tram_sac(tram, \"PROOF\");",
+        "XeDien vehicles[SO_CONG_SAC] = {0};",
+        "for (int i = 0; i < SO_CONG_SAC; ++i) { vehicles[i].id = i; vehicles[i].pin.soc = i * 25.0f; tram->cong[i].vehicle_id = i; tram->cong[i].trang_thai = (active_mask & (1 << i)) ? CONG_DANG_SAC : CONG_RANH; }"
+      ],
+      "actions": [
+        "allocate"
+      ],
+      "assertion_loop": {
+        "index": "port_index",
+        "count": "SO_CONG_SAC"
+      },
+      "scope": "All 32 active-port masks, both equal-share and SOC-priority allocation; station limit 100 kW, fixed vehicle SOCs 0/25/50/75/100; fresh initialized station.",
+      "link_sources": [
+        "src/auth/token.c",
+        "src/auth/xac_thuc.c",
+        "src/charging/che_do_sac.c",
+        "src/charging/dieu_khien_sac.c",
+        "src/charging/phien_sac.c",
+        "src/communication/dieu_khien_tu_xa.c",
+        "src/communication/message.c",
+        "src/communication/protocol.c",
+        "src/core/cau_hinh.c",
+        "src/core/he_thong.c",
+        "src/database/cong_sac_repository.c",
+        "src/database/database.c",
+        "src/database/phien_sac_repository.c",
+        "src/database/su_kien_an_toan_repository.c",
+        "src/database/telemetry_repository.c",
+        "src/database/tram_repository.c",
+        "src/database/xe_repository.c",
+        "src/logging/logger.c",
+        "src/logging/nhat_ky_su_kien.c",
+        "src/monitoring/chi_so.c",
+        "src/monitoring/du_lieu_giam_sat.c",
+        "src/monitoring/su_kien_he_thong.c",
+        "src/safety/dung_khan_cap.c",
+        "src/safety/giam_sat_an_toan.c",
+        "src/safety/phat_hien_loi.c",
+        "src/safety/quy_tac_an_toan.c",
+        "src/simulation/kich_ban.c",
+        "src/simulation/mo_phong.c",
+        "src/simulation/ngau_nhien.c",
+        "src/simulation/sinh_kich_ban.c",
+        "src/simulation/sinh_su_kien.c",
+        "src/station/cong_sac.c",
+        "src/station/dieu_phoi.c",
+        "src/station/hang_cho.c",
+        "src/station/quan_ly_cong_suat.c",
+        "src/station/tram_sac.c",
+        "src/utils/input.c",
+        "src/utils/kiem_tra_du_lieu.c",
+        "src/utils/time_utils.c",
+        "src/vehicle/pin.c",
+        "src/vehicle/trang_thai_xe.c",
+        "src/vehicle/xe_dien.c"
+      ]
+    },
+    "SR03": {
+      "objects": [
+        "tram",
+        "xe",
+        "cong"
+      ],
+      "variables": [
+        "temperature",
+        "charging",
+        "power",
+        "state"
+      ],
+      "headers": [
+        "src/safety/giam_sat_an_toan.h"
+      ],
+      "sources": [
+        "src/safety/giam_sat_an_toan.c",
+        "src/safety/quy_tac_an_toan.c"
+      ],
+      "include_dirs": [
+        ".",
+        "src/auth",
+        "src/charging",
+        "src/communication",
+        "src/components",
+        "src/core",
+        "src/data",
+        "src/database",
+        "src/hooks",
+        "src/logging",
+        "src/monitoring",
+        "src/pages",
+        "src/safety",
+        "src/services",
+        "src/simulation",
+        "src/station",
+        "src/store",
+        "src/styles",
+        "src/utils",
+        "src/vehicle"
+      ],
+      "inputs": [
+        {
+          "name": "temperature_tenths",
+          "min": 590,
+          "max": 1000,
+          "samples": [
+            590,
+            599,
+            600,
+            601,
+            1000
+          ]
+        },
+        {
+          "name": "is_charging",
+          "min": 0,
+          "max": 1,
+          "samples": [
+            0,
+            1
+          ]
+        }
+      ],
+      "setup": [
+        "xe->pin.nhiet_do = temperature_tenths / 10.0f;",
+        "xe->pin.soc = 50.0f; xe->id = 1; xe->da_ket_noi = 1; xe->da_xac_thuc = 1;",
+        "cong->vehicle_id = 1; cong->trang_thai = is_charging ? CONG_DANG_SAC : CONG_SAN_SANG;",
+        "xe->trang_thai = is_charging ? XE_DANG_SAC : XE_SAN_SANG;",
+        "cong->cong_suat_kw = is_charging ? 22.0f : 0.0f;"
+      ],
+      "actions": [
+        "monitor"
+      ],
+      "scope": "Temperature 59..100 C in 0.1 C steps, charging or ready, connected/authenticated vehicle; no emergency or other fault.",
+      "link_sources": [
+        "src/auth/token.c",
+        "src/auth/xac_thuc.c",
+        "src/charging/che_do_sac.c",
+        "src/charging/dieu_khien_sac.c",
+        "src/charging/phien_sac.c",
+        "src/communication/dieu_khien_tu_xa.c",
+        "src/communication/message.c",
+        "src/communication/protocol.c",
+        "src/core/cau_hinh.c",
+        "src/core/he_thong.c",
+        "src/database/cong_sac_repository.c",
+        "src/database/database.c",
+        "src/database/phien_sac_repository.c",
+        "src/database/su_kien_an_toan_repository.c",
+        "src/database/telemetry_repository.c",
+        "src/database/tram_repository.c",
+        "src/database/xe_repository.c",
+        "src/logging/logger.c",
+        "src/logging/nhat_ky_su_kien.c",
+        "src/monitoring/chi_so.c",
+        "src/monitoring/du_lieu_giam_sat.c",
+        "src/monitoring/su_kien_he_thong.c",
+        "src/safety/dung_khan_cap.c",
+        "src/safety/giam_sat_an_toan.c",
+        "src/safety/phat_hien_loi.c",
+        "src/safety/quy_tac_an_toan.c",
+        "src/simulation/kich_ban.c",
+        "src/simulation/mo_phong.c",
+        "src/simulation/ngau_nhien.c",
+        "src/simulation/sinh_kich_ban.c",
+        "src/simulation/sinh_su_kien.c",
+        "src/station/cong_sac.c",
+        "src/station/dieu_phoi.c",
+        "src/station/hang_cho.c",
+        "src/station/quan_ly_cong_suat.c",
+        "src/station/tram_sac.c",
+        "src/utils/input.c",
+        "src/utils/kiem_tra_du_lieu.c",
+        "src/utils/time_utils.c",
+        "src/vehicle/pin.c",
+        "src/vehicle/trang_thai_xe.c",
+        "src/vehicle/xe_dien.c"
+      ]
+    },
+    "SR09": {
+      "objects": [
+        "xe"
+      ],
+      "variables": [
+        "soc"
+      ],
+      "headers": [
+        "src/vehicle/xe_dien.h"
+      ],
+      "sources": [
+        "src/vehicle/pin.c"
+      ],
+      "include_dirs": [
+        ".",
+        "src/auth",
+        "src/charging",
+        "src/communication",
+        "src/components",
+        "src/core",
+        "src/data",
+        "src/database",
+        "src/hooks",
+        "src/logging",
+        "src/monitoring",
+        "src/pages",
+        "src/safety",
+        "src/services",
+        "src/simulation",
+        "src/station",
+        "src/store",
+        "src/styles",
+        "src/utils",
+        "src/vehicle"
+      ],
+      "inputs": [
+        {
+          "name": "soc_tenths",
+          "min": 0,
+          "max": 1000,
+          "samples": [
+            0,
+            1,
+            500,
+            999,
+            1000
+          ]
+        },
+        {
+          "name": "power_tenths",
+          "min": 0,
+          "max": 220,
+          "samples": [
+            0,
+            1,
+            220
+          ]
+        },
+        {
+          "name": "minutes",
+          "min": 0,
+          "max": 120,
+          "samples": [
+            0,
+            1,
+            120
+          ]
+        }
+      ],
+      "setup": [
+        "khoi_tao_pin(&xe->pin, 60.0f, soc_tenths / 10.0f, 25.0f);"
+      ],
+      "actions": [
+        "update_soc"
+      ],
+      "scope": "One battery update, valid initial SOC 0..100 in 0.1 steps, power 0..22 kW in 0.1 steps, duration 0..120 whole minutes, capacity 60 kWh. SR09 is the input specification ID; the C rule labels SOC as SR06.",
+      "link_sources": [
+        "src/vehicle/pin.c"
+      ]
+    }
+  }
+}

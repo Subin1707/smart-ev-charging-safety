@@ -1,0 +1,21 @@
+{
+  "requirement_id": "REQ-SOC-02",
+  "constraint": "SOC_FULL -> power == 0  [full battery stops charging]",
+  "harness": "verification\\harness\\req_soc_02.c",
+  "specification_file": "specification/battery.json",
+  "production_sources": "src/charging/dieu_khien_sac.c, src/safety/giam_sat_an_toan.c",
+  "production_functions": "co_the_bat_dau_sac, bat_dau_sac, giam_sat_xe_va_cong, pin_da_day",
+  "compile": {
+    "command": "gcc -Wall -Wextra -std=c17 -Isrc/core -Isrc/vehicle -Isrc/station -Isrc/charging -Isrc/auth -Isrc/safety -Isrc/simulation -Isrc/communication -Isrc/monitoring -Isrc/logging -Isrc/database -Isrc/utils -Iverification/harness src\\core\\cau_hinh.c src\\core\\he_thong.c src\\vehicle\\pin.c src\\vehicle\\trang_thai_xe.c src\\vehicle\\xe_dien.c src\\station\\cong_sac.c src\\station\\dieu_phoi.c src\\station\\hang_cho.c src\\station\\quan_ly_cong_suat.c src\\station\\tram_sac.c src\\auth\\token.c src\\auth\\xac_thuc.c src\\charging\\che_do_sac.c src\\charging\\dieu_khien_sac.c src\\charging\\phien_sac.c src\\safety\\dung_khan_cap.c src\\safety\\giam_sat_an_toan.c src\\safety\\phat_hien_loi.c src\\safety\\quy_tac_an_toan.c src\\logging\\logger.c src\\logging\\nhat_ky_su_kien.c src\\monitoring\\chi_so.c src\\monitoring\\du_lieu_giam_sat.c src\\monitoring\\su_kien_he_thong.c src\\simulation\\kich_ban.c src\\simulation\\mo_phong.c src\\simulation\\ngau_nhien.c src\\simulation\\sinh_kich_ban.c src\\simulation\\sinh_su_kien.c src\\communication\\dieu_khien_tu_xa.c src\\communication\\message.c src\\communication\\protocol.c src\\database\\cong_sac_repository.c src\\database\\database.c src\\database\\phien_sac_repository.c src\\database\\su_kien_an_toan_repository.c src\\database\\telemetry_repository.c src\\database\\tram_repository.c src\\database\\xe_repository.c src\\utils\\input.c src\\utils\\kiem_tra_du_lieu.c src\\utils\\time_utils.c verification\\harness\\req_soc_02.c -lm -o bin\\production_verification\\req_soc_02.exe",
+    "status": "PASS",
+    "exit_code": 0,
+    "stdout": ""
+  },
+  "run": {
+    "status": "PASS",
+    "exit_code": 0,
+    "stdout": "[AUTH] Dang xac thuc xe EV-HARNESS voi token: 'TOKEN_EV-HARNESS'...\n[AUTH][SUCCESS] Xe EV-HARNESS xac thuc thanh cong!\n[CHARGING CHECK] DENIED: Pin xe EV-HARNESS da day (SOC=100.0%).\n[CHARGING CHECK] DENIED: Pin xe EV-HARNESS da day (SOC=100.0%).\n[DENIED] Khong du dieu kien de bat dau sac xe EV-HARNESS tai cong 1.\n[SAFETY][INFO] EV-HARNESS battery full (100%). PORT 1 power off -> STOPPED\n[HARNESS PASS] REQ-SOC-02\n"
+  },
+  "status": "PASS",
+  "timestamp": "2026-09-29T08:49:18.316125+00:00"
+}

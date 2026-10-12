@@ -1,0 +1,551 @@
+{
+  "name": "smart_ev_teacher_e2e_v3",
+  "description": "GD12.2 teacher integration spec. V2 state_machine and 16 CTL properties are preserved; SOC/TEMP Ch3 checks are generated from production constants through semantic contracts. Generated functions are tool capability artifacts, not production implementations.",
+  "requirements": [
+    {
+      "id": "REQ-AUTH-01",
+      "text": "Vehicle authentication may succeed only when the vehicle is connected and the token is valid.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-AUTH-02",
+      "text": "When a vehicle disconnects from the station, authentication must be cleared.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-SOC-01",
+      "text": "Vehicle SOC must remain between 0% and 100%.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-SOC-02",
+      "text": "A vehicle with SOC at 100% must not continue receiving charging power.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-TEMP-01",
+      "text": "When battery temperature reaches or exceeds 60 C, charging must stop.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-01",
+      "text": "A port may enter CHARGING only when a valid vehicle is connected.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-02",
+      "text": "At any time, one charging port may be linked to at most one vehicle.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-PORT-03",
+      "text": "A faulted port must not deliver charging power.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-CHG-01",
+      "text": "Charging may start only when the vehicle is connected, authenticated, battery and temperature are safe, the port is ready, and no emergency or fault is active.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-CHG-02",
+      "text": "Charging requires the complete safety gate to remain valid.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-EMG-01",
+      "text": "Emergency or fault conditions must stop charging and force charging power to zero.",
+      "category": "safety",
+      "priority": "HIGH"
+    }
+  ],
+  "state_machine": {
+    "states": [
+      "DISCONNECTED",
+      "CONNECTED",
+      "AUTHENTICATED",
+      "AUTH_FAILED",
+      "START_BLOCKED",
+      "CHARGING",
+      "SOC_FULL",
+      "OVERHEAT",
+      "PORT_FAULT",
+      "EMERGENCY",
+      "DISCONNECTING",
+      "STOPPED_SOC_FULL",
+      "STOPPED_OVERHEAT",
+      "STOPPED_PORT_FAULT",
+      "STOPPED_EMERGENCY",
+      "STOPPED_DISCONNECT",
+      "RECOVERED_SAFE",
+      "unreachable_req_auth_01_violation",
+      "unreachable_req_auth_02_violation",
+      "unreachable_req_soc_01_violation",
+      "unreachable_req_soc_02_violation",
+      "unreachable_req_temp_01_violation",
+      "unreachable_req_port_01_violation",
+      "unreachable_req_port_02_violation",
+      "unreachable_req_port_03_violation",
+      "unreachable_req_chg_01_violation",
+      "unreachable_req_chg_02_violation",
+      "unreachable_req_emg_01_violation"
+    ],
+    "initial": [
+      "DISCONNECTED"
+    ],
+    "labeling": {
+      "DISCONNECTED": [
+        "disconnected",
+        "auth_clear",
+        "power_zero",
+        "safe"
+      ],
+      "CONNECTED": [
+        "connected",
+        "not_authenticated",
+        "port_occupied",
+        "power_zero",
+        "safe"
+      ],
+      "AUTHENTICATED": [
+        "connected",
+        "authenticated",
+        "port_ready",
+        "power_zero",
+        "safe"
+      ],
+      "AUTH_FAILED": [
+        "connected",
+        "auth_failed",
+        "start_not_allowed",
+        "power_zero",
+        "safe"
+      ],
+      "START_BLOCKED": [
+        "connected",
+        "start_blocked",
+        "power_zero",
+        "safe"
+      ],
+      "CHARGING": [
+        "connected",
+        "authenticated",
+        "charging",
+        "power_positive",
+        "safety_gate_valid",
+        "safe"
+      ],
+      "SOC_FULL": [
+        "connected",
+        "authenticated",
+        "soc_full",
+        "stop_required",
+        "unsafe_until_stopped"
+      ],
+      "OVERHEAT": [
+        "connected",
+        "authenticated",
+        "overheat",
+        "stop_required",
+        "unsafe_until_stopped"
+      ],
+      "PORT_FAULT": [
+        "connected",
+        "authenticated",
+        "fault",
+        "port_fault",
+        "stop_required",
+        "unsafe_until_stopped"
+      ],
+      "EMERGENCY": [
+        "emergency",
+        "stop_required",
+        "unsafe_until_stopped"
+      ],
+      "DISCONNECTING": [
+        "disconnecting",
+        "stop_required",
+        "auth_clear_required"
+      ],
+      "STOPPED_SOC_FULL": [
+        "connected",
+        "authenticated",
+        "soc_full",
+        "stopped",
+        "power_zero",
+        "safe"
+      ],
+      "STOPPED_OVERHEAT": [
+        "connected",
+        "authenticated",
+        "overheat",
+        "stopped",
+        "power_zero",
+        "safe"
+      ],
+      "STOPPED_PORT_FAULT": [
+        "connected",
+        "authenticated",
+        "fault",
+        "stopped",
+        "power_zero",
+        "safe"
+      ],
+      "STOPPED_EMERGENCY": [
+        "emergency",
+        "stopped",
+        "power_zero",
+        "safe"
+      ],
+      "STOPPED_DISCONNECT": [
+        "disconnected",
+        "auth_clear",
+        "stopped",
+        "power_zero",
+        "safe"
+      ],
+      "RECOVERED_SAFE": [
+        "connected",
+        "authenticated",
+        "recovered",
+        "power_zero",
+        "safe"
+      ],
+      "unreachable_req_auth_01_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_auth_01_violation",
+        "req_auth_01"
+      ],
+      "unreachable_req_auth_02_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_auth_02_violation",
+        "req_auth_02"
+      ],
+      "unreachable_req_soc_01_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_soc_01_violation",
+        "req_soc_01"
+      ],
+      "unreachable_req_soc_02_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_soc_02_violation",
+        "req_soc_02"
+      ],
+      "unreachable_req_temp_01_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_temp_01_violation",
+        "req_temp_01"
+      ],
+      "unreachable_req_port_01_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_port_01_violation",
+        "req_port_01"
+      ],
+      "unreachable_req_port_02_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_port_02_violation",
+        "req_port_02"
+      ],
+      "unreachable_req_port_03_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_port_03_violation",
+        "req_port_03"
+      ],
+      "unreachable_req_chg_01_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_chg_01_violation",
+        "req_chg_01"
+      ],
+      "unreachable_req_chg_02_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_chg_02_violation",
+        "req_chg_02"
+      ],
+      "unreachable_req_emg_01_violation": [
+        "smart_ev_v2",
+        "unreachable_violation_witness",
+        "req_emg_01_violation",
+        "req_emg_01"
+      ]
+    },
+    "transitions": [
+      [
+        "DISCONNECTED",
+        "CONNECTED"
+      ],
+      [
+        "CONNECTED",
+        "AUTHENTICATED"
+      ],
+      [
+        "AUTHENTICATED",
+        "CHARGING"
+      ],
+      [
+        "CONNECTED",
+        "AUTH_FAILED"
+      ],
+      [
+        "AUTH_FAILED",
+        "START_BLOCKED"
+      ],
+      [
+        "CHARGING",
+        "SOC_FULL"
+      ],
+      [
+        "SOC_FULL",
+        "STOPPED_SOC_FULL"
+      ],
+      [
+        "CHARGING",
+        "OVERHEAT"
+      ],
+      [
+        "OVERHEAT",
+        "STOPPED_OVERHEAT"
+      ],
+      [
+        "CHARGING",
+        "PORT_FAULT"
+      ],
+      [
+        "PORT_FAULT",
+        "STOPPED_PORT_FAULT"
+      ],
+      [
+        "CHARGING",
+        "EMERGENCY"
+      ],
+      [
+        "EMERGENCY",
+        "STOPPED_EMERGENCY"
+      ],
+      [
+        "CHARGING",
+        "DISCONNECTING"
+      ],
+      [
+        "DISCONNECTING",
+        "STOPPED_DISCONNECT"
+      ],
+      [
+        "STOPPED_PORT_FAULT",
+        "RECOVERED_SAFE"
+      ],
+      [
+        "STOPPED_EMERGENCY",
+        "RECOVERED_SAFE"
+      ],
+      [
+        "STOPPED_OVERHEAT",
+        "RECOVERED_SAFE"
+      ],
+      [
+        "RECOVERED_SAFE",
+        "CHARGING"
+      ],
+      [
+        "DISCONNECTED",
+        "DISCONNECTED"
+      ],
+      [
+        "CONNECTED",
+        "CONNECTED"
+      ],
+      [
+        "AUTHENTICATED",
+        "AUTHENTICATED"
+      ],
+      [
+        "AUTH_FAILED",
+        "AUTH_FAILED"
+      ],
+      [
+        "START_BLOCKED",
+        "START_BLOCKED"
+      ],
+      [
+        "CHARGING",
+        "CHARGING"
+      ],
+      [
+        "SOC_FULL",
+        "SOC_FULL"
+      ],
+      [
+        "OVERHEAT",
+        "OVERHEAT"
+      ],
+      [
+        "PORT_FAULT",
+        "PORT_FAULT"
+      ],
+      [
+        "EMERGENCY",
+        "EMERGENCY"
+      ],
+      [
+        "DISCONNECTING",
+        "DISCONNECTING"
+      ],
+      [
+        "STOPPED_SOC_FULL",
+        "STOPPED_SOC_FULL"
+      ],
+      [
+        "STOPPED_OVERHEAT",
+        "STOPPED_OVERHEAT"
+      ],
+      [
+        "STOPPED_PORT_FAULT",
+        "STOPPED_PORT_FAULT"
+      ],
+      [
+        "STOPPED_EMERGENCY",
+        "STOPPED_EMERGENCY"
+      ],
+      [
+        "STOPPED_DISCONNECT",
+        "STOPPED_DISCONNECT"
+      ],
+      [
+        "RECOVERED_SAFE",
+        "RECOVERED_SAFE"
+      ],
+      [
+        "unreachable_req_auth_01_violation",
+        "unreachable_req_auth_01_violation"
+      ],
+      [
+        "unreachable_req_auth_02_violation",
+        "unreachable_req_auth_02_violation"
+      ],
+      [
+        "unreachable_req_soc_01_violation",
+        "unreachable_req_soc_01_violation"
+      ],
+      [
+        "unreachable_req_soc_02_violation",
+        "unreachable_req_soc_02_violation"
+      ],
+      [
+        "unreachable_req_temp_01_violation",
+        "unreachable_req_temp_01_violation"
+      ],
+      [
+        "unreachable_req_port_01_violation",
+        "unreachable_req_port_01_violation"
+      ],
+      [
+        "unreachable_req_port_02_violation",
+        "unreachable_req_port_02_violation"
+      ],
+      [
+        "unreachable_req_port_03_violation",
+        "unreachable_req_port_03_violation"
+      ],
+      [
+        "unreachable_req_chg_01_violation",
+        "unreachable_req_chg_01_violation"
+      ],
+      [
+        "unreachable_req_chg_02_violation",
+        "unreachable_req_chg_02_violation"
+      ],
+      [
+        "unreachable_req_emg_01_violation",
+        "unreachable_req_emg_01_violation"
+      ]
+    ]
+  },
+  "additional_flows": {},
+  "safety_properties": [
+    "AG(!req_auth_01_violation)",
+    "AG(!req_auth_02_violation)",
+    "AG(!req_soc_01_violation)",
+    "AG(!req_soc_02_violation)",
+    "AG(!req_temp_01_violation)",
+    "AG(!req_port_01_violation)",
+    "AG(!req_port_02_violation)",
+    "AG(!req_port_03_violation)",
+    "AG(!req_chg_01_violation)",
+    "AG(!req_chg_02_violation)",
+    "AG(!req_emg_01_violation)",
+    "EF(charging)",
+    "EF(start_blocked)",
+    "EF(stopped)",
+    "EF(recovered)",
+    "AF(safe)"
+  ],
+  "mutual_exclusion": null,
+  "functions": [
+    {
+      "name": "gd122_teacher_token_copy_probe",
+      "language": "c",
+      "kind": "buffer_copy",
+      "params": [
+        "token_input"
+      ],
+      "buffer_size": 32,
+      "bug": null
+    }
+  ],
+  "arithmetic_checks": [
+    {
+      "name": "gd122_req_soc_01_valid_domain",
+      "int_vars": [
+        "soc"
+      ],
+      "condition": "soc >= 0 and soc <= 100"
+    },
+    {
+      "name": "gd122_req_soc_01_contradictory_violation",
+      "int_vars": [
+        "soc"
+      ],
+      "condition": "soc >= 0 and soc <= 100 and (soc < 0 or soc > 100)"
+    },
+    {
+      "name": "gd122_req_temp_01_overheat_threshold",
+      "int_vars": [
+        "temperature"
+      ],
+      "condition": "temperature >= 60"
+    },
+    {
+      "name": "gd122_req_temp_01_contradictory_condition",
+      "int_vars": [
+        "temperature"
+      ],
+      "condition": "temperature >= 60 and temperature < 60"
+    },
+    {
+      "name": "gd122_req_temp_01_safe_range",
+      "int_vars": [
+        "temperature"
+      ],
+      "condition": "temperature + 20 >= 0 and temperature < 60"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "generatedAt": "2026-09-10T17:07:23.218364+00:00",
+  "stages": {
+    "sanitizer-test": "PASS"
+  },
+  "status": "PASS",
+  "scope": "Model proofs and executed tests only; PostgreSQL/browser golden scenario must be checked separately."
+}

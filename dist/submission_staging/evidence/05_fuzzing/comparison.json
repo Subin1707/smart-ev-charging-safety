@@ -1,0 +1,62 @@
+{
+  "target": "START && authenticated && temperature >= 60 && 0 <= SOC < 100 with valid port/power",
+  "meaning": "Target reached means unsafe request exercised; fixed guard must reject it.",
+  "seed": 20260910,
+  "blackbox": {
+    "generated": 10000,
+    "accepted": 104,
+    "rejected": 9896,
+    "crashes": 0,
+    "timeouts": 0,
+    "safetyViolations": 0,
+    "targetReached": true,
+    "firstTargetInput": 115,
+    "seconds": 1.0171245999808889
+  },
+  "whitebox": {
+    "generated": 4,
+    "accepted": 0,
+    "rejected": 4,
+    "crashes": 0,
+    "timeouts": 0,
+    "safetyViolations": 0,
+    "targetReached": true,
+    "firstTargetInput": 1,
+    "seconds": 0.36672369998996146
+  },
+  "whiteboxInputs": [
+    [
+      1,
+      1,
+      60,
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      61,
+      1,
+      2,
+      2
+    ],
+    [
+      1,
+      1,
+      61,
+      2,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      61,
+      1,
+      1,
+      1
+    ]
+  ],
+  "timing": "Generation plus persistent process; white-box includes Z3 solving; compile excluded."
+}

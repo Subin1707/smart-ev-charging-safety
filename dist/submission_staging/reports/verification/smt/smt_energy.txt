@@ -1,0 +1,4 @@
+SMT-05: ENERGY CALCULATION
+[VULNERABLE] SAT - negative energy counterexample
+  model: [power_kw = -21, duration_h = 1, energy_kwh = -21]
+[FIXED] UNSAT - No counterexample; energy is non-negative

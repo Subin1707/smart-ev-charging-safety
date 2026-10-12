@@ -1,0 +1,11 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_database.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.35345979998237453}
+=== RUNNING UNIT TEST: DATABASE REPOSITORIES ===
+[14:03:35][INFO] Database persistence module khoi tao thanh cong (logs/database/test_dump.sql)
+  [PASS] Database initialization and test dump file creation should succeed
+  [PASS] Saving vehicle EV01 should execute SQL without crash
+  [PASS] Closing test database should commit transaction successfully
+--------------------------------------------------
+TEST SUITE: UNIT_DATABASE
+Total: 3 | Passed: 3 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

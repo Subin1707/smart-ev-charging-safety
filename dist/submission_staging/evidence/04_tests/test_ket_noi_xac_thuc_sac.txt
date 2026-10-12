@@ -1,0 +1,44 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_ket_noi_xac_thuc_sac.exe"], "exitCode": 0, "status": "PASS", "seconds": 2.6179372999758925}
+=== RUNNING INTEGRATION TEST: CONNECT -> AUTH -> CHARGE ===
+  [PASS] EV01 connected to Port 1
+[AUTH] Dang xac thuc xe EV01 voi token: 'TOKEN_EV01'...
+[AUTH][SUCCESS] Xe EV01 xac thuc thanh cong!
+  [PASS] EV01 authenticated with correct token
+[CHARGING] Bat dau sac thanh cong cho xe EV01 tai Cong 1 voi cong suat 22.0 kW.
+  [PASS] EV01 starts charging successfully
+  [PASS] Port 1 state is CONG_DANG_SAC
+  [PASS] EV02 connected to Port 2
+[AUTH] Dang xac thuc xe EV02 voi token: 'WRONG_TOKEN'...
+[AUTH][FAILED] Xe EV02 xac thuc that bai! Token khong hop le.
+  [PASS] EV02 auth fails with WRONG_TOKEN
+[CHARGING CHECK] DENIED: Xe EV02 chua duoc xac thuc.
+[DENIED] Khong du dieu kien de bat dau sac xe EV02 tai cong 2.
+  [PASS] EV02 charging is DENIED due to unauthenticated state
+  [PASS] Port 2 remains in CONG_DA_KET_NOI without charging
+  [PASS] EV01 has allocated charging power before emergency
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[STATION EMERGENCY] KICH HOAT DUNG KHAN CAP TOAN BO TRAM SAC!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[STATION EMERGENCY] Tat ca cac cong da ngat cong suat ve 0 kW.
+
+  [PASS] Emergency flag is set after emergency stop
+  [PASS] Emergency cuts total station power to 0
+  [PASS] Emergency cuts charging port power to 0
+  [PASS] Charging port transitions to stopped after emergency
+  [PASS] EV04 connected to Port 4
+[AUTH] Dang xac thuc xe EV04 voi token: 'TOKEN_EV04'...
+[AUTH][SUCCESS] Xe EV04 xac thuc thanh cong!
+  [PASS] EV04 authenticated before disconnect
+  [PASS] EV04 auth flag is set before disconnect
+  [PASS] EV04 disconnected from Port 4
+  [PASS] EV04 connected flag resets after disconnect
+  [PASS] EV04 authenticated flag resets after disconnect
+  [PASS] SR01 rejects authentication before connection
+[DENIED] Khong du dieu kien de bat dau sac xe EV01 tai cong 1.
+  [PASS] SR06 rejects direct FAULT to CHARGING
+--------------------------------------------------
+TEST SUITE: INTEGRATION_CONNECT_AUTH_CHARGE
+Total: 21 | Passed: 21 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

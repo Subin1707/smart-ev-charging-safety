@@ -1,0 +1,71 @@
+{
+  "name": "smart_ev_arithmetic_probe",
+  "description": "Runtime probe for documented-but-not-confirmed C arithmetic code generation. This is an experiment only; it is not part of official Smart EV codegen coverage.",
+  "requirements": [
+    {
+      "id": "PROBE-SOC-ARITH",
+      "text": "Probe whether teacher Ch2 can generate C arithmetic code related to SOC range [0, 100].",
+      "category": "functional",
+      "priority": "LOW"
+    },
+    {
+      "id": "PROBE-TEMP-ARITH",
+      "text": "Probe whether teacher Ch2 can generate C arithmetic code related to temperature range [-20, 60].",
+      "category": "functional",
+      "priority": "LOW"
+    }
+  ],
+  "state_machine": {
+    "states": [
+      "probe_initial",
+      "probe_ready"
+    ],
+    "initial": [
+      "probe_initial"
+    ],
+    "labeling": {
+      "probe_initial": [
+        "safe"
+      ],
+      "probe_ready": [
+        "safe",
+        "arithmetic_probe_ready"
+      ]
+    },
+    "transitions": [
+      [
+        "probe_initial",
+        "probe_ready"
+      ],
+      [
+        "probe_ready",
+        "probe_ready"
+      ]
+    ]
+  },
+  "safety_properties": [],
+  "mutual_exclusion": null,
+  "functions": [
+    {
+      "name": "probe_soc_delta",
+      "language": "c",
+      "kind": "arithmetic",
+      "params": [
+        "soc",
+        "soc_max"
+      ],
+      "bug": null
+    },
+    {
+      "name": "probe_temperature_delta",
+      "language": "c",
+      "kind": "arithmetic",
+      "params": [
+        "temperature",
+        "temperature_limit"
+      ],
+      "bug": null
+    }
+  ],
+  "arithmetic_checks": []
+}

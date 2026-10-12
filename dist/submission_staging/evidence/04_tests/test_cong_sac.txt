@@ -1,0 +1,18 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_cong_sac.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.1936752999899909}
+=== RUNNING UNIT TEST: CONG SAC ===
+  [PASS] Port ID should be 1
+  [PASS] Port should be empty (vehicle_id = -1)
+  [PASS] Initial state should be CONG_RANH
+  [PASS] Connecting vehicle 1 to empty port should succeed
+  [PASS] Port vehicle_id should be 1
+[PORT 1] Error: Port already occupied by vehicle 1
+  [PASS] Connecting vehicle 2 to occupied port should FAIL (SR07)
+  [PASS] Port power should be 20.0 kW
+  [PASS] Current should be 50.0 A at 400V
+  [PASS] Port vehicle_id should reset to -1
+  [PASS] Port power should reset to 0.0 kW
+--------------------------------------------------
+TEST SUITE: UNIT_CONG_SAC
+Total: 10 | Passed: 10 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

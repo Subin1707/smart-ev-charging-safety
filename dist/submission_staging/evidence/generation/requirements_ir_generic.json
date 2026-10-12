@@ -1,0 +1,37 @@
+[
+  {
+    "requirement_id": "REQ-01",
+    "verifiable": true,
+    "property_type": "invariant",
+    "preconditions": [],
+    "trigger": null,
+    "expected": [
+      {
+        "variable": "pressure",
+        "operator": "<=",
+        "value": 200,
+        "unit": "kPa"
+      }
+    ]
+  },
+  {
+    "requirement_id": "REQ-02",
+    "verifiable": true,
+    "property_type": "conditional",
+    "preconditions": [],
+    "trigger": {
+      "variable": "temperature",
+      "operator": ">=",
+      "value": 80,
+      "unit": "C"
+    },
+    "expected": [
+      {
+        "variable": "valve",
+        "operator": "==",
+        "value": "CLOSED",
+        "unit": null
+      }
+    ]
+  }
+]

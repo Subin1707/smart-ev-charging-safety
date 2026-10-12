@@ -1,0 +1,71 @@
+phase: "Giai doan 4 - Static Testing"
+scope: "Gateway Authentication formal artifacts and production static analysis"
+
+artifacts:
+  cbmc: "generated/static/gateway_auth_cbmc.c"
+  z3: "generated/static/gateway_auth_z3.py"
+  generator: "formal/gateway_auth/generate_gateway_verification.py"
+
+commands:
+  generate:
+    command: "python formal/gateway_auth/generate_gateway_verification.py"
+    result: "PASS"
+  cbmc:
+    command: "tools/cbmc/extracted/cbmc/bin/cbmc.exe --gcc generated/static/gateway_auth_cbmc.c"
+    result: "PASS"
+    summary: "VERIFICATION SUCCESSFUL; 0 of 8 assertions failed"
+  z3:
+    command: "python generated/static/gateway_auth_z3.py"
+    result: "PASS"
+    summary: "GA-C01..GA-C08 all PASS on Gateway Kripke labels"
+  cppcheck:
+    command: "cppcheck --enable=all src/"
+    result: "PASS_WITH_NOTES"
+    summary: "Command completed with exit code 0. Findings were style/information notes such as missing include metadata, unused functions, duplicate condition, and static linkage suggestions."
+
+constraints:
+  GA-C01:
+    property: "A -> C"
+    cbmc_assertion: "assert(!authenticated || connected);"
+    cbmc: "PASS"
+    z3: "PASS"
+  GA-C02:
+    property: "A -> T"
+    cbmc_assertion: "assert(!authenticated || token_valid);"
+    cbmc: "PASS"
+    z3: "PASS"
+  GA-C03:
+    property: "CHARGING -> C"
+    cbmc_assertion: "assert(!charging || connected);"
+    cbmc: "PASS"
+    z3: "PASS"
+  GA-C04:
+    property: "CHARGING -> A"
+    cbmc_assertion: "assert(!charging || authenticated);"
+    cbmc: "PASS"
+    z3: "PASS"
+  GA-C05:
+    property: "CHARGING -> S"
+    cbmc_assertion: "assert(!charging || safety_ok);"
+    cbmc: "PASS"
+    z3: "PASS"
+  GA-C06:
+    property: "E -> !CHARGING"
+    cbmc_assertion: "assert(!emergency || !charging);"
+    cbmc: "PASS"
+    z3: "PASS"
+  GA-C07:
+    property: "!C -> !A"
+    cbmc_assertion: "assert(connected || !authenticated);"
+    cbmc: "PASS"
+    z3: "PASS"
+  GA-C08:
+    property: "START_ALLOWED -> C && T && A && R && S && !E"
+    cbmc_assertion: "assert(!start_allowed || (connected && token_valid && authenticated && start_request && safety_ok && !emergency));"
+    cbmc: "PASS"
+    z3: "PASS"
+
+notes:
+  - "The aggregate CBMC harness checks the assertions over Gateway Kripke labels, not over unconstrained Boolean assignments."
+  - "The Z3 aggregate script proves no Gateway Kripke label violates GA-C01..GA-C08."
+  - "Per-constraint counterexample scripts under generated/static/gateway_auth/ remain useful for showing which raw candidate states constraints remove."

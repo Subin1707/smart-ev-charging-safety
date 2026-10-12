@@ -1,0 +1,1 @@
+{"command": ["gcc", "-E", "-P", "formal/bmc/sr03_overheat_fixed.c", "-o", "E:\\smart-ev-charging-safety\\bin\\verification\\sr03_overheat_fixed.i"], "exitCode": 0, "status": "PASS", "seconds": 0.10933919998933561}

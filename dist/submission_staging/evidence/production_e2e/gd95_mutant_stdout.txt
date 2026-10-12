@@ -1,0 +1,6 @@
+Assertion failed!
+
+Program: E:\smart-ev-charging-safety\evidence\production_e2e\gd95_mutant_harness.exe
+File: evidence/production_e2e/gd95_mutant_harness.c, Line 10
+
+Expression: soc_hop_le(&pin) == 1 && "MUTANT expected to fail"

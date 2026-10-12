@@ -1,0 +1,9 @@
+{"command": ["cppcheck", "--enable=warning,performance,portability", "--error-exitcode=2", "--template={file}:{line}: {severity}: {message}", "static_analysis/vulnerable"], "exitCode": 2, "status": "PASS", "seconds": 0.2281795000017155}
+Checking static_analysis\vulnerable\loi_id_xe.c ...
+1/3 files checked 32% done
+Checking static_analysis\vulnerable\loi_phan_tich_thong_diep.c ...
+2/3 files checked 73% done
+Checking static_analysis\vulnerable\loi_tinh_nang_luong.c ...
+3/3 files checked 100% done
+static_analysis\vulnerable\loi_id_xe.c:14: error: Buffer is accessed out of bounds: xe->ma_xe
+static_analysis\vulnerable\loi_tinh_nang_luong.c:10: error: Signed integer overflow for expression 'cong_suat_kw*1000000000'.

@@ -1,0 +1,103 @@
+pipeline:
+  - Specification
+  - Function parameters
+  - Candidate state-space generation
+  - Constraints
+  - Requirement mapping
+  - Static verification code
+  - Dynamic verification tests
+
+specification_files:
+  auth: specification/auth.json
+  battery: specification/battery.json
+  port: specification/port.json
+  charging: specification/charging.json
+
+generators:
+  state_space: generator/state_generator.py
+  static: generator/static_generator.py
+  dynamic: generator/dynamic_generator.py
+
+evidence:
+  state_space: reports/state-space/system_state_space.txt
+  generated_modules: reports/static-testing/generated_module_verification.yaml
+
+functions:
+  F01_vehicle_auth_entry_exit:
+    parameters: [C, T, A, D]
+    candidate_states: 16
+    constraints: ["A -> C", "A -> T", "D -> !C", "D -> !A"]
+    requirements: [SR01, SR02]
+    static_code:
+      - generated/static/gateway_auth_cbmc.c
+      - generated/static/gateway_auth_z3.py
+      - generated/static/verify_auth.c
+    dynamic_tests:
+      - tests/integration/test_ket_noi_xac_thuc_sac.c
+      - tests/e2e/test_luong_loi_xac_thuc.c
+      - generated/dynamic/test_auth.c
+
+  F02_vehicle_condition_check:
+    parameters: [TEMP_OK, SOC_OK, NOT_FULL, NO_FAULT]
+    candidate_states: 16
+    constraints:
+      - "CHARGING -> TEMP_OK"
+      - "CHARGING -> SOC_OK"
+      - "CHARGING -> NOT_FULL"
+      - "CHARGING -> NO_FAULT"
+    requirements: [SR03, SR04, SR06, SR09]
+    static_code:
+      - formal/bmc/sr03_overheat_fixed.c
+      - formal/bmc/sr04_full_fixed.c
+      - generated/static/SR03_cbmc.c
+      - generated/static/SR03_z3.py
+      - generated/static/verify_battery.c
+    dynamic_tests:
+      - tests/e2e/test_luong_qua_nhiet.c
+      - tests/e2e/test_luong_pin_day.c
+      - tests/unit/test_an_toan.c
+      - generated/dynamic/test_battery.c
+
+  F03_port_connection_state:
+    parameters: [C, P, OWNER, UNIQUE]
+    candidate_states: 16
+    constraints:
+      - "CHARGING -> C"
+      - "CHARGING -> P"
+      - "P -> OWNER"
+      - "CONNECT_ACCEPTED -> UNIQUE"
+    requirements: [SR07, SR08]
+    static_code:
+      - formal/bmc/sr07_exclusivity_fixed.c
+      - generated/static/verify_port.c
+    dynamic_tests:
+      - tests/unit/test_cong_sac.c
+      - tests/unit/test_tram_sac.c
+      - tests/integration/test_nhieu_xe.c
+      - tests/e2e/test_auto_port_assignment.py
+      - generated/dynamic/test_port.c
+
+  F04_charging_validity:
+    parameters: [C, A, R, S, E, CAP, PWR_OK]
+    candidate_states: 128
+    constraints:
+      - "START_ALLOWED -> C && A && R && S && !E && CAP"
+      - "CHARGING -> C"
+      - "CHARGING -> A"
+      - "CHARGING -> S"
+      - "E -> !CHARGING"
+      - "E -> POWER_ZERO"
+      - "CHARGING -> PWR_OK"
+    requirements: [SR02, SR03, SR04, SR05, SR10]
+    static_code:
+      - generated/static/gateway_auth_cbmc.c
+      - generated/static/gateway_auth_z3.py
+      - formal/bmc/sr05_emergency_fixed.c
+      - formal/bmc/sr10_power_limit_fixed.c
+      - generated/static/verify_charging.c
+    dynamic_tests:
+      - tests/integration/test_ket_noi_xac_thuc_sac.c
+      - tests/integration/test_dung_khan_cap.c
+      - tests/integration/test_phan_phoi_cong_suat.c
+      - tests/e2e/test_emergency_stop.py
+      - generated/dynamic/test_charging.c

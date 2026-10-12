@@ -1,0 +1,52 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\address_before.exe"], "exitCode": 1, "status": "PASS", "seconds": 1.7397257999982685}
+=================================================================
+==19608==ERROR: AddressSanitizer: stack-buffer-overflow on address 0x00fa1e14fc5c at pc 0x7ffcc12985b8 bp 0x00fa1e14f320 sp 0x00fa1e14f368
+WRITE of size 47 at 0x00fa1e14fc5c thread T0
+    #0 0x7ffcc12985b7  (C:\Program Files\LLVM\lib\clang\22\lib\windows\clang_rt.asan_dynamic-x86_64.dll+0x1800485b7)
+    #1 0x7ff727a1297c in cap_nhat_id_xe_nguy_hiem E:\smart-ev-charging-safety\static_analysis\vulnerable\loi_id_xe.c:14
+    #2 0x7ff727a12ae6 in main E:\smart-ev-charging-safety\static_analysis\vulnerable\loi_id_xe.c:28
+    #3 0x7ff727a1353f in invoke_main D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:78
+    #4 0x7ff727a1353f in __scrt_common_main_seh D:\a\_work\1\s\src\vctools\crt\vcstartup\src\startup\exe_common.inl:288
+    #5 0x7ffd78e8cdf6  (C:\WINDOWS\System32\KERNEL32.DLL+0x18002cdf6)
+    #6 0x7ffd7a63ee4b  (C:\WINDOWS\SYSTEM32\ntdll.dll+0x18007ee4b)
+
+Address 0x00fa1e14fc5c is located in stack of thread T0 at offset 60 in frame
+    #0 0x7ff727a1299f in main E:\smart-ev-charging-safety\static_analysis\vulnerable\loi_id_xe.c:17
+
+  This frame has 1 object(s):
+    [32, 60) 'xe' (line 18) <== Memory access at offset 60 overflows this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
+      (longjmp, SEH and C++ exceptions *are* supported)
+SUMMARY: AddressSanitizer: stack-buffer-overflow E:\smart-ev-charging-safety\static_analysis\vulnerable\loi_id_xe.c:14 in cap_nhat_id_xe_nguy_hiem
+Shadow bytes around the buggy address:
+  0x00fa1e14f980: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00fa1e14fa00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00fa1e14fa80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00fa1e14fb00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00fa1e14fb80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x00fa1e14fc00: 00 00 00 00 f1 f1 f1 f1 00 00 00[04]f3 f3 f3 f3
+  0x00fa1e14fc80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00fa1e14fd00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00fa1e14fd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00fa1e14fe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x00fa1e14fe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==19608==ABORTING

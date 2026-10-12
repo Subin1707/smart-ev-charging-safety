@@ -1,0 +1,136 @@
+{
+  "name": "auth",
+  "description": "Vehicle connection, token validation, authentication success/failure, and disconnect auth reset.",
+  "requirements": [
+    {
+      "id": "REQ-AUTH-01",
+      "text": "Vehicle authentication may succeed only when the vehicle is connected and the token is valid.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-AUTH-02",
+      "text": "When a vehicle disconnects from the station, authentication must be cleared.",
+      "category": "safety",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-AUTH-CODE-01",
+      "text": "Generated token parsing code must handle fixed-size token buffers safely.",
+      "category": "memory",
+      "priority": "HIGH"
+    },
+    {
+      "id": "REQ-AUTH-CODE-02",
+      "text": "Generated authentication-ratio code must tolerate zero total attempts during fuzzing.",
+      "category": "functional",
+      "priority": "MEDIUM"
+    }
+  ],
+  "state_machine": {
+    "states": [
+      "S0",
+      "S1",
+      "S2",
+      "S3",
+      "S4"
+    ],
+    "initial": [
+      "S0"
+    ],
+    "labeling": {
+      "S0": [
+        "auth",
+        "s0",
+        "safe"
+      ],
+      "S1": [
+        "auth",
+        "s1",
+        "safe"
+      ],
+      "S2": [
+        "auth",
+        "s2",
+        "safe"
+      ],
+      "S3": [
+        "auth",
+        "s3",
+        "safe"
+      ],
+      "S4": [
+        "auth",
+        "s4",
+        "safe"
+      ]
+    },
+    "transitions": [
+      [
+        "S0",
+        "S1"
+      ],
+      [
+        "S1",
+        "S2"
+      ],
+      [
+        "S2",
+        "S3"
+      ],
+      [
+        "S3",
+        "S4"
+      ],
+      [
+        "S4",
+        "S0"
+      ]
+    ]
+  },
+  "additional_flows": {},
+  "safety_properties": [
+    "AG(!violation)"
+  ],
+  "mutual_exclusion": null,
+  "functions": [
+    {
+      "name": "parse_vehicle_token",
+      "language": "c",
+      "kind": "buffer_copy",
+      "params": [
+        "raw_token"
+      ],
+      "buffer_size": 32,
+      "bug": null
+    },
+    {
+      "name": "cleanup_auth_session",
+      "language": "c",
+      "kind": "alloc_release",
+      "params": [],
+      "buffer_size": 8,
+      "bug": null
+    },
+    {
+      "name": "auth_success_ratio",
+      "language": "python",
+      "kind": "divide",
+      "params": [
+        "success_count",
+        "attempt_count"
+      ]
+    }
+  ],
+  "arithmetic_checks": [
+    {
+      "name": "auth_attempt_counter",
+      "int_vars": [
+        "failed_attempts",
+        "successful_attempts"
+      ],
+      "condition": "failed_attempts >= 0 and successful_attempts >= 0",
+      "overflow_expr": "failed_attempts + successful_attempts"
+    }
+  ]
+}

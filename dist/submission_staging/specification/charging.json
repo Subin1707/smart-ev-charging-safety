@@ -1,0 +1,322 @@
+{
+  "id": "CHARGING",
+  "name": "Charging safety gate and emergency handling",
+  "description": "Integrated safety gate that determines whether charging is allowed based on connection, authentication, battery, temperature, port, emergency, and fault conditions.",
+
+  "source_references": [
+    "src/core/hang_so.h",
+    "src/charging/dieu_khien_sac.c",
+    "src/safety/dung_khan_cap.c"
+  ],
+
+  "parameters": [
+    {
+      "symbol": "C",
+      "name": "connected",
+      "domain": [0, 1],
+      "source_spec": "AUTH"
+    },
+    {
+      "symbol": "A",
+      "name": "authenticated",
+      "domain": [0, 1],
+      "source_spec": "AUTH"
+    },
+    {
+      "symbol": "B",
+      "name": "battery_safe",
+      "domain": [0, 1],
+      "source_spec": "BATTERY"
+    },
+    {
+      "symbol": "T",
+      "name": "temperature_safe",
+      "domain": [0, 1],
+      "source_spec": "BATTERY"
+    },
+    {
+      "symbol": "P",
+      "name": "port_ready",
+      "domain": [0, 1],
+      "source_spec": "PORT"
+    },
+    {
+      "symbol": "E",
+      "name": "emergency",
+      "domain": [0, 1],
+      "source_spec": "CHARGING"
+    },
+    {
+      "symbol": "F",
+      "name": "fault",
+      "domain": [0, 1],
+      "source_spec": "PORT"
+    }
+  ],
+
+  "state_encoding": ["C", "A", "B", "T", "P", "E", "F"],
+
+  "initial_state": {
+    "C": 0,
+    "A": 0,
+    "B": 0,
+    "T": 0,
+    "P": 0,
+    "E": 0,
+    "F": 0
+  },
+
+  "derived": {
+    "VALID": "C and A and B and T and P and (not E) and (not F)",
+    "CHARGING_ALLOWED": "VALID"
+  },
+
+  "constraints": [
+    {
+      "id": "CHG-01",
+      "formula": "CHARGING -> C",
+      "expression": "(not CHARGING) or C",
+      "scope": "state",
+      "description": "Charging requires an active vehicle connection."
+    },
+    {
+      "id": "CHG-02",
+      "formula": "CHARGING -> A",
+      "expression": "(not CHARGING) or A",
+      "scope": "state",
+      "description": "Charging requires successful authentication."
+    },
+    {
+      "id": "CHG-03",
+      "formula": "CHARGING -> B",
+      "expression": "(not CHARGING) or B",
+      "scope": "state",
+      "description": "Charging requires a safe battery condition."
+    },
+    {
+      "id": "CHG-04",
+      "formula": "CHARGING -> T",
+      "expression": "(not CHARGING) or T",
+      "scope": "state",
+      "description": "Charging requires a safe battery temperature."
+    },
+    {
+      "id": "CHG-05",
+      "formula": "CHARGING -> P",
+      "expression": "(not CHARGING) or P",
+      "scope": "state",
+      "description": "Charging requires a ready charging port."
+    },
+    {
+      "id": "CHG-06",
+      "formula": "E -> !CHARGING",
+      "expression": "(not E) or (not CHARGING)",
+      "scope": "state",
+      "description": "Emergency state immediately blocks charging."
+    },
+    {
+      "id": "CHG-07",
+      "formula": "F -> !CHARGING",
+      "expression": "(not F) or (not CHARGING)",
+      "scope": "state",
+      "description": "Fault state blocks charging."
+    },
+    {
+      "id": "CHG-08",
+      "formula": "CHARGING -> VALID",
+      "expression": "(not CHARGING) or VALID",
+      "scope": "state",
+      "description": "Charging is permitted only when the complete safety gate is valid."
+    }
+  ],
+
+  "requirements": [
+    {
+      "id": "REQ-CHG-01",
+      "type": "safety",
+      "priority": "HIGH",
+      "text": "Charging may start only when the vehicle is connected, authenticated, battery and temperature are safe, the port is ready, and no emergency or fault is active.",
+      "formal": "CHARGING -> VALID",
+      "constraints": [
+        "CHG-01",
+        "CHG-02",
+        "CHG-03",
+        "CHG-04",
+        "CHG-05",
+        "CHG-08"
+      ]
+    },
+    {
+      "id": "REQ-CHG-02",
+      "type": "safety",
+      "priority": "HIGH",
+      "text": "Charging requires the complete safety gate to remain valid.",
+      "formal": "CHARGING -> VALID",
+      "constraints": [
+        "CHG-08"
+      ]
+    },
+    {
+      "id": "REQ-EMG-01",
+      "type": "safety",
+      "priority": "HIGH",
+      "text": "Emergency or fault conditions must stop charging and force charging power to zero.",
+      "formal": "(E || F) -> (!CHARGING && power == 0)",
+      "constraints": [
+        "CHG-06",
+        "CHG-07"
+      ]
+    }
+  ],
+
+  "state_generation": {
+    "method": "cartesian_product",
+    "candidate_states": 128,
+    "classification": {
+      "charging_allowed": "VALID == true",
+      "charging_blocked": "VALID == false"
+    }
+  },
+
+  "example_states": [
+    {
+      "id": "C0",
+      "bits": "0000000",
+      "meaning": "System idle; charging conditions are not established.",
+      "classification": "charging_blocked"
+    },
+    {
+      "id": "C1",
+      "bits": "1111100",
+      "meaning": "All charging safety conditions are satisfied.",
+      "classification": "charging_allowed"
+    },
+    {
+      "id": "C2",
+      "bits": "0111100",
+      "meaning": "Vehicle is not connected.",
+      "classification": "charging_blocked",
+      "reason": "connection_required"
+    },
+    {
+      "id": "C3",
+      "bits": "1011100",
+      "meaning": "Vehicle is not authenticated.",
+      "classification": "charging_blocked",
+      "reason": "authentication_required"
+    },
+    {
+      "id": "C4",
+      "bits": "1101100",
+      "meaning": "Battery condition is unsafe.",
+      "classification": "charging_blocked",
+      "reason": "battery_unsafe"
+    },
+    {
+      "id": "C5",
+      "bits": "1110100",
+      "meaning": "Battery temperature is unsafe.",
+      "classification": "charging_blocked",
+      "reason": "temperature_unsafe"
+    },
+    {
+      "id": "C6",
+      "bits": "1111000",
+      "meaning": "Charging port is not ready.",
+      "classification": "charging_blocked",
+      "reason": "port_not_ready"
+    },
+    {
+      "id": "C7",
+      "bits": "1111110",
+      "meaning": "Emergency condition is active.",
+      "classification": "charging_blocked",
+      "reason": "emergency_active"
+    },
+    {
+      "id": "C8",
+      "bits": "1111101",
+      "meaning": "Fault condition is active.",
+      "classification": "charging_blocked",
+      "reason": "fault_active"
+    }
+  ],
+
+  "transitions": [
+    {
+      "from": "C0",
+      "event": "safety_conditions_satisfied",
+      "to": "C1"
+    },
+    {
+      "from": "C1",
+      "event": "connection_lost",
+      "to": "C2"
+    },
+    {
+      "from": "C1",
+      "event": "authentication_lost",
+      "to": "C3"
+    },
+    {
+      "from": "C1",
+      "event": "battery_unsafe",
+      "to": "C4"
+    },
+    {
+      "from": "C1",
+      "event": "temperature_unsafe",
+      "to": "C5"
+    },
+    {
+      "from": "C1",
+      "event": "port_not_ready",
+      "to": "C6"
+    },
+    {
+      "from": "C1",
+      "event": "emergency_triggered",
+      "to": "C7"
+    },
+    {
+      "from": "C1",
+      "event": "fault_detected",
+      "to": "C8"
+    },
+    {
+      "from": "C2",
+      "event": "conditions_restored",
+      "to": "C1"
+    },
+    {
+      "from": "C3",
+      "event": "conditions_restored",
+      "to": "C1"
+    },
+    {
+      "from": "C4",
+      "event": "conditions_restored",
+      "to": "C1"
+    },
+    {
+      "from": "C5",
+      "event": "conditions_restored",
+      "to": "C1"
+    },
+    {
+      "from": "C6",
+      "event": "conditions_restored",
+      "to": "C1"
+    },
+    {
+      "from": "C7",
+      "event": "emergency_cleared",
+      "to": "C0"
+    },
+    {
+      "from": "C8",
+      "event": "fault_cleared",
+      "to": "C0"
+    }
+  ]
+}

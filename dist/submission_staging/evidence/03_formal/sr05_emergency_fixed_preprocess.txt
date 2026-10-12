@@ -1,0 +1,1 @@
+{"command": ["gcc", "-E", "-P", "formal/bmc/sr05_emergency_fixed.c", "-o", "E:\\smart-ev-charging-safety\\bin\\verification\\sr05_emergency_fixed.i"], "exitCode": 0, "status": "PASS", "seconds": 0.26796070000273176}

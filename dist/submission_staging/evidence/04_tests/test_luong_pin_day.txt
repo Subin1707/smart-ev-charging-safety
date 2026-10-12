@@ -1,0 +1,13 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_luong_pin_day.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.22131159997661598}
+=== RUNNING E2E TEST: FULL BATTERY CUTOFF ===
+[AUTH] Dang xac thuc xe EV04 voi token: 'TOKEN_EV04'...
+[AUTH][SUCCESS] Xe EV04 xac thuc thanh cong!
+[CHARGING] Bat dau sac thanh cong cho xe EV04 tai Cong 4 voi cong suat 22.0 kW.
+[SAFETY][INFO] EV04 battery full (100%). PORT 4 power off -> STOPPED
+  [PASS] Port transitions to CONG_DUNG on full battery (SR04)
+  [PASS] Power cut off to 0 kW
+--------------------------------------------------
+TEST SUITE: E2E_BATTERY_FULL_FLOW
+Total: 2 | Passed: 2 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

@@ -1,0 +1,13 @@
+BMC: isolated C models; not a proof of the entire application.
+sr02_auth vulnerable: PASS (expected counterexample)
+sr02_auth fixed: PASS
+sr03_overheat vulnerable: PASS (expected counterexample)
+sr03_overheat fixed: PASS
+sr04_full vulnerable: PASS (expected counterexample)
+sr04_full fixed: PASS
+sr05_emergency vulnerable: PASS (expected counterexample)
+sr05_emergency fixed: PASS
+sr07_exclusivity vulnerable: PASS (expected counterexample)
+sr07_exclusivity fixed: PASS
+sr10_power_limit vulnerable: PASS (expected counterexample)
+sr10_power_limit fixed: PASS

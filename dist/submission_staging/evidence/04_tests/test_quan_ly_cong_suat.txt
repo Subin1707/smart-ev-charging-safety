@@ -1,0 +1,19 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_quan_ly_cong_suat.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.5483501999988221}
+=== RUNNING UNIT TEST: QUAN LY CONG SUAT (BVA 99, 100, 101 kW) ===
+  [PASS] BVA: 99.0 kW is within station limit
+  [PASS] BVA: 100.0 kW is exactly at station limit
+  [PASS] BVA: 101.0 kW exceeds station limit
+  [PASS] Each port should receive 20.0 kW
+  [PASS] Each port should receive 20.0 kW
+  [PASS] Each port should receive 20.0 kW
+  [PASS] Each port should receive 20.0 kW
+  [PASS] Each port should receive 20.0 kW
+  [PASS] Total station power must be exactly 100.0 kW
+  [PASS] SR11 low SOC gets priority even on last port
+  [PASS] Other vehicles share remaining capacity
+  [PASS] SR10 limited supply is respected
+--------------------------------------------------
+TEST SUITE: UNIT_POWER_MANAGER
+Total: 12 | Passed: 12 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

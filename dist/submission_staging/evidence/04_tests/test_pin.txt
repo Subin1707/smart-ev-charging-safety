@@ -1,0 +1,18 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_pin.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.30645360000198707}
+=== RUNNING UNIT TEST: PIN (BOUNDARY VALUE ANALYSIS) ===
+  [PASS] BVA: SOC = -1.0 must be INVALID
+  [PASS] BVA: SOC = 0.0 (Min Boundary) must be VALID
+  [PASS] BVA: SOC = 50.0 (Nominal) must be VALID
+  [PASS] BVA: SOC = 100.0 (Max Boundary) must be VALID
+  [PASS] BVA: SOC = 100.0 must be FULL
+  [PASS] BVA: SOC = 101.0 must be INVALID
+  [PASS] BVA: Temp = 59.0 C must be SAFE
+  [PASS] BVA: Temp = 60.0 C (Threshold) must be OVERHEAT
+  [PASS] BVA: Temp = 61.0 C must be OVERHEAT
+  [PASS] Energy received should be 20.0 kWh
+  [PASS] SOC should increase to ~53.33%
+--------------------------------------------------
+TEST SUITE: UNIT_PIN
+Total: 11 | Passed: 11 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

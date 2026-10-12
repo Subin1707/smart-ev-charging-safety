@@ -1,0 +1,22 @@
+{
+  "format": "requirements_raw",
+  "version": 1,
+  "requirements": [
+    {
+      "id": "REQ-01",
+      "type": "safety",
+      "priority": "HIGH",
+      "content": "Total station power must not exceed 100 kW.",
+      "source": "requirements_example.txt",
+      "source_row": 2
+    },
+    {
+      "id": "REQ-02",
+      "type": "safety",
+      "priority": "HIGH",
+      "content": "SOC must remain between 0 and 100%.",
+      "source": "requirements_example.txt",
+      "source_row": 3
+    }
+  ]
+}

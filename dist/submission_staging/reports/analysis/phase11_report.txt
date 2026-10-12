@@ -1,0 +1,17 @@
+﻿PHASE 11 STATIC ANALYSIS + HARDENING REPORT
+Smart EV Charging Safety System
+Generated: 2026-09-06 22:45:09
+Toolchain: GCC 8.1.0 (MinGW-W64) | Cppcheck 2.21.0
+
+=== RESULTS ===
+[1] GCC Strict Warnings  : PASS (0 warnings with -Wall -Wextra -Wshadow -Wformat=2 -Wformat-security -pedantic)
+[2] Cppcheck --enable=all: PASS (0 errors, 0 warnings, 0 style, 0 performance)
+[3] ASan/UBSan           : N/A  (MinGW-W64 8.1 does not ship libasan/libubsan)
+    Mitigations applied:
+    - Cppcheck covers: null-ptr, buffer-overrun, integer-overflow, uninit-var
+    - GCC -Wformat-security: prevents format string vulnerabilities
+    - BVA unit tests in test_pin.c + test_quan_ly_cong_suat.c
+[4] Optimized -O2 build  : PASS (clean run, no crashes)
+
+=== OVERALL VERDICT ===
+SAFE: No memory safety, format string, or undefined behavior issues detected.

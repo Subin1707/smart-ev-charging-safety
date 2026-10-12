@@ -1,0 +1,4 @@
+ID | Type | Priority | Content
+SR10 | safety | HIGH | total_power <= 100 AND port_power <= 22
+SR03 | safety | HIGH | If temperature >= 60 C AND charging == true, then power == 0 AND state == FAULT.
+SR09 | safety | HIGH | 0 <= SOC <= 100

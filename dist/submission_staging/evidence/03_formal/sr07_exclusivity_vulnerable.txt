@@ -1,0 +1,61 @@
+{"command": ["E:\\smart-ev-charging-safety\\tools\\cbmc\\extracted\\cbmc\\bin\\cbmc.exe", "--gcc", "E:\\smart-ev-charging-safety\\bin\\verification\\sr07_exclusivity_vulnerable.i", "--trace", "--unwind", "12", "--unwinding-assertions"], "exitCode": 10, "status": "PASS", "seconds": 0.35848980001173913}
+CBMC version 6.11.0 (cbmc-6.11.0) 64-bit x86_64 windows
+Type-checking sr07_exclusivity_vulnerable
+Generating GOTO Program
+Adding CPROVER library (x86_64)
+Removal of function pointers and virtual functions
+Generic Property Instrumentation
+Starting Bounded Model Checking
+Passing problem to propositional reduction
+converting SSA
+Running propositional reduction
+SAT checker: instance is SATISFIABLE
+Building error trace
+
+** Results:
+E:\smart-ev-charging-safety\bin\verification\sr07_exclusivity_vulnerable.i function main
+[main.assertion.1] line 86 assertion port_vehicle == first_vehicle: FAILURE
+
+Trace for main.assertion.1:
+
+State 11 file E:\smart-ev-charging-safety\bin\verification\sr07_exclusivity_vulnerable.i function main line 78 thread 0
+----------------------------------------------------
+  first_vehicle=1 (00000000 00000000 00000000 00000001)
+
+State 12 file E:\smart-ev-charging-safety\bin\verification\sr07_exclusivity_vulnerable.i function main line 79 thread 0
+----------------------------------------------------
+  second_vehicle=4 (00000000 00000000 00000000 00000100)
+
+State 14 file E:\smart-ev-charging-safety\bin\verification\sr07_exclusivity_vulnerable.i function main line 80 thread 0
+----------------------------------------------------
+  port_vehicle=0 (00000000 00000000 00000000 00000000)
+
+Assumption:
+  file E:\smart-ev-charging-safety\bin\verification\sr07_exclusivity_vulnerable.i line 81 function main
+  first_vehicle >= 1 && first_vehicle <= 5
+
+Assumption:
+  file E:\smart-ev-charging-safety\bin\verification\sr07_exclusivity_vulnerable.i line 82 function main
+  second_vehicle >= 1 && second_vehicle <= 5
+
+Assumption:
+  file E:\smart-ev-charging-safety\bin\verification\sr07_exclusivity_vulnerable.i line 83 function main
+  first_vehicle != second_vehicle
+
+State 18 file E:\smart-ev-charging-safety\bin\verification\sr07_exclusivity_vulnerable.i function main line 84 thread 0
+----------------------------------------------------
+  port_vehicle=1 (00000000 00000000 00000000 00000001)
+
+State 19 file E:\smart-ev-charging-safety\bin\verification\sr07_exclusivity_vulnerable.i function main line 85 thread 0
+----------------------------------------------------
+  port_vehicle=4 (00000000 00000000 00000000 00000100)
+
+Violated property:
+  file E:\smart-ev-charging-safety\bin\verification\sr07_exclusivity_vulnerable.i function main line 86 thread 0
+  assertion port_vehicle == first_vehicle
+  port_vehicle == first_vehicle
+
+
+
+** 1 of 1 failed (2 iterations)
+VERIFICATION FAILED

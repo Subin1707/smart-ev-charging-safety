@@ -1,0 +1,1 @@
+"""Core requirement parsing functionality."""

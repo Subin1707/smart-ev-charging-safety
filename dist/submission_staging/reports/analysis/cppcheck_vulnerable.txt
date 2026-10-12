@@ -1,0 +1,53 @@
+static_analysis\vulnerable\loi_id_xe.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+﻿#include <stdio.h>
+ ^
+static_analysis\vulnerable\loi_id_xe.c:2:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+static_analysis\vulnerable\loi_id_xe.c:14:14: error: Buffer is accessed out of bounds: xe->ma_xe [bufferAccessOutOfBounds]
+    strcpy(xe->ma_xe, input_id);
+             ^
+static_analysis\vulnerable\loi_id_xe.c:17:26: style: Parameter 'argv' can be declared as const array [constParameter]
+int main(int argc, char *argv[]) {
+                         ^
+static_analysis\vulnerable\loi_phan_tich_thong_diep.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+﻿#include <stdio.h>
+ ^
+static_analysis\vulnerable\loi_phan_tich_thong_diep.c:2:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+static_analysis\vulnerable\loi_phan_tich_thong_diep.c:3:2: information: Include file: <stdlib.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <stdlib.h>
+ ^
+static_analysis\vulnerable\loi_phan_tich_thong_diep.c:19:11: style: Variable 'token' can be declared as pointer to const [constVariablePointer]
+    char *token = strtok(buffer, "|");
+          ^
+static_analysis\vulnerable\loi_tinh_nang_luong.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+﻿#include <stdio.h>
+ ^
+static_analysis\vulnerable\loi_tinh_nang_luong.c:2:2: information: Include file: <limits.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <limits.h>
+ ^
+static_analysis\vulnerable\loi_tinh_nang_luong.c:10:25: error: Signed integer overflow for expression 'cong_suat_kw*1000000000'. [integerOverflow]
+    return cong_suat_kw * 1000000000;
+                        ^
+static_analysis\vulnerable\loi_tinh_nang_luong.c:14:16: note: Assignment 'p_kw=3', assigned value is 3
+    int p_kw = 3; /* 3 kW */
+               ^
+static_analysis\vulnerable\loi_tinh_nang_luong.c:16:48: note: Calling function 'tinh_micro_watt_nguy_hiem', 1st argument 'p_kw' value is 3
+    int micro_watt = tinh_micro_watt_nguy_hiem(p_kw);
+                                               ^
+static_analysis\vulnerable\loi_tinh_nang_luong.c:10:25: note: Integer overflow
+    return cong_suat_kw * 1000000000;
+                        ^
+static_analysis\vulnerable\loi_id_xe.c:12:6: style: The function 'cap_nhat_id_xe_nguy_hiem' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+void cap_nhat_id_xe_nguy_hiem(HoSoXeLoi *xe, const char *input_id) {
+     ^
+static_analysis\vulnerable\loi_phan_tich_thong_diep.c:14:6: style: The function 'phan_tich_thong_diep_nguy_hiem' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+void phan_tich_thong_diep_nguy_hiem(const char *raw_msg, ThongDiepLoi *msg) {
+     ^
+static_analysis\vulnerable\loi_tinh_nang_luong.c:6:5: style: The function 'tinh_micro_watt_nguy_hiem' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+int tinh_micro_watt_nguy_hiem(int cong_suat_kw) {
+    ^
+nofile:0:0: information: Active checkers: 119/186 (use --checkers-report=<filename> to see details) [checkersReport]
+

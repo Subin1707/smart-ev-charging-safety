@@ -1,0 +1,8 @@
+{"command": ["C:\\Python312\\python.exe", "scripts/verify_browser.py"], "exitCode": 1, "status": "FAIL", "seconds": 38.27086880002753}
+Traceback (most recent call last):
+  File "E:\smart-ev-charging-safety\scripts\verify_browser.py", line 122, in <module>
+    main()
+  File "E:\smart-ev-charging-safety\scripts\verify_browser.py", line 73, in main
+    assert vehicle(before)['soc'] == 12 and vehicle(before)['temperature'] == 35
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

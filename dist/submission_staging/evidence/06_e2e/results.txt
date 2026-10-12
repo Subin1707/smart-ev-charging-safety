@@ -1,0 +1,149 @@
+{"command": ["C:\\Python312\\python.exe", "-m", "pytest", "tests/e2e", "-q"], "exitCode": 1, "status": "FAIL", "seconds": 89.17656510000234}
+.F......E..F                                                             [100%]
+=================================== ERRORS ====================================
+_________ ERROR at setup of test_loaded_auth_failure_blocks_charging __________
+
+simulator = <Popen: returncode: None args: ['E:\\smart-ev-charging-safety\\evidence\\06_...>
+
+    @pytest.fixture
+    def connected_vehicles(simulator):
+        """Reserve all five ports, then explicitly deliver vehicle arrivals."""
+        for tick in range(1, 6):
+            post("/api/tick")
+>           wait_until(lambda state: state["tick"] == tick)
+
+tests\e2e\conftest.py:165: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+predicate = <function connected_vehicles.<locals>.<lambda> at 0x000002884D7BC5E0>
+timeout = 8, interval = 0.1
+
+    def wait_until(predicate, timeout=8, interval=0.1):
+        deadline = time.monotonic() + timeout
+        last_state = None
+    
+        while time.monotonic() < deadline:
+            try:
+                last_state = get_state()
+            except requests.RequestException:
+                time.sleep(interval)
+                continue
+            if predicate(last_state):
+                return last_state
+            time.sleep(interval)
+    
+>       raise AssertionError(f"Timed out waiting for simulator state; last state: {last_state}")
+E       AssertionError: Timed out waiting for simulator state; last state: {'tick': 1, 'simulation': {'status': 'PAUSED'}, 'station': {'totalPower': 0.0, 'maxPower': 100.0, 'emergency': False}, 'vehicles': [{'id': 'EV01', 'state': 'WAITING', 'soc': 25.0, 'temperature': 30.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': 1, 'assignedPort': 1, 'connected': False, 'authenticated': False, 'fault': None}, {'id': 'EV02', 'state': 'WAITING', 'soc': 45.0, 'temperature': 32.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}, {'id': 'EV03', 'state': 'WAITING', 'soc': 60.0, 'temperature': 29.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}, {'id': 'EV04', 'state': 'WAITING', 'soc': 96.0, 'temperature': 31.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}, {'id': 'EV05', 'state': 'WAITING', 'soc': 15.0, 'temperature': 30.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}, {'id': 'EV06', 'state': 'WAITING', 'soc': 20.0, 'temperature': 30.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}, {'id': 'EV07', 'state': 'WAITING', 'soc': 20.0, 'temperature': 30.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}], 'ports': [{'id': 1, 'state': 'RESERVED', 'vehicleId': 'EV01', 'power': 0.0}, {'id': 2, 'state': 'IDLE', 'vehicleId': None, 'power': 0.0}, {'id': 3, 'state': 'IDLE', 'vehicleId': None, 'power': 0.0}, {'id': 4, 'state': 'IDLE', 'vehicleId': None, 'power': 0.0}, {'id': 5, 'state': 'IDLE', 'vehicleId': None, 'power': 0.0}], 'queue': {'count': 6, 'vehicles': ['EV02', 'EV03', 'EV04', 'EV05', 'EV06', 'EV07']}, 'scenario': {'name': 'NORMAL', 'vehicleId': '', 'status': 'IDLE', 'triggered': False}, 'events': [{'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV02', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV03', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV05', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV06', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV07', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 0, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'PORT_ASSIGNED', 'message': 'Vehicle assigned to charging port'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'QUEUE_LEFT', 'message': 'Vehicle left charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'PORT_ASSIGNED_FROM_QUEUE', 'message': 'Vehicle assigned to a released port'}], 'safetyChecks': [{'id': 'SOC_RANGE', 'status': 'PASS'}, {'id': 'POWER_LIMIT', 'status': 'PASS'}, {'id': 'FAULT_ZERO_POWER', 'status': 'PASS'}, {'id': 'AUTH_BEFORE_CHARGING', 'status': 'PASS'}, {'id': 'CONNECTED_BEFORE_CHARGING', 'status': 'PASS'}, {'id': 'EMERGENCY_ZERO_POWER', 'status': 'PASS'}, {'id': 'FULL_ZERO_POWER', 'status': 'PASS'}, {'id': 'PORT_FAULT_ZERO_POWER', 'status': 'PASS'}], 'generatedAtMs': 1790406651698, 'telemetryAgeMs': 6}
+
+tests\e2e\conftest.py:53: AssertionError
+================================== FAILURES ===================================
+____________ test_vehicle_arrival_connects_only_its_reserved_port _____________
+
+simulator = <Popen: returncode: None args: ['E:\\smart-ev-charging-safety\\evidence\\06_...>
+
+    def test_vehicle_arrival_connects_only_its_reserved_port(simulator):
+        post("/api/reset")
+        wait_until(
+            lambda state: state["tick"] == 0
+            and any(event["code"] == "RESET" for event in state["events"])
+        )
+        post("/api/tick")
+    
+        reserved_state = wait_until(
+            lambda state: state["tick"] == 1
+            and next(vehicle for vehicle in state["vehicles"] if vehicle["id"] == "EV01")["assignedPort"] is not None
+        )
+        assigned_port = next(
+            vehicle for vehicle in reserved_state["vehicles"] if vehicle["id"] == "EV01"
+        )["assignedPort"]
+    
+        response = post(
+            "/api/vehicle-arrived",
+            json={"vehicleId": "EV01", "portId": assigned_port},
+        )
+        assert response["accepted"] is True
+    
+>       state = wait_until(
+            lambda current: next(
+                vehicle for vehicle in current["vehicles"] if vehicle["id"] == "EV01"
+            )["state"] == "CONNECTED"
+        )
+
+tests\e2e\test_auto_port_assignment.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+predicate = <function test_vehicle_arrival_connects_only_its_reserved_port.<locals>.<lambda> at 0x000002884D82FC40>
+timeout = 8, interval = 0.1
+
+    def wait_until(predicate, timeout=8, interval=0.1):
+        deadline = time.monotonic() + timeout
+        last_state = None
+    
+        while time.monotonic() < deadline:
+            try:
+                last_state = get_state()
+            except requests.RequestException:
+                time.sleep(interval)
+                continue
+            if predicate(last_state):
+                return last_state
+            time.sleep(interval)
+    
+>       raise AssertionError(f"Timed out waiting for simulator state; last state: {last_state}")
+E       AssertionError: Timed out waiting for simulator state; last state: {'tick': 1, 'simulation': {'status': 'PAUSED'}, 'station': {'totalPower': 0.0, 'maxPower': 100.0, 'emergency': False}, 'vehicles': [{'id': 'EV01', 'state': 'WAITING', 'soc': 25.0, 'temperature': 31.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': 1, 'assignedPort': 1, 'connected': False, 'authenticated': False, 'fault': None}, {'id': 'EV02', 'state': 'WAITING', 'soc': 48.0, 'temperature': 32.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}, {'id': 'EV03', 'state': 'WAITING', 'soc': 72.0, 'temperature': 29.5, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}, {'id': 'EV04', 'state': 'WAITING', 'soc': 100.0, 'temperature': 33.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}, {'id': 'EV05', 'state': 'WAITING', 'soc': 15.0, 'temperature': 30.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}, {'id': 'EV06', 'state': 'WAITING', 'soc': 20.0, 'temperature': 30.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}, {'id': 'EV07', 'state': 'WAITING', 'soc': 20.0, 'temperature': 30.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}], 'ports': [{'id': 1, 'state': 'RESERVED', 'vehicleId': 'EV01', 'power': 0.0}, {'id': 2, 'state': 'IDLE', 'vehicleId': None, 'power': 0.0}, {'id': 3, 'state': 'IDLE', 'vehicleId': None, 'power': 0.0}, {'id': 4, 'state': 'IDLE', 'vehicleId': None, 'power': 0.0}, {'id': 5, 'state': 'IDLE', 'vehicleId': None, 'power': 0.0}], 'queue': {'count': 6, 'vehicles': ['EV02', 'EV03', 'EV04', 'EV05', 'EV06', 'EV07']}, 'scenario': {'name': 'NORMAL', 'vehicleId': '', 'status': 'IDLE', 'triggered': False}, 'events': [{'tick': 0, 'type': 'SYSTEM', 'severity': 'INFO', 'vehicleId': '', 'code': 'RESET', 'message': 'Simulation reset'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV02', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV03', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV05', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV06', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV07', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 0, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'PORT_ASSIGNED', 'message': 'Vehicle assigned to charging port'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'QUEUE_LEFT', 'message': 'Vehicle left charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'PORT_ASSIGNED_FROM_QUEUE', 'message': 'Vehicle assigned to a released port'}], 'safetyChecks': [{'id': 'SOC_RANGE', 'status': 'PASS'}, {'id': 'POWER_LIMIT', 'status': 'PASS'}, {'id': 'FAULT_ZERO_POWER', 'status': 'PASS'}, {'id': 'AUTH_BEFORE_CHARGING', 'status': 'PASS'}, {'id': 'CONNECTED_BEFORE_CHARGING', 'status': 'PASS'}, {'id': 'EMERGENCY_ZERO_POWER', 'status': 'PASS'}, {'id': 'FULL_ZERO_POWER', 'status': 'PASS'}, {'id': 'PORT_FAULT_ZERO_POWER', 'status': 'PASS'}], 'generatedAtMs': 1790406625412, 'telemetryAgeMs': 8}
+
+tests\e2e\conftest.py:53: AssertionError
+___________ test_waiting_queue_is_fifo_when_port_becomes_available ____________
+
+connected_vehicles = None
+
+    def test_waiting_queue_is_fifo_when_port_becomes_available(connected_vehicles):
+        response = post("/api/start")
+        assert response["accepted"] is True
+    
+        queued_state = wait_until(
+            lambda state: state["queue"]["vehicles"] == ["EV06", "EV07"]
+        )
+        assert queued_state["queue"]["count"] == 2
+        assert vehicle(queued_state, "EV06")["assignedPort"] is None
+        assert vehicle(queued_state, "EV07")["assignedPort"] is None
+    
+>       assigned_state = wait_until(
+            lambda state: vehicle(state, "EV06")["assignedPort"] is not None
+            and vehicle(state, "EV07")["assignedPort"] is None
+            and any(
+                event["code"] == "PORT_ASSIGNED_FROM_QUEUE"
+                and event["vehicleId"] == "EV06"
+                for event in state["events"]
+            )
+        )
+
+tests\e2e\test_waiting_queue.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+predicate = <function test_waiting_queue_is_fifo_when_port_becomes_available.<locals>.<lambda> at 0x000002884D7BC360>
+timeout = 8, interval = 0.1
+
+    def wait_until(predicate, timeout=8, interval=0.1):
+        deadline = time.monotonic() + timeout
+        last_state = None
+    
+        while time.monotonic() < deadline:
+            try:
+                last_state = get_state()
+            except requests.RequestException:
+                time.sleep(interval)
+                continue
+            if predicate(last_state):
+                return last_state
+            time.sleep(interval)
+    
+>       raise AssertionError(f"Timed out waiting for simulator state; last state: {last_state}")
+E       AssertionError: Timed out waiting for simulator state; last state: {'tick': 9, 'simulation': {'status': 'RUNNING'}, 'station': {'totalPower': 88.0, 'maxPower': 100.0, 'emergency': False}, 'vehicles': [{'id': 'EV01', 'state': 'CHARGING', 'soc': 32.33, 'temperature': 30.22, 'maxChargingPower': 22.0, 'allocatedPower': 22.0, 'port': 1, 'assignedPort': 1, 'connected': True, 'authenticated': True, 'fault': None}, {'id': 'EV02', 'state': 'CHARGING', 'soc': 50.87, 'temperature': 32.22, 'maxChargingPower': 22.0, 'allocatedPower': 22.0, 'port': 2, 'assignedPort': 2, 'connected': True, 'authenticated': True, 'fault': None}, {'id': 'EV03', 'state': 'CHARGING', 'soc': 67.3, 'temperature': 29.18, 'maxChargingPower': 22.0, 'allocatedPower': 22.0, 'port': 3, 'assignedPort': 3, 'connected': True, 'authenticated': True, 'fault': None}, {'id': 'EV04', 'state': 'DISCONNECTED', 'soc': 100.0, 'temperature': 31.13, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}, {'id': 'EV05', 'state': 'CHARGING', 'soc': 19.4, 'temperature': 30.22, 'maxChargingPower': 22.0, 'allocatedPower': 22.0, 'port': 5, 'assignedPort': 5, 'connected': True, 'authenticated': True, 'fault': None}, {'id': 'EV06', 'state': 'WAITING', 'soc': 20.0, 'temperature': 30.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}, {'id': 'EV07', 'state': 'WAITING', 'soc': 20.0, 'temperature': 30.0, 'maxChargingPower': 22.0, 'allocatedPower': 0.0, 'port': None, 'assignedPort': None, 'connected': False, 'authenticated': False, 'fault': None}], 'ports': [{'id': 1, 'state': 'CHARGING', 'vehicleId': 'EV01', 'power': 22.0}, {'id': 2, 'state': 'CHARGING', 'vehicleId': 'EV02', 'power': 22.0}, {'id': 3, 'state': 'CHARGING', 'vehicleId': 'EV03', 'power': 22.0}, {'id': 4, 'state': 'IDLE', 'vehicleId': None, 'power': 0.0}, {'id': 5, 'state': 'CHARGING', 'vehicleId': 'EV05', 'power': 22.0}], 'queue': {'count': 2, 'vehicles': ['EV06', 'EV07']}, 'scenario': {'name': 'NORMAL', 'vehicleId': '', 'status': 'IDLE', 'triggered': False}, 'events': [{'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV02', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV03', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV05', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV06', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV07', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 0, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'PORT_ASSIGNED', 'message': 'Vehicle assigned to charging port'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'QUEUE_LEFT', 'message': 'Vehicle left charging queue'}, {'tick': 1, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'PORT_ASSIGNED_FROM_QUEUE', 'message': 'Vehicle assigned to a released port'}, {'tick': 2, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV02', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 2, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV03', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 2, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 2, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV05', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 2, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV06', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 2, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV07', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 0, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV02', 'code': 'PORT_ASSIGNED', 'message': 'Vehicle assigned to charging port'}, {'tick': 2, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV02', 'code': 'QUEUE_LEFT', 'message': 'Vehicle left charging queue'}, {'tick': 2, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV02', 'code': 'PORT_ASSIGNED_FROM_QUEUE', 'message': 'Vehicle assigned to a released port'}, {'tick': 3, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV03', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 3, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 3, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV05', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 3, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV06', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 3, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV07', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 0, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV03', 'code': 'PORT_ASSIGNED', 'message': 'Vehicle assigned to charging port'}, {'tick': 3, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV03', 'code': 'QUEUE_LEFT', 'message': 'Vehicle left charging queue'}, {'tick': 3, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV03', 'code': 'PORT_ASSIGNED_FROM_QUEUE', 'message': 'Vehicle assigned to a released port'}, {'tick': 4, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 4, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV05', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 4, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV06', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 4, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV07', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 0, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'PORT_ASSIGNED', 'message': 'Vehicle assigned to charging port'}, {'tick': 4, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'QUEUE_LEFT', 'message': 'Vehicle left charging queue'}, {'tick': 4, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'PORT_ASSIGNED_FROM_QUEUE', 'message': 'Vehicle assigned to a released port'}, {'tick': 5, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV05', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 5, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV06', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 5, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV07', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 0, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV05', 'code': 'PORT_ASSIGNED', 'message': 'Vehicle assigned to charging port'}, {'tick': 5, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV05', 'code': 'QUEUE_LEFT', 'message': 'Vehicle left charging queue'}, {'tick': 5, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV05', 'code': 'PORT_ASSIGNED_FROM_QUEUE', 'message': 'Vehicle assigned to a released port'}, {'tick': 5, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'VEHICLE_ARRIVED_AT_PORT', 'message': 'Vehicle arrived at assigned port'}, {'tick': 5, 'type': 'SYSTEM', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'VEHICLE_CONNECTED', 'message': 'Vehicle connected to charging station'}, {'tick': 5, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV02', 'code': 'VEHICLE_ARRIVED_AT_PORT', 'message': 'Vehicle arrived at assigned port'}, {'tick': 5, 'type': 'SYSTEM', 'severity': 'INFO', 'vehicleId': 'EV02', 'code': 'VEHICLE_CONNECTED', 'message': 'Vehicle connected to charging station'}, {'tick': 5, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV03', 'code': 'VEHICLE_ARRIVED_AT_PORT', 'message': 'Vehicle arrived at assigned port'}, {'tick': 5, 'type': 'SYSTEM', 'severity': 'INFO', 'vehicleId': 'EV03', 'code': 'VEHICLE_CONNECTED', 'message': 'Vehicle connected to charging station'}, {'tick': 5, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'VEHICLE_ARRIVED_AT_PORT', 'message': 'Vehicle arrived at assigned port'}, {'tick': 5, 'type': 'SYSTEM', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'VEHICLE_CONNECTED', 'message': 'Vehicle connected to charging station'}, {'tick': 5, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV05', 'code': 'VEHICLE_ARRIVED_AT_PORT', 'message': 'Vehicle arrived at assigned port'}, {'tick': 5, 'type': 'SYSTEM', 'severity': 'INFO', 'vehicleId': 'EV05', 'code': 'VEHICLE_CONNECTED', 'message': 'Vehicle connected to charging station'}, {'tick': 6, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV06', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 6, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV07', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 6, 'type': 'AUTH', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'AUTH_SUCCESS', 'message': 'Vehicle authenticated'}, {'tick': 6, 'type': 'CHARGING', 'severity': 'INFO', 'vehicleId': 'EV01', 'code': 'CHARGING_STARTED', 'message': 'Charging started'}, {'tick': 6, 'type': 'AUTH', 'severity': 'INFO', 'vehicleId': 'EV02', 'code': 'AUTH_SUCCESS', 'message': 'Vehicle authenticated'}, {'tick': 6, 'type': 'CHARGING', 'severity': 'INFO', 'vehicleId': 'EV02', 'code': 'CHARGING_STARTED', 'message': 'Charging started'}, {'tick': 6, 'type': 'AUTH', 'severity': 'INFO', 'vehicleId': 'EV03', 'code': 'AUTH_SUCCESS', 'message': 'Vehicle authenticated'}, {'tick': 6, 'type': 'CHARGING', 'severity': 'INFO', 'vehicleId': 'EV03', 'code': 'CHARGING_STARTED', 'message': 'Charging started'}, {'tick': 6, 'type': 'AUTH', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'AUTH_SUCCESS', 'message': 'Vehicle authenticated'}, {'tick': 6, 'type': 'CHARGING', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'CHARGING_STARTED', 'message': 'Charging started'}, {'tick': 6, 'type': 'AUTH', 'severity': 'INFO', 'vehicleId': 'EV05', 'code': 'AUTH_SUCCESS', 'message': 'Vehicle authenticated'}, {'tick': 6, 'type': 'CHARGING', 'severity': 'INFO', 'vehicleId': 'EV05', 'code': 'CHARGING_STARTED', 'message': 'Charging started'}, {'tick': 7, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV06', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 7, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV07', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 8, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV06', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 8, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV07', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 8, 'type': 'SAFETY', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'BATTERY_FULL', 'message': 'Battery full, charging stopped'}, {'tick': 8, 'type': 'CHARGING', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'CHARGING_STOPPED', 'message': 'Charging stopped at target SOC'}, {'tick': 9, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV06', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 9, 'type': 'SCHEDULER', 'severity': 'INFO', 'vehicleId': 'EV07', 'code': 'QUEUE_ENTERED', 'message': 'Vehicle entered charging queue'}, {'tick': 9, 'type': 'VEHICLE', 'severity': 'INFO', 'vehicleId': 'EV04', 'code': 'VEHICLE_DISCONNECTED', 'message': 'Charging completed and vehicle disconnected'}], 'safetyChecks': [{'id': 'SOC_RANGE', 'status': 'PASS'}, {'id': 'POWER_LIMIT', 'status': 'PASS'}, {'id': 'FAULT_ZERO_POWER', 'status': 'PASS'}, {'id': 'AUTH_BEFORE_CHARGING', 'status': 'PASS'}, {'id': 'CONNECTED_BEFORE_CHARGING', 'status': 'PASS'}, {'id': 'EMERGENCY_ZERO_POWER', 'status': 'PASS'}, {'id': 'FULL_ZERO_POWER', 'status': 'PASS'}, {'id': 'PORT_FAULT_ZERO_POWER', 'status': 'PASS'}], 'generatedAtMs': 1790406666935, 'telemetryAgeMs': 103}
+
+tests\e2e\conftest.py:53: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/e2e/test_auto_port_assignment.py::test_vehicle_arrival_connects_only_its_reserved_port
+FAILED tests/e2e/test_waiting_queue.py::test_waiting_queue_is_fifo_when_port_becomes_available
+ERROR tests/e2e/test_scenario_auth_failure.py::test_loaded_auth_failure_blocks_charging
+2 failed, 9 passed, 1 error in 82.15s (0:01:22)

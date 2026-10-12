@@ -1,0 +1,4 @@
+SMT-03/04: POWER ALLOCATION VERIFICATION
+[VULNERABLE] SAT - station overload possible
+  total power=101 kW
+[FIXED] UNSAT - No counterexample; SUM(PORT_POWER) <= 100 kW

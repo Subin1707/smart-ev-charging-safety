@@ -1,0 +1,31 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\kripke.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.20988509999006055}
+=====================================================
+  KRIPKE MODEL CHECKER — Smart EV Charging Safety
+  States: 8  |  Properties: 5  |  Method: BFS
+=====================================================
+
+  Checking state: WAITING      | labels: 0x98
+  Checking state: CONNECTED    | labels: 0x99
+  Checking state: AUTH_OK      | labels: 0x9B
+  Checking state: AUTH_FAIL    | labels: 0xC1
+  Checking state: CHARGING     | labels: 0x1F
+  Checking state: STOPPED      | labels: 0x83
+  Checking state: FAULT        | labels: 0xC1
+  Checking state: EMERGENCY    | labels: 0xA0
+
+=====================================================
+  KRIPKE RESULTS
+=====================================================
+  States reachable : 8 / 8
+  Conditional progress witness: WAITING -> CONNECTED -> AUTH_OK -> CHARGING
+  Assumptions: persistent valid request, safe sensors, capacity and fair scheduling.
+  This witness is EF CHARGING; unrestricted G(request -> F charging) is NOT proved.
+  P1(SR02):charging=>auth                : HOLDS
+  P2(SR03):charging=>safe_temp           : HOLDS
+  P3(SR04):charging=>soc<100             : HOLDS
+  P4(SR05):emergency=>power=0            : HOLDS
+  P5(SR06):fault=>power=0                : HOLDS
+-----------------------------------------------------
+  VERDICT: ALL PROPERTIES HOLD in Kripke Model
+  Safety holds for the abstract labels; implementation checks are separate.
+=====================================================

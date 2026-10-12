@@ -1,0 +1,38 @@
+{
+  "requirement_id": "REQ-TEMP-01",
+  "teacher_kind": "c/arithmetic",
+  "runtime_support": "CONFIRMED",
+  "generated_function": "probe_temperature_delta",
+  "generated_body": "return temperature + temperature_limit;",
+  "required_semantics": "return temperature <= temperature_limit;",
+  "required_description": "Function must be a threshold predicate: returns true(1) when temperature <= temperature_limit (safe), false(0) when overheating.",
+  "compile_verification": {
+    "source_file": "bin\\codegen_semantic\\src\\test_probe_temperature_delta.c",
+    "compile_status": "PASS",
+    "compile_exit_code": 0,
+    "compile_stdout": "",
+    "run": {
+      "status": "PASS",
+      "stdout": "[COMPILE_TEST] probe_temperature_delta: compiled and ran.\n"
+    }
+  },
+  "semantic_analysis": {
+    "match": false,
+    "reason": "Generated function computes temperature + temperature_limit (addition). This returns a raw numeric sum, NOT a safety predicate. For example, temperature=70 and temperature_limit=60 returns 130 (truthy), but 70 > 60 means the temperature is UNSAFE and charging must stop. The function will never return 0 for any positive inputs, meaning it can never signal 'stop charging'. The requirement is UNSUPPORTED by the generated code."
+  },
+  "negative_control": {
+    "description": "Verify that generated function incorrectly passes overheat temperature=70",
+    "test_case": "temperature=70, temperature_limit=60",
+    "generated_result": "70 + 60 = 130  (truthy -> function says temperature is safe)",
+    "correct_result": "(70 <= 60) = 0  (false -> temperature is UNSAFE, stop charging)",
+    "conclusion": "SEMANTIC_MISMATCH_CONFIRMED",
+    "compile_status": "PASS",
+    "run": {
+      "status": "FAIL",
+      "exit_code": 3,
+      "stdout": "[NEGATIVE_CONTROL] probe_temperature_delta(70, 60) = 130\nAssertion failed!\n\nProgram: E:\\smart-ev-charging-safety\\bin\\codegen_semantic\\nc_test_probe_temperature_delta.exe\nFile: E:\\smart-ev-charging-safety\\bin\\codegen_semantic\\src\\nc_test_probe_temperature_delta.c, Line 22\n\nExpression: result == 0 && \"SEMANTIC_MISMATCH: generated temp+limit passes overheat temp=70\"\n"
+    }
+  },
+  "codegen_requirement_status": "UNSUPPORTED",
+  "timestamp": "2026-09-28T16:06:45.715451+00:00"
+}

@@ -1,0 +1,43 @@
+phase: "Giai doan 5 - Dynamic Testing"
+scope: "Gateway Authentication runtime flows"
+
+primary_test:
+  file: "tests/integration/test_ket_noi_xac_thuc_sac.c"
+  build_command: "gcc -Wall -Wextra -std=c99 -I src/core -I src/vehicle -I src/station -I src/charging -I src/auth -I src/safety -I src/simulation -I src/communication -I src/monitoring -I src/logging -I src/database -I src/utils src/core/*.c src/vehicle/*.c src/station/*.c src/auth/*.c src/charging/*.c src/safety/*.c src/logging/*.c src/monitoring/*.c src/simulation/*.c src/communication/*.c src/database/*.c tests/integration/test_ket_noi_xac_thuc_sac.c -o bin/tests/test_ket_noi_xac_thuc_sac.exe"
+  run_command: "bin/tests/test_ket_noi_xac_thuc_sac.exe"
+  result: "PASS"
+  summary: "Total: 21 | Passed: 21 | Failed: 0 | Status: SUCCESS"
+
+flows:
+  auth_failure_denies_charging:
+    sequence: "Connect -> invalid token -> Authentication FAIL -> Start charging -> DENY"
+    evidence: "EV02 auth fails with WRONG_TOKEN; EV02 charging is DENIED due to unauthenticated state"
+    result: "PASS"
+  valid_auth_allows_charging:
+    sequence: "Connect -> valid token -> Authentication SUCCESS -> Start -> Charging SUCCESS"
+    evidence: "EV01 authenticated with correct token; EV01 starts charging successfully; Port 1 state is CONG_DANG_SAC"
+    result: "PASS"
+  emergency_stops_charging:
+    sequence: "Connect -> Authenticate -> Start charging -> Emergency -> Charging STOP -> Power = 0"
+    evidence: "Emergency flag set; station power 0; port power 0; charging port transitions to CONG_DUNG"
+    result: "PASS"
+  disconnect_resets_authentication:
+    sequence: "Connect -> Authenticate -> Disconnect -> authenticated = 0"
+    evidence: "EV04 da_ket_noi resets to 0; EV04 da_xac_thuc resets to 0"
+    result: "PASS"
+
+existing_tests_reused:
+  e2e_auth_failure:
+    file: "tests/e2e/test_luong_loi_xac_thuc.c"
+    run_command: "bin/tests/test_luong_loi_xac_thuc.exe"
+    result: "PASS"
+    summary: "Total: 3 | Passed: 3 | Failed: 0 | Status: SUCCESS"
+  integration_emergency:
+    file: "tests/integration/test_dung_khan_cap.c"
+    run_command: "bin/tests/test_dung_khan_cap.exe"
+    result: "PASS"
+    summary: "Total: 12 | Passed: 12 | Failed: 0 | Status: SUCCESS"
+
+notes:
+  - "Dynamic tests are generated/extended after formal/static artifacts to validate runtime behavior against Gateway Auth constraints."
+  - "The existing E2E auth-failure test is reused as supporting evidence; the integration Gateway Auth test was extended rather than replaced."

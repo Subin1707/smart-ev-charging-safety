@@ -1,0 +1,45 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_reassigned_port.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.34095309997792356}
+  [PASS] EV06 takes released port 1
+[AUTH] Dang xac thuc xe EV06 voi token: 'TOKEN_EV06'...
+[AUTH][SUCCESS] Xe EV06 xac thuc thanh cong!
+  [PASS] Authenticate EV06
+[CHARGING] Bat dau sac thanh cong cho xe EV06 tai Cong 1 voi cong suat 22.0 kW.
+  [PASS] EV06 starts
+
+============================= TICK 01 =============================
+PORT   EV       SOC      TEMP      POWER        STATE
+--------------------------------------------------------------------
+1      EV06     21.6 %   30.1 C     22.0 kW      CHARGING      
+2      EV01     25.0 %   31.0 C      0.0 kW      RESERVED      
+3      --       --       --          0.0 kW      IDLE          
+4      --       --       --          0.0 kW      IDLE          
+5      --       --       --          0.0 kW      IDLE          
+--------------------------------------------------------------------
+TOTAL POWER   : 22.0 / 100.0 kW
+SAFETY EVENTS : 0
+SYSTEM STATUS : OPERATIONAL
+====================================================================
+  [PASS] Charge current owner EV06
+  [PASS] Do not charge EV01 by array index
+[SAFETY][CRITICAL] EV06 battery overheat (61.0 C >= 60.0 C)! PORT 1 power disabled -> FAULT
+
+============================= TICK 02 =============================
+PORT   EV       SOC      TEMP      POWER        STATE
+--------------------------------------------------------------------
+1      EV06     21.6 %   61.0 C      0.0 kW      FAULT         
+2      EV01     25.0 %   31.0 C      0.0 kW      RESERVED      
+3      EV02     48.0 %   32.0 C      0.0 kW      RESERVED      
+4      --       --       --          0.0 kW      IDLE          
+5      --       --       --          0.0 kW      IDLE          
+--------------------------------------------------------------------
+TOTAL POWER   : 0.0 / 100.0 kW
+SAFETY EVENTS : 1
+SYSTEM STATUS : OPERATIONAL
+====================================================================
+  [PASS] Monitor faults current owner
+  [PASS] Fault removes power on actual port
+--------------------------------------------------
+TEST SUITE: REASSIGNED_PORT
+Total: 7 | Passed: 7 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

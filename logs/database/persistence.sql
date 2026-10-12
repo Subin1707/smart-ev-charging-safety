@@ -1,0 +1,31 @@
+-- Smart EV Charging System SQL Persistence Dump
+BEGIN TRANSACTION;
+
+INSERT INTO tram_sac (id, ma_tram, so_cong, cong_suat_toi_da_kw, trang_thai) VALUES (1, 'STATION-01', 5, 100.00, 'OPERATIONAL') ON CONFLICT (ma_tram) DO UPDATE SET trang_thai = EXCLUDED.trang_thai;
+INSERT INTO xe_dien (id, ma_xe, dung_luong_kwh, soc_hien_tai, nhiet_do_c, cong_suat_sac_max_kw, trang_thai) VALUES (1, 'EV01', 60.00, 25.00, 30.00, 22.00, 'WAITING') ON CONFLICT (ma_xe) DO UPDATE SET soc_hien_tai = EXCLUDED.soc_hien_tai, nhiet_do_c = EXCLUDED.nhiet_do_c, trang_thai = EXCLUDED.trang_thai;
+INSERT INTO xe_dien (id, ma_xe, dung_luong_kwh, soc_hien_tai, nhiet_do_c, cong_suat_sac_max_kw, trang_thai) VALUES (2, 'EV02', 75.00, 45.00, 32.00, 22.00, 'WAITING') ON CONFLICT (ma_xe) DO UPDATE SET soc_hien_tai = EXCLUDED.soc_hien_tai, nhiet_do_c = EXCLUDED.nhiet_do_c, trang_thai = EXCLUDED.trang_thai;
+INSERT INTO xe_dien (id, ma_xe, dung_luong_kwh, soc_hien_tai, nhiet_do_c, cong_suat_sac_max_kw, trang_thai) VALUES (3, 'EV03', 50.00, 12.00, 35.00, 22.00, 'WAITING') ON CONFLICT (ma_xe) DO UPDATE SET soc_hien_tai = EXCLUDED.soc_hien_tai, nhiet_do_c = EXCLUDED.nhiet_do_c, trang_thai = EXCLUDED.trang_thai;
+INSERT INTO xe_dien (id, ma_xe, dung_luong_kwh, soc_hien_tai, nhiet_do_c, cong_suat_sac_max_kw, trang_thai) VALUES (4, 'EV04', 60.00, 96.00, 31.00, 22.00, 'WAITING') ON CONFLICT (ma_xe) DO UPDATE SET soc_hien_tai = EXCLUDED.soc_hien_tai, nhiet_do_c = EXCLUDED.nhiet_do_c, trang_thai = EXCLUDED.trang_thai;
+INSERT INTO xe_dien (id, ma_xe, dung_luong_kwh, soc_hien_tai, nhiet_do_c, cong_suat_sac_max_kw, trang_thai) VALUES (5, 'EV05', 100.00, 15.00, 30.00, 22.00, 'WAITING') ON CONFLICT (ma_xe) DO UPDATE SET soc_hien_tai = EXCLUDED.soc_hien_tai, nhiet_do_c = EXCLUDED.nhiet_do_c, trang_thai = EXCLUDED.trang_thai;
+INSERT INTO xe_dien (id, ma_xe, dung_luong_kwh, soc_hien_tai, nhiet_do_c, cong_suat_sac_max_kw, trang_thai) VALUES (6, 'EV06', 70.00, 20.00, 30.00, 22.00, 'WAITING') ON CONFLICT (ma_xe) DO UPDATE SET soc_hien_tai = EXCLUDED.soc_hien_tai, nhiet_do_c = EXCLUDED.nhiet_do_c, trang_thai = EXCLUDED.trang_thai;
+INSERT INTO xe_dien (id, ma_xe, dung_luong_kwh, soc_hien_tai, nhiet_do_c, cong_suat_sac_max_kw, trang_thai) VALUES (7, 'EV07', 70.00, 20.00, 30.00, 22.00, 'WAITING') ON CONFLICT (ma_xe) DO UPDATE SET soc_hien_tai = EXCLUDED.soc_hien_tai, nhiet_do_c = EXCLUDED.nhiet_do_c, trang_thai = EXCLUDED.trang_thai;
+INSERT INTO phien_sac (id, vehicle_id, port_id, soc_bat_dau, dang_hoat_dong) VALUES (1, 1, 1, 25.00, TRUE) ON CONFLICT (id) DO NOTHING;
+INSERT INTO phien_sac (id, vehicle_id, port_id, soc_bat_dau, dang_hoat_dong) VALUES (2, 2, 2, 45.00, TRUE) ON CONFLICT (id) DO NOTHING;
+INSERT INTO phien_sac (id, vehicle_id, port_id, soc_bat_dau, dang_hoat_dong) VALUES (3, 3, 3, 12.00, TRUE) ON CONFLICT (id) DO NOTHING;
+INSERT INTO phien_sac (id, vehicle_id, port_id, soc_bat_dau, dang_hoat_dong) VALUES (4, 4, 4, 96.00, TRUE) ON CONFLICT (id) DO NOTHING;
+INSERT INTO phien_sac (id, vehicle_id, port_id, soc_bat_dau, dang_hoat_dong) VALUES (5, 5, 5, 15.00, TRUE) ON CONFLICT (id) DO NOTHING;
+INSERT INTO telemetry (session_id, tick, vehicle_code, port_number, soc, temperature_c, power_kw, state) VALUES (1, 1, 'EV01', 1, 26.83, 30.06, 22.00, 'CHARGING');
+UPDATE cong_sac SET trang_thai = 'CHARGING', dien_ap_v = 400.00, dong_dien_a = 55.00, cong_suat_kw = 22.00, ma_loi = 0 WHERE tram_id = 1 AND port_number = 1;
+UPDATE xe_dien SET soc_hien_tai = 26.83, nhiet_do_c = 30.06, trang_thai = 'CHARGING' WHERE id = 1;
+INSERT INTO telemetry (session_id, tick, vehicle_code, port_number, soc, temperature_c, power_kw, state) VALUES (2, 1, 'EV02', 2, 46.47, 32.06, 22.00, 'CHARGING');
+UPDATE cong_sac SET trang_thai = 'CHARGING', dien_ap_v = 400.00, dong_dien_a = 55.00, cong_suat_kw = 22.00, ma_loi = 0 WHERE tram_id = 1 AND port_number = 2;
+UPDATE xe_dien SET soc_hien_tai = 46.47, nhiet_do_c = 32.06, trang_thai = 'CHARGING' WHERE id = 2;
+INSERT INTO telemetry (session_id, tick, vehicle_code, port_number, soc, temperature_c, power_kw, state) VALUES (3, 1, 'EV03', 3, 12.00, 61.00, 0.00, 'FAULT');
+UPDATE cong_sac SET trang_thai = 'FAULT', dien_ap_v = 400.00, dong_dien_a = 0.00, cong_suat_kw = 0.00, ma_loi = 103 WHERE tram_id = 1 AND port_number = 3;
+UPDATE xe_dien SET soc_hien_tai = 12.00, nhiet_do_c = 61.00, trang_thai = 'FAULT' WHERE id = 3;
+INSERT INTO telemetry (session_id, tick, vehicle_code, port_number, soc, temperature_c, power_kw, state) VALUES (4, 1, 'EV04', 4, 97.83, 31.06, 22.00, 'CHARGING');
+UPDATE cong_sac SET trang_thai = 'CHARGING', dien_ap_v = 400.00, dong_dien_a = 55.00, cong_suat_kw = 22.00, ma_loi = 0 WHERE tram_id = 1 AND port_number = 4;
+UPDATE xe_dien SET soc_hien_tai = 97.83, nhiet_do_c = 31.06, trang_thai = 'CHARGING' WHERE id = 4;
+INSERT INTO telemetry (session_id, tick, vehicle_code, port_number, soc, temperature_c, power_kw, state) VALUES (5, 1, 'EV05', 5, 16.10, 30.06, 22.00, 'CHARGING');
+UPDATE cong_sac SET trang_thai = 'CHARGING', dien_ap_v = 400.00, dong_dien_a = 55.00, cong_suat_kw = 22.00, ma_loi = 0 WHERE tram_id = 1 AND port_number = 5;
+UPDATE xe_dien SET soc_hien_tai = 16.10, nhiet_do_c = 30.06, trang_thai = 'CHARGING' WHERE id = 5;

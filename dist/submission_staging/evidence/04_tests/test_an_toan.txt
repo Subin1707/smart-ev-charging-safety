@@ -1,0 +1,23 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_an_toan.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.7261761999980081}
+=== RUNNING UNIT TEST: 10 SAFETY RULES (SR01 -> SR10) ===
+  [PASS] SR01: Charging without connection must FAIL
+  [PASS] SR01: Charging with connection must PASS
+  [PASS] SR02: Charging without auth must FAIL
+  [PASS] SR02: Charging with auth must PASS
+  [PASS] SR03: Temp < 60C must PASS
+  [PASS] SR03: Temp >= 60C must FAIL
+  [PASS] SR04: SOC < 100% must PASS
+  [PASS] SR04: SOC >= 100% must FAIL
+  [PASS] SR05: Emergency with power > 0 must FAIL
+  [PASS] SR05: Emergency with power = 0 must PASS
+  [PASS] SR06: SOC < 0 must FAIL
+  [PASS] SR06: SOC in [0, 100] must PASS
+  [PASS] SR07: Port occupied by vehicle 1 must reject vehicle 2
+  [PASS] SR08: Fault port with power > 0 must FAIL
+  [PASS] SR10: Total 100 kW <= 100 kW must PASS
+  [PASS] SR10: Total 100.1 kW > 100 kW must FAIL
+--------------------------------------------------
+TEST SUITE: UNIT_SAFETY_RULES
+Total: 16 | Passed: 16 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

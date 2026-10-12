@@ -1,0 +1,2 @@
+{"command": ["docker", "info", "--format", "{{.ServerVersion}}"], "exitCode": 0, "status": "PASS", "seconds": 4.902260300004855}
+29.4.2

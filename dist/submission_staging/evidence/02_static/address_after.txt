@@ -1,0 +1,4 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\address_after.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.09194240000215359}
+[FIXED] Dang nap ID xe an toan: EVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[FIXED][SECURITY] Canh bao: Input vuot qua kich thuoc dem (len=46 >= 20). Tu dong cat ngan an toan!
+[FIXED] ID xe duoc luu an toan: 'EVAAAAAAAAAAAAAAAAA' (Authorized: 0)
