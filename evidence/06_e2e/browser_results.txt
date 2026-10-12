@@ -1,0 +1,2 @@
+{"command": ["C:\\Python312\\python.exe", "scripts/verify_browser.py"], "exitCode": 0, "status": "PASS", "seconds": 42.786823499947786}
+PASS: live EV03 -> OVERHEAT_TRIP -> FAULT, zero power -> browser inspector and screenshot

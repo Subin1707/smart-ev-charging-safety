@@ -1,0 +1,20 @@
+{"command": ["C:\\Program Files\\LLVM\\bin\\clang.EXE", "-std=c17", "-Wall", "-Wextra", "-I", "E:\\smart-ev-charging-safety\\src\\auth", "-I", "E:\\smart-ev-charging-safety\\src\\charging", "-I", "E:\\smart-ev-charging-safety\\src\\communication", "-I", "E:\\smart-ev-charging-safety\\src\\components", "-I", "E:\\smart-ev-charging-safety\\src\\core", "-I", "E:\\smart-ev-charging-safety\\src\\data", "-I", "E:\\smart-ev-charging-safety\\src\\database", "-I", "E:\\smart-ev-charging-safety\\src\\hooks", "-I", "E:\\smart-ev-charging-safety\\src\\logging", "-I", "E:\\smart-ev-charging-safety\\src\\monitoring", "-I", "E:\\smart-ev-charging-safety\\src\\pages", "-I", "E:\\smart-ev-charging-safety\\src\\safety", "-I", "E:\\smart-ev-charging-safety\\src\\services", "-I", "E:\\smart-ev-charging-safety\\src\\simulation", "-I", "E:\\smart-ev-charging-safety\\src\\station", "-I", "E:\\smart-ev-charging-safety\\src\\store", "-I", "E:\\smart-ev-charging-safety\\src\\styles", "-I", "E:\\smart-ev-charging-safety\\src\\utils", "-I", "E:\\smart-ev-charging-safety\\src\\vehicle", "-g", "-O0", "-fsanitize=address", "static_analysis/vulnerable/loi_id_xe.c", "-o", "E:\\smart-ev-charging-safety\\bin\\verification\\address_before.exe"], "exitCode": 0, "status": "PASS", "seconds": 2.1115587999811396}
+static_analysis/vulnerable/loi_id_xe.c:14:5: warning: 'strcpy' is deprecated: This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   14 |     strcpy(xe->ma_xe, input_id);
+      |     ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\string.h:130:1: note: 'strcpy' has been explicitly marked deprecated here
+  130 | __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1(
+      | ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt.h:821:5: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1'
+  821 |     __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_EX(_ReturnType, _ReturnPolicy, _DeclSpec, _FuncName, _FuncName##_s, _DstType, _SalAttributeDst, _DstType, _Dst, _TType1, _TArg1)
+      |     ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt.h:1880:17: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_EX'
+ 1880 |                 _CRT_INSECURE_DEPRECATE(_SecureFuncName) _DeclSpec _ReturnType __cdecl _FuncName(_SalAttributeDst _DstType *_Dst, _TType1 _TArg1);
+      |                 ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+1 warning generated.

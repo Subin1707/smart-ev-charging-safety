@@ -1,0 +1,20 @@
+{"command": ["C:\\Program Files\\nodejs\\npm.cmd", "--prefix", "web", "run", "build"], "exitCode": 0, "status": "PASS", "seconds": 50.40899919997901}
+
+> web@0.0.0 build
+> vite build
+
+[36mvite v8.2.2 [32mbuilding client environment for production...[36m[39m
+transforming...
+✓ 1870 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.45 kB │ gzip:  0.29 kB
+dist/assets/index-CFDaRvx5.css   33.61 kB │ gzip:  8.49 kB
+dist/assets/index-Bi_pLUa2.js   244.32 kB │ gzip: 75.09 kB
+
+[32m✓ built in 1.64s[39m
+npm notice
+npm notice New major version of npm available! 10.8.3 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

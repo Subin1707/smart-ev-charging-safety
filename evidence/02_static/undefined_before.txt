@@ -1,0 +1,3 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\undefined_before.exe"], "exitCode": 1, "status": "PASS", "seconds": 0.38209030008874834}
+static_analysis/vulnerable/loi_tinh_nang_luong.c:10:25: runtime error: signed integer overflow: 3 * 1000000000 cannot be represented in type 'int'
+SUMMARY: UndefinedBehaviorSanitizer: undefined-behavior static_analysis/vulnerable/loi_tinh_nang_luong.c:10:25 in 

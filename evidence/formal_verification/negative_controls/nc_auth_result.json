@@ -1,0 +1,96 @@
+{
+  "domain": "AUTH",
+  "file": "auth_negative.json",
+  "target_requirement": "REQ-AUTH-01",
+  "target_label": "req_auth_01_violation",
+  "injection": "State: authenticated=True but connected=False (A without C)",
+  "model_stats": {
+    "states": 239,
+    "transitions": 466,
+    "reachable": 228
+  },
+  "deadlock": "NONE",
+  "deadlock_states": [],
+  "property_results": [
+    {
+      "requirement_id": "REQ-AUTH-01",
+      "property": "AG(!req_auth_01_violation)",
+      "reported_result": "VI PHAM",
+      "status": "FAIL",
+      "violation_states_count": 1
+    },
+    {
+      "requirement_id": "REQ-AUTH-02",
+      "property": "AG(!req_auth_02_violation)",
+      "reported_result": "DUNG",
+      "status": "PASS",
+      "violation_states_count": 0
+    },
+    {
+      "requirement_id": "REQ-CHG-01",
+      "property": "AG(!req_chg_01_violation)",
+      "reported_result": "DUNG",
+      "status": "PASS",
+      "violation_states_count": 0
+    },
+    {
+      "requirement_id": "REQ-CHG-02",
+      "property": "AG(!req_chg_02_violation)",
+      "reported_result": "DUNG",
+      "status": "PASS",
+      "violation_states_count": 0
+    },
+    {
+      "requirement_id": "REQ-EMG-01",
+      "property": "AG(!req_emg_01_violation)",
+      "reported_result": "DUNG",
+      "status": "PASS",
+      "violation_states_count": 0
+    },
+    {
+      "requirement_id": "REQ-PORT-01",
+      "property": "AG(!req_port_01_violation)",
+      "reported_result": "DUNG",
+      "status": "PASS",
+      "violation_states_count": 0
+    },
+    {
+      "requirement_id": "REQ-PORT-02",
+      "property": "AG(!req_port_02_violation)",
+      "reported_result": "DUNG",
+      "status": "PASS",
+      "violation_states_count": 0
+    },
+    {
+      "requirement_id": "REQ-PORT-03",
+      "property": "AG(!req_port_03_violation)",
+      "reported_result": "DUNG",
+      "status": "PASS",
+      "violation_states_count": 0
+    },
+    {
+      "requirement_id": "REQ-SOC-01",
+      "property": "AG(!req_soc_01_violation)",
+      "reported_result": "DUNG",
+      "status": "PASS",
+      "violation_states_count": 0
+    },
+    {
+      "requirement_id": "REQ-SOC-02",
+      "property": "AG(!req_soc_02_violation)",
+      "reported_result": "DUNG",
+      "status": "PASS",
+      "violation_states_count": 0
+    },
+    {
+      "requirement_id": "REQ-TEMP-01",
+      "property": "AG(!req_temp_01_violation)",
+      "reported_result": "DUNG",
+      "status": "PASS",
+      "violation_states_count": 0
+    }
+  ],
+  "targeted_detected": true,
+  "conclusion": "VIOLATION_DETECTED",
+  "timestamp": "2026-09-28T16:20:56.818534+00:00"
+}

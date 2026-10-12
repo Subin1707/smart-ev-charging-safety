@@ -1,0 +1,82 @@
+{"command": ["C:\\Python312\\python.exe", "scripts/compare_fuzzing.py"], "exitCode": 0, "status": "PASS", "seconds": 7.625818900065497}
+{
+  "target": "START && authenticated && temperature >= 60 && 0 <= SOC < 100 with valid port/power",
+  "meaning": "Target reached means unsafe request exercised; fixed guard must reject it.",
+  "seed": 20260910,
+  "blackbox": {
+    "generated": 10000,
+    "accepted": 104,
+    "rejected": 9896,
+    "crashes": 0,
+    "timeouts": 0,
+    "safetyViolations": 0,
+    "targetReached": true,
+    "firstTargetInput": 115,
+    "seconds": 0.3312617000192404
+  },
+  "whitebox": {
+    "generated": 4,
+    "accepted": 0,
+    "rejected": 4,
+    "crashes": 0,
+    "timeouts": 0,
+    "safetyViolations": 0,
+    "targetReached": true,
+    "firstTargetInput": 1,
+    "seconds": 0.061853599967435
+  },
+  "whiteboxInputs": [
+    [
+      1,
+      1,
+      60,
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      61,
+      1,
+      2,
+      2
+    ],
+    [
+      1,
+      1,
+      61,
+      2,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      61,
+      1,
+      1,
+      1
+    ]
+  ],
+  "metrics": {
+    "blackbox": {
+      "targetDiscoveryInput": 115,
+      "targetDiscoveryRate": 0.008695652173913044,
+      "acceptedRate": 0.0104,
+      "rejectedRate": 0.9896,
+      "safetyViolationRate": 0.0
+    },
+    "whitebox": {
+      "targetDiscoveryInput": 1,
+      "targetDiscoveryRate": 1.0,
+      "acceptedRate": 0.0,
+      "rejectedRate": 1.0,
+      "safetyViolationRate": 0.0
+    },
+    "targetDiscoveryImprovement": 115.0,
+    "generatedInputReduction": 2500.0,
+    "interpretation": "White-box is more directed for this branch target: it reaches the overheat target on its first generated input, while deterministic black-box random fuzz reaches it on input 115. Both produce zero safety violations because the production guard rejects the unsafe overheat request."
+  },
+  "timing": "Generation plus persistent process; white-box includes Z3 solving; compile excluded."
+}

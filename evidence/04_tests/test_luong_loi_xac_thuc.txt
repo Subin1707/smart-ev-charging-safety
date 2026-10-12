@@ -1,0 +1,14 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_luong_loi_xac_thuc.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.38690289994701743}
+=== RUNNING E2E TEST: AUTH FAILURE REJECTION ===
+[AUTH] Dang xac thuc xe EV03 voi token: 'BAD_TOKEN'...
+[AUTH][FAILED] Xe EV03 xac thuc that bai! Token khong hop le.
+  [PASS] Token check rejected
+[CHARGING CHECK] DENIED: Xe EV03 chua duoc xac thuc.
+[DENIED] Khong du dieu kien de bat dau sac xe EV03 tai cong 3.
+  [PASS] Charging refused for unauthenticated vehicle
+  [PASS] No power allocated
+--------------------------------------------------
+TEST SUITE: E2E_AUTH_FAIL_FLOW
+Total: 3 | Passed: 3 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

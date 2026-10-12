@@ -1,0 +1,42 @@
+{
+  "phase": "GD8.3",
+  "title": "Negative Control Selectivity",
+  "generatedAt": "2026-09-28T16:20:56.863567+00:00",
+  "normal_v2_result": "16/16 DUNG",
+  "negative_controls_run": 6,
+  "violations_detected": 6,
+  "violations_missed": 0,
+  "selectivity": "CONFIRMED",
+  "controls": [
+    {
+      "domain": "AUTH",
+      "target": "REQ-AUTH-01",
+      "conclusion": "VIOLATION_DETECTED"
+    },
+    {
+      "domain": "SOC",
+      "target": "REQ-SOC-01",
+      "conclusion": "VIOLATION_DETECTED"
+    },
+    {
+      "domain": "TEMP",
+      "target": "REQ-TEMP-01",
+      "conclusion": "VIOLATION_DETECTED"
+    },
+    {
+      "domain": "PORT",
+      "target": "REQ-PORT-01",
+      "conclusion": "VIOLATION_DETECTED"
+    },
+    {
+      "domain": "CHARGING",
+      "target": "REQ-CHG-01",
+      "conclusion": "VIOLATION_DETECTED"
+    },
+    {
+      "domain": "EMERGENCY",
+      "target": "REQ-EMG-01",
+      "conclusion": "VIOLATION_DETECTED"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-10-11T18:42:40.987553+00:00",
+  "stages": {
+    "build": "PASS",
+    "model": "PASS",
+    "static-analysis": "PASS",
+    "sanitizer-test": "PASS",
+    "smt-test": "PASS",
+    "bmc-test": "PASS",
+    "test": "PASS",
+    "fuzz-test": "PASS",
+    "e2e-test": "PASS",
+    "dashboard": "PASS",
+    "browser-test": "PASS",
+    "postgres-test": "UNAVAILABLE"
+  },
+  "status": "UNAVAILABLE",
+  "scope": "Results apply to the documented model bounds and executed inputs. Browser and PostgreSQL have separate evidence; this is not an unbounded proof of the whole C program."
+}

@@ -1,0 +1,95 @@
+[
+  {
+    "requirement_id": "SR10",
+    "verifiable": true,
+    "property_type": "invariant",
+    "preconditions": [],
+    "trigger": null,
+    "expected": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "variable": "total_power",
+          "operator": "<=",
+          "value": 100,
+          "value_type": "number",
+          "unit": null
+        },
+        {
+          "variable": "port_power",
+          "operator": "<=",
+          "value": 22,
+          "value_type": "number",
+          "unit": null
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "SR03",
+    "verifiable": true,
+    "property_type": "conditional",
+    "preconditions": [],
+    "trigger": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "variable": "temperature",
+          "operator": ">=",
+          "value": 60,
+          "value_type": "number",
+          "unit": "C"
+        },
+        {
+          "variable": "charging",
+          "operator": "==",
+          "value": true,
+          "value_type": "boolean",
+          "unit": null
+        }
+      ]
+    },
+    "expected": {
+      "logic": "AND",
+      "conditions": [
+        {
+          "variable": "power",
+          "operator": "==",
+          "value": 0,
+          "value_type": "number",
+          "unit": null
+        },
+        {
+          "variable": "state",
+          "operator": "==",
+          "value": "FAULT",
+          "value_type": "enum",
+          "unit": null
+        }
+      ]
+    }
+  },
+  {
+    "requirement_id": "SR09",
+    "verifiable": true,
+    "property_type": "range",
+    "preconditions": [],
+    "trigger": null,
+    "expected": [
+      {
+        "variable": "soc",
+        "operator": ">=",
+        "value": 0,
+        "value_type": "number",
+        "unit": null
+      },
+      {
+        "variable": "soc",
+        "operator": "<=",
+        "value": 100,
+        "value_type": "number",
+        "unit": null
+      }
+    ]
+  }
+]

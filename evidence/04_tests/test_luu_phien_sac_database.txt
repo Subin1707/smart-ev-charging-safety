@@ -1,0 +1,10 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_luu_phien_sac_database.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.42148339992854744}
+=== RUNNING INTEGRATION TEST: SESSION DATABASE PERSISTENCE ===
+[01:39:09][INFO] Database persistence module khoi tao thanh cong (logs/database/test_session_dump.sql)
+  [PASS] Create charging session in database executed
+  [PASS] End charging session in database executed
+--------------------------------------------------
+TEST SUITE: INTEGRATION_DB_SESSION
+Total: 2 | Passed: 2 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

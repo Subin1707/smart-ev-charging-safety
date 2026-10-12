@@ -1,0 +1,21 @@
+{
+  "requirement_id": "REQ-SOC-01",
+  "constraint": "0 <= SOC <= 100  [SOC must remain in valid range]",
+  "harness": "verification\\harness\\req_soc_01.c",
+  "specification_file": "specification/battery.json",
+  "production_sources": "src/vehicle/pin.c, src/core/hang_so.h",
+  "production_functions": "khoi_tao_pin, cap_nhat_pin",
+  "compile": {
+    "command": "gcc -Wall -Wextra -std=c17 -Isrc/core -Isrc/vehicle -Isrc/station -Isrc/charging -Isrc/auth -Isrc/safety -Isrc/simulation -Isrc/communication -Isrc/monitoring -Isrc/logging -Isrc/database -Isrc/utils -Iverification/harness src\\core\\cau_hinh.c src\\core\\he_thong.c src\\vehicle\\pin.c src\\vehicle\\trang_thai_xe.c src\\vehicle\\xe_dien.c src\\station\\cong_sac.c src\\station\\dieu_phoi.c src\\station\\hang_cho.c src\\station\\quan_ly_cong_suat.c src\\station\\tram_sac.c src\\auth\\token.c src\\auth\\xac_thuc.c src\\charging\\che_do_sac.c src\\charging\\dieu_khien_sac.c src\\charging\\phien_sac.c src\\safety\\dung_khan_cap.c src\\safety\\giam_sat_an_toan.c src\\safety\\phat_hien_loi.c src\\safety\\quy_tac_an_toan.c src\\logging\\logger.c src\\logging\\nhat_ky_su_kien.c src\\monitoring\\chi_so.c src\\monitoring\\du_lieu_giam_sat.c src\\monitoring\\su_kien_he_thong.c src\\simulation\\kich_ban.c src\\simulation\\mo_phong.c src\\simulation\\ngau_nhien.c src\\simulation\\sinh_kich_ban.c src\\simulation\\sinh_su_kien.c src\\communication\\dieu_khien_tu_xa.c src\\communication\\message.c src\\communication\\protocol.c src\\database\\cong_sac_repository.c src\\database\\database.c src\\database\\phien_sac_repository.c src\\database\\su_kien_an_toan_repository.c src\\database\\telemetry_repository.c src\\database\\tram_repository.c src\\database\\xe_repository.c src\\utils\\input.c src\\utils\\kiem_tra_du_lieu.c src\\utils\\time_utils.c verification\\harness\\req_soc_01.c -lm -o bin\\production_verification\\req_soc_01.exe",
+    "status": "PASS",
+    "exit_code": 0,
+    "stdout": "In file included from verification\\harness\\req_soc_01.c:1:\nverification\\harness\\harness_common.h:33:13: warning: 'harness_prepare_ready_to_charge' defined but not used [-Wunused-function]\n static void harness_prepare_ready_to_charge(TramSac *tram, XeDien *xe, int port_idx)\n             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+  },
+  "run": {
+    "status": "PASS",
+    "exit_code": 0,
+    "stdout": "[HARNESS PASS] REQ-SOC-01\n"
+  },
+  "status": "PASS",
+  "timestamp": "2026-09-29T08:49:09.052845+00:00"
+}

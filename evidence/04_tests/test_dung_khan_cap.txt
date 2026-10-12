@@ -1,0 +1,25 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_dung_khan_cap.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.2797728000441566}
+=== RUNNING INTEGRATION TEST: EMERGENCY CUTOFF ===
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[STATION EMERGENCY] KICH HOAT DUNG KHAN CAP TOAN BO TRAM SAC!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[STATION EMERGENCY] Tat ca cac cong da ngat cong suat ve 0 kW.
+
+  [PASS] Station emergency flag should be TRUE
+  [PASS] Total station power must be 0 kW
+  [PASS] All port power must be 0 kW
+  [PASS] All ports should transition to CONG_DUNG
+  [PASS] All port power must be 0 kW
+  [PASS] All ports should transition to CONG_DUNG
+  [PASS] All port power must be 0 kW
+  [PASS] All ports should transition to CONG_DUNG
+  [PASS] All port power must be 0 kW
+  [PASS] All ports should transition to CONG_DUNG
+  [PASS] All port power must be 0 kW
+  [PASS] All ports should transition to CONG_DUNG
+--------------------------------------------------
+TEST SUITE: INTEGRATION_EMERGENCY
+Total: 12 | Passed: 12 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

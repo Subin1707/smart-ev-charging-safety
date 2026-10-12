@@ -1,0 +1,27 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_phan_phoi_cong_suat.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.38062700000591576}
+=== RUNNING INTEGRATION TEST: POWER OVERLOAD PROTECTION ===
+
+============================================================
+                 POWER MANAGER ANALYSIS
+============================================================
+So xe yeu cau sac       : 5
+Cong suat moi xe        : 22.0 kW
+Tong cong suat yeu cau  : 110.0 kW
+Gioi han tram           : 100.0 kW
+------------------------------------------------------------
+[WARNING] POWER OVERLOAD DETECTED!
+[POWER MANAGER] 110.0 kW > 100.0 kW
+
+Dang tai phan phoi cong suat...
+
+[POWER MANAGER] Tai phan phoi thanh cong.
+Cong suat moi xe        : 20.0 kW
+Tong cong suat sau xu ly: 100.0 kW
+[SAFE] Tong cong suat nam trong gioi han cho phep.
+============================================================
+  [PASS] Total power after overload management must be <= 100 kW
+--------------------------------------------------
+TEST SUITE: INTEGRATION_POWER_DISTRIBUTION
+Total: 1 | Passed: 1 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

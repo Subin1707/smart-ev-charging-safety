@@ -1,0 +1,268 @@
+{"command": ["C:\\Program Files\\LLVM\\bin\\clang.EXE", "-std=c17", "-Wall", "-Wextra", "-I", "E:\\smart-ev-charging-safety\\src\\auth", "-I", "E:\\smart-ev-charging-safety\\src\\charging", "-I", "E:\\smart-ev-charging-safety\\src\\communication", "-I", "E:\\smart-ev-charging-safety\\src\\components", "-I", "E:\\smart-ev-charging-safety\\src\\core", "-I", "E:\\smart-ev-charging-safety\\src\\data", "-I", "E:\\smart-ev-charging-safety\\src\\database", "-I", "E:\\smart-ev-charging-safety\\src\\hooks", "-I", "E:\\smart-ev-charging-safety\\src\\logging", "-I", "E:\\smart-ev-charging-safety\\src\\monitoring", "-I", "E:\\smart-ev-charging-safety\\src\\pages", "-I", "E:\\smart-ev-charging-safety\\src\\safety", "-I", "E:\\smart-ev-charging-safety\\src\\services", "-I", "E:\\smart-ev-charging-safety\\src\\simulation", "-I", "E:\\smart-ev-charging-safety\\src\\station", "-I", "E:\\smart-ev-charging-safety\\src\\store", "-I", "E:\\smart-ev-charging-safety\\src\\styles", "-I", "E:\\smart-ev-charging-safety\\src\\utils", "-I", "E:\\smart-ev-charging-safety\\src\\vehicle", "-g", "-O0", "-fsanitize=address,undefined", "src\\auth\\token.c", "src\\auth\\xac_thuc.c", "src\\charging\\che_do_sac.c", "src\\charging\\dieu_khien_sac.c", "src\\charging\\phien_sac.c", "src\\communication\\dieu_khien_tu_xa.c", "src\\communication\\message.c", "src\\communication\\protocol.c", "src\\core\\cau_hinh.c", "src\\core\\he_thong.c", "src\\database\\cong_sac_repository.c", "src\\database\\database.c", "src\\database\\phien_sac_repository.c", "src\\database\\su_kien_an_toan_repository.c", "src\\database\\telemetry_repository.c", "src\\database\\tram_repository.c", "src\\database\\xe_repository.c", "src\\logging\\logger.c", "src\\logging\\nhat_ky_su_kien.c", "src\\monitoring\\chi_so.c", "src\\monitoring\\du_lieu_giam_sat.c", "src\\monitoring\\su_kien_he_thong.c", "src\\safety\\dung_khan_cap.c", "src\\safety\\giam_sat_an_toan.c", "src\\safety\\phat_hien_loi.c", "src\\safety\\quy_tac_an_toan.c", "src\\simulation\\kich_ban.c", "src\\simulation\\mo_phong.c", "src\\simulation\\ngau_nhien.c", "src\\simulation\\sinh_kich_ban.c", "src\\simulation\\sinh_su_kien.c", "src\\station\\cong_sac.c", "src\\station\\dieu_phoi.c", "src\\station\\hang_cho.c", "src\\station\\quan_ly_cong_suat.c", "src\\station\\tram_sac.c", "src\\utils\\input.c", "src\\utils\\kiem_tra_du_lieu.c", "src\\utils\\time_utils.c", "src\\vehicle\\pin.c", "src\\vehicle\\trang_thai_xe.c", "src\\vehicle\\xe_dien.c", "tests/integration/test_reassigned_port.c", "-o", "E:\\smart-ev-charging-safety\\bin\\verification\\production_memory.exe"], "exitCode": 0, "status": "PASS", "seconds": 13.785112299956381}
+src\communication\dieu_khien_tu_xa.c:13:19: warning: 'fopen' is deprecated: This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   13 |     FILE *reset = fopen(duong_dan, "w");
+      |                   ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stdio.h:212:20: note: 'fopen' has been explicitly marked deprecated here
+  212 |     _Check_return_ _CRT_INSECURE_DEPRECATE(fopen_s)
+      |                    ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+src\communication\dieu_khien_tu_xa.c:74:18: warning: 'fopen' is deprecated: This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   74 |     FILE *file = fopen(duong_dan, "r");
+      |                  ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stdio.h:212:20: note: 'fopen' has been explicitly marked deprecated here
+  212 |     _Check_return_ _CRT_INSECURE_DEPRECATE(fopen_s)
+      |                    ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+2 warnings generated.
+src\database\database.c:52:9: warning: 'strncpy' is deprecated: This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   52 |         strncpy(g_sql_path, sql_dump_path, sizeof(g_sql_path) - 1);
+      |         ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\string.h:334:1: note: 'strncpy' has been explicitly marked deprecated here
+  334 | __DEFINE_CPP_OVERLOAD_STANDARD_NFUNC_0_2_EX(
+      | ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt.h:1921:17: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_NFUNC_0_2_EX'
+ 1921 |                 _CRT_INSECURE_DEPRECATE(_SecureFuncName) _DeclSpec _ReturnType __cdecl _FuncName(_SalAttributeDst _DstType *_Dst, _TType1 _TArg1, _TType2 _TArg2);
+      |                 ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+src\database\database.c:55:9: warning: 'strcpy' is deprecated: This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   55 |         strcpy(g_sql_path, "logs/database/persistence.sql");
+      |         ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\string.h:130:1: note: 'strcpy' has been explicitly marked deprecated here
+  130 | __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1(
+      | ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt.h:821:5: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1'
+  821 |     __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_EX(_ReturnType, _ReturnPolicy, _DeclSpec, _FuncName, _FuncName##_s, _DstType, _SalAttributeDst, _DstType, _Dst, _TType1, _TArg1)
+      |     ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt.h:1880:17: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_EX'
+ 1880 |                 _CRT_INSECURE_DEPRECATE(_SecureFuncName) _DeclSpec _ReturnType __cdecl _FuncName(_SalAttributeDst _DstType *_Dst, _TType1 _TArg1);
+      |                 ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+src\database\database.c:58:18: warning: 'fopen' is deprecated: This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   58 |     g_sql_file = fopen(g_sql_path, "w");
+      |                  ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stdio.h:212:20: note: 'fopen' has been explicitly marked deprecated here
+  212 |     _Check_return_ _CRT_INSECURE_DEPRECATE(fopen_s)
+      |                    ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+src\database\database.c:141:27: warning: 'getenv' is deprecated: This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+  141 |     const char *enabled = getenv("SMART_EV_POSTGRES");
+      |                           ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stdlib.h:1183:20: note: 'getenv' has been explicitly marked deprecated here
+ 1183 |     _Check_return_ _CRT_INSECURE_DEPRECATE(_dupenv_s)
+      |                    ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+src\database\database.c:270:12: warning: 'fopen' is deprecated: This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+  270 |     file = fopen(query_file, "r");
+      |            ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stdio.h:212:20: note: 'fopen' has been explicitly marked deprecated here
+  212 |     _Check_return_ _CRT_INSECURE_DEPRECATE(fopen_s)
+      |                    ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+src\database\database.c:279:62: warning: 'strtok' is deprecated: This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+  279 |             while (field_count < 5 && (fields[field_count] = strtok(cursor, "|")) != NULL) {
+      |                                                              ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\string.h:435:16: note: 'strtok' has been explicitly marked deprecated here
+  435 | _Check_return_ _CRT_INSECURE_DEPRECATE(strtok_s)
+      |                ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+6 warnings generated.
+src\logging\logger.c:27:22: warning: 'fopen' is deprecated: This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   27 |         g_log_file = fopen(duong_dan_file, "w");
+      |                      ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stdio.h:212:20: note: 'fopen' has been explicitly marked deprecated here
+  212 |     _Check_return_ _CRT_INSECURE_DEPRECATE(fopen_s)
+      |                    ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+src\logging\logger.c:46:26: warning: 'localtime' is deprecated: This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   46 |     struct tm *tm_info = localtime(&now);
+      |                          ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\time.h:494:9: note: 'localtime' has been explicitly marked deprecated here
+  494 |         _CRT_INSECURE_DEPRECATE(localtime_s)
+      |         ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+src\logging\logger.c:50:9: warning: 'strcpy' is deprecated: This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   50 |         strcpy(thoi_gian_str, "00:00:00");
+      |         ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\string.h:130:1: note: 'strcpy' has been explicitly marked deprecated here
+  130 | __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1(
+      | ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt.h:821:5: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1'
+  821 |     __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_EX(_ReturnType, _ReturnPolicy, _DeclSpec, _FuncName, _FuncName##_s, _DstType, _SalAttributeDst, _DstType, _Dst, _TType1, _TArg1)
+      |     ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt.h:1880:17: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_EX'
+ 1880 |                 _CRT_INSECURE_DEPRECATE(_SecureFuncName) _DeclSpec _ReturnType __cdecl _FuncName(_SalAttributeDst _DstType *_Dst, _TType1 _TArg1);
+      |                 ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+3 warnings generated.
+src\monitoring\du_lieu_giam_sat.c:219:17: warning: 'fopen' is deprecated: This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+  219 |         FILE *output = fopen(duong_dan_tam, "w");
+      |                        ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stdio.h:212:20: note: 'fopen' has been explicitly marked deprecated here
+  212 |     _Check_return_ _CRT_INSECURE_DEPRECATE(fopen_s)
+      |                    ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+src\monitoring\du_lieu_giam_sat.c:240:17: warning: 'fopen' is deprecated: This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+  240 |         FILE *output = fopen(duong_dan_tam, "w");
+      |                        ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stdio.h:212:20: note: 'fopen' has been explicitly marked deprecated here
+  212 |     _Check_return_ _CRT_INSECURE_DEPRECATE(fopen_s)
+      |                    ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+2 warnings generated.
+src\simulation\mo_phong.c:279:32: warning: 'getenv' is deprecated: This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+  279 |     const char *scenario_env = getenv("SMART_EV_SCENARIO");
+      |                                ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stdlib.h:1183:20: note: 'getenv' has been explicitly marked deprecated here
+ 1183 |     _Check_return_ _CRT_INSECURE_DEPRECATE(_dupenv_s)
+      |                    ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+src\simulation\mo_phong.c:284:26: warning: 'fopen' is deprecated: This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+  284 |     FILE *command_file = fopen("logs/control/command.json", "w");
+      |                          ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stdio.h:212:20: note: 'fopen' has been explicitly marked deprecated here
+  212 |     _Check_return_ _CRT_INSECURE_DEPRECATE(fopen_s)
+      |                    ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+2 warnings generated.
+src\simulation\sinh_kich_ban.c:26:28: warning: 'getenv' is deprecated: This function or variable may be unsafe. Consider using _dupenv_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   26 |     const char *scenario = getenv("SMART_EV_SCENARIO");
+      |                            ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\stdlib.h:1183:20: note: 'getenv' has been explicitly marked deprecated here
+ 1183 |     _Check_return_ _CRT_INSECURE_DEPRECATE(_dupenv_s)
+      |                    ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+1 warning generated.
+src\station\tram_sac.c:13:9: warning: 'strncpy' is deprecated: This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   13 |         strncpy(tram->ma_tram, ma_tram, sizeof(tram->ma_tram) - 1);
+      |         ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\string.h:334:1: note: 'strncpy' has been explicitly marked deprecated here
+  334 | __DEFINE_CPP_OVERLOAD_STANDARD_NFUNC_0_2_EX(
+      | ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt.h:1921:17: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_NFUNC_0_2_EX'
+ 1921 |                 _CRT_INSECURE_DEPRECATE(_SecureFuncName) _DeclSpec _ReturnType __cdecl _FuncName(_SalAttributeDst _DstType *_Dst, _TType1 _TArg1, _TType2 _TArg2);
+      |                 ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+src\station\tram_sac.c:16:9: warning: 'strcpy' is deprecated: This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   16 |         strcpy(tram->ma_tram, "STATION01");
+      |         ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\string.h:130:1: note: 'strcpy' has been explicitly marked deprecated here
+  130 | __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1(
+      | ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt.h:821:5: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1'
+  821 |     __DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_EX(_ReturnType, _ReturnPolicy, _DeclSpec, _FuncName, _FuncName##_s, _DstType, _SalAttributeDst, _DstType, _Dst, _TType1, _TArg1)
+      |     ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt.h:1880:17: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_FUNC_0_1_EX'
+ 1880 |                 _CRT_INSECURE_DEPRECATE(_SecureFuncName) _DeclSpec _ReturnType __cdecl _FuncName(_SalAttributeDst _DstType *_Dst, _TType1 _TArg1);
+      |                 ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+2 warnings generated.
+src\vehicle\xe_dien.c:18:9: warning: 'strncpy' is deprecated: This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. [-Wdeprecated-declarations]
+   18 |         strncpy(xe->ma_xe, ma_xe, sizeof(xe->ma_xe) - 1);
+      |         ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\string.h:334:1: note: 'strncpy' has been explicitly marked deprecated here
+  334 | __DEFINE_CPP_OVERLOAD_STANDARD_NFUNC_0_2_EX(
+      | ^
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\ucrt\corecrt.h:1921:17: note: expanded from macro '__DEFINE_CPP_OVERLOAD_STANDARD_NFUNC_0_2_EX'
+ 1921 |                 _CRT_INSECURE_DEPRECATE(_SecureFuncName) _DeclSpec _ReturnType __cdecl _FuncName(_SalAttributeDst _DstType *_Dst, _TType1 _TArg1, _TType2 _TArg2);
+      |                 ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:320:55: note: expanded from macro '_CRT_INSECURE_DEPRECATE'
+  320 |         #define _CRT_INSECURE_DEPRECATE(_Replacement) _CRT_DEPRECATE_TEXT(    \
+      |                                                       ^
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\vcruntime.h:310:47: note: expanded from macro '_CRT_DEPRECATE_TEXT'
+  310 | #define _CRT_DEPRECATE_TEXT(_Text) __declspec(deprecated(_Text))
+      |                                               ^
+1 warning generated.
+tests/integration/test_reassigned_port.c:14:57: warning: missing field 'tick_interval_ms' initializer [-Wmissing-field-initializers]
+   14 |     DieuKhienMoPhong control = {MO_PHONG_DANG_CHAY, 0, 0};
+      |                                                         ^
+1 warning generated.

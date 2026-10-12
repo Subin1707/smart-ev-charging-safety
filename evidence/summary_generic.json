@@ -1,0 +1,14 @@
+{
+  "REQ-01": {
+    "generated": true,
+    "static": "FAIL",
+    "dynamic": "PASS",
+    "result": "FAIL"
+  },
+  "REQ-02": {
+    "generated": true,
+    "static": "FAIL",
+    "dynamic": "PASS",
+    "result": "FAIL"
+  }
+}

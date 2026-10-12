@@ -1,0 +1,22 @@
+{"command": ["C:\\Python312\\python.exe", "static_analysis/scripts/pattern_scanner.py", "static_analysis/vulnerable"], "exitCode": 5, "status": "PASS", "seconds": 0.11993169994093478}
+
+==================================================
+ SCANNING DIRECTORY: static_analysis/vulnerable
+==================================================
+
+[!] FILE: loi_id_xe.c
+  Line 14: CWE-120: Buffer Copy without Checking Size of Input (strcpy)
+    Code: strcpy(xe->ma_xe, input_id);
+
+[!] FILE: loi_phan_tich_thong_diep.c
+  Line 17: CWE-134: Use of Externally-Controlled Format String / Buffer Overflow (sprintf)
+    Code: sprintf(buffer, "%s", raw_msg);
+  Line 20: CWE-120: Buffer Copy without Checking Size of Input (strcpy)
+    Code: if (token) strcpy(msg->command, token);
+  Line 23: CWE-120: Buffer Copy without Checking Size of Input (strcpy)
+    Code: if (token) strcpy(msg->vehicle_id, token);
+
+[!] FILE: loi_tinh_nang_luong.c
+  Line 10: CWE-190: Integer Overflow or Wraparound
+    Code: return cong_suat_kw * 1000000000;
+Total vulnerabilities found: 5

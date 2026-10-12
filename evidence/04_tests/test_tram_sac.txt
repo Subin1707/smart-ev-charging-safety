@@ -1,0 +1,19 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_tram_sac.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.19823810004163533}
+=== RUNNING UNIT TEST: TRAM SAC ===
+  [PASS] Station ID should be 1
+  [PASS] Station max power should be 100.0 kW
+  [PASS] Initial current power should be 0.0 kW
+  [PASS] Initial emergency should be 0
+  [PASS] Total station power should be 40.0 kW
+  [PASS] Connect first port
+  [PASS] SR08 one vehicle cannot occupy two ports
+[PORT 1] Error: Port already occupied by vehicle 42
+  [PASS] SR07 one port cannot serve two vehicles
+  [PASS] Wrong vehicle cannot disconnect owner
+  [PASS] Owner disconnects
+  [PASS] Disconnect invalidates authentication
+--------------------------------------------------
+TEST SUITE: UNIT_TRAM_SAC
+Total: 11 | Passed: 11 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

@@ -1,0 +1,1 @@
+{"command": ["C:\\Python312\\python.exe", "scripts/export_model.py"], "exitCode": 0, "status": "PASS", "seconds": 5.611165800015442}

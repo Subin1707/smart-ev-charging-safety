@@ -1,0 +1,30 @@
+{
+  "format": "requirements_raw",
+  "version": 1,
+  "requirements": [
+    {
+      "id": "SR10",
+      "type": "safety",
+      "priority": "HIGH",
+      "content": "total_power <= 100 AND port_power <= 22",
+      "source": "production_demo.txt",
+      "source_row": 2
+    },
+    {
+      "id": "SR03",
+      "type": "safety",
+      "priority": "HIGH",
+      "content": "If temperature >= 60 C AND charging == true, then power == 0 AND state == FAULT.",
+      "source": "production_demo.txt",
+      "source_row": 3
+    },
+    {
+      "id": "SR09",
+      "type": "safety",
+      "priority": "HIGH",
+      "content": "0 <= SOC <= 100",
+      "source": "production_demo.txt",
+      "source_row": 4
+    }
+  ]
+}

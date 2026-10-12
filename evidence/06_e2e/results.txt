@@ -1,0 +1,3 @@
+{"command": ["C:\\Python312\\python.exe", "-m", "pytest", "tests/e2e", "-q"], "exitCode": 0, "status": "PASS", "seconds": 46.79422120004892}
+............                                                             [100%]
+12 passed in 37.63s

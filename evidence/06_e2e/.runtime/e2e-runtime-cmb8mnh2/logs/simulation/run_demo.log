@@ -1,0 +1,4 @@
+[00:43:23][INFO] Database persistence module khoi tao thanh cong (logs/database/persistence.sql)
+[00:43:23][WARNING] [POSTGRESQL] Khong the ket noi truc tiep; RAM history van duoc duy tri.
+[00:43:23][INFO] === BAT DAU PHIEN MO PHONG (Tong tick: 10) ===
+[00:43:27][SAFETY] TICK 8: EV04 da day pin 100%! Cong 4 tu dong ngat dien.

@@ -1,0 +1,26 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_luong_binh_thuong.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.42784100002609193}
+=== RUNNING E2E TEST: NORMAL CHARGING LIFECYCLE ===
+  [PASS] Step 1: Connected
+[AUTH] Dang xac thuc xe EV01 voi token: 'TOKEN_EV01'...
+[AUTH][SUCCESS] Xe EV01 xac thuc thanh cong!
+  [PASS] Step 2: Authenticated
+  [PASS] Step 3: Initial safety check passed
+[CHARGING] Bat dau sac thanh cong cho xe EV01 tai Cong 1 voi cong suat 22.0 kW.
+  [PASS] Step 4: Charging started
+  [PASS] Step 5: In-flight safety check passed
+  [PASS] Step 5: In-flight safety check passed
+  [PASS] Step 5: In-flight safety check passed
+  [PASS] Step 5: In-flight safety check passed
+  [PASS] Step 5: In-flight safety check passed
+  [PASS] Step 5: In-flight safety check passed
+  [PASS] Step 5: In-flight safety check passed
+  [PASS] Step 5: In-flight safety check passed
+  [PASS] Step 5: In-flight safety check passed
+  [PASS] Step 5: In-flight safety check passed
+[CHARGING] Da dung sac cho Cong 1.
+  [PASS] Step 6: Stopped cleanly
+--------------------------------------------------
+TEST SUITE: E2E_NORMAL_FLOW
+Total: 15 | Passed: 15 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

@@ -1,0 +1,86 @@
+{"command": ["E:\\smart-ev-charging-safety\\bin\\verification\\test_kich_ban_ngau_nhien.exe"], "exitCode": 0, "status": "PASS", "seconds": 0.56236560002435}
+=== RUNNING E2E TEST: RANDOM SIMULATION SCENARIO ===
+[01:39:42][INFO] Database persistence module khoi tao thanh cong (logs/database/test_random_dump.sql)
+[SCENARIO] Da sinh ngau nhien thong so cho 5 xe dien.
+
+
+============================= TICK 01 =============================
+PORT   EV       SOC      TEMP      POWER        STATE
+--------------------------------------------------------------------
+1      EV01     68.0 %   29.4 C      0.0 kW      RESERVED      
+2      --       --       --          0.0 kW      IDLE          
+3      --       --       --          0.0 kW      IDLE          
+4      --       --       --          0.0 kW      IDLE          
+5      --       --       --          0.0 kW      IDLE          
+--------------------------------------------------------------------
+TOTAL POWER   : 0.0 / 100.0 kW
+SAFETY EVENTS : 0
+SYSTEM STATUS : OPERATIONAL
+====================================================================
+  [PASS] SR10 remains valid after each random tick
+
+============================= TICK 02 =============================
+PORT   EV       SOC      TEMP      POWER        STATE
+--------------------------------------------------------------------
+1      EV01     68.0 %   29.4 C      0.0 kW      RESERVED      
+2      EV02     31.0 %   30.5 C      0.0 kW      RESERVED      
+3      --       --       --          0.0 kW      IDLE          
+4      --       --       --          0.0 kW      IDLE          
+5      --       --       --          0.0 kW      IDLE          
+--------------------------------------------------------------------
+TOTAL POWER   : 0.0 / 100.0 kW
+SAFETY EVENTS : 0
+SYSTEM STATUS : OPERATIONAL
+====================================================================
+  [PASS] SR10 remains valid after each random tick
+
+============================= TICK 03 =============================
+PORT   EV       SOC      TEMP      POWER        STATE
+--------------------------------------------------------------------
+1      EV01     68.0 %   29.4 C      0.0 kW      RESERVED      
+2      EV02     31.0 %   30.5 C      0.0 kW      RESERVED      
+3      EV03     59.0 %   29.2 C      0.0 kW      RESERVED      
+4      --       --       --          0.0 kW      IDLE          
+5      --       --       --          0.0 kW      IDLE          
+--------------------------------------------------------------------
+TOTAL POWER   : 0.0 / 100.0 kW
+SAFETY EVENTS : 0
+SYSTEM STATUS : OPERATIONAL
+====================================================================
+  [PASS] SR10 remains valid after each random tick
+
+============================= TICK 04 =============================
+PORT   EV       SOC      TEMP      POWER        STATE
+--------------------------------------------------------------------
+1      EV01     68.0 %   29.4 C      0.0 kW      RESERVED      
+2      EV02     31.0 %   30.5 C      0.0 kW      RESERVED      
+3      EV03     59.0 %   29.2 C      0.0 kW      RESERVED      
+4      EV04     78.0 %   30.1 C      0.0 kW      RESERVED      
+5      --       --       --          0.0 kW      IDLE          
+--------------------------------------------------------------------
+TOTAL POWER   : 0.0 / 100.0 kW
+SAFETY EVENTS : 0
+SYSTEM STATUS : OPERATIONAL
+====================================================================
+  [PASS] SR10 remains valid after each random tick
+
+============================= TICK 05 =============================
+PORT   EV       SOC      TEMP      POWER        STATE
+--------------------------------------------------------------------
+1      EV01     68.0 %   29.4 C      0.0 kW      RESERVED      
+2      EV02     31.0 %   30.5 C      0.0 kW      RESERVED      
+3      EV03     59.0 %   29.2 C      0.0 kW      RESERVED      
+4      EV04     78.0 %   30.1 C      0.0 kW      RESERVED      
+5      EV05     77.0 %   29.0 C      0.0 kW      RESERVED      
+--------------------------------------------------------------------
+TOTAL POWER   : 0.0 / 100.0 kW
+SAFETY EVENTS : 0
+SYSTEM STATUS : OPERATIONAL
+====================================================================
+  [PASS] SR10 remains valid after each random tick
+  [PASS] Five finite ticks completed without entering interactive loop
+--------------------------------------------------
+TEST SUITE: E2E_RANDOM_SIMULATION
+Total: 6 | Passed: 6 | Failed: 0 | Status: SUCCESS
+--------------------------------------------------
+

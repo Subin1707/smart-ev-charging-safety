@@ -1,0 +1,311 @@
+src\auth\token.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\auth\token.c:2:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+src\auth\xac_thuc.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\charging\dieu_khien_sac.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\charging\dieu_khien_sac.c:4:2: information: Include file: <math.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <math.h>
+ ^
+src\charging\dieu_khien_sac.c:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+src\charging\phien_sac.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\communication\dieu_khien_tu_xa.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <stdio.h>
+ ^
+src\communication\dieu_khien_tu_xa.c:2:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+src\communication\dieu_khien_tu_xa.c:3:2: information: Include file: <ctype.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <ctype.h>
+ ^
+src\communication\dieu_khien_tu_xa.c:4:2: information: Include file: <stdlib.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <stdlib.h>
+ ^
+src\communication\dieu_khien_tu_xa.c:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+src\communication\message.c:1:2: information: Include file: <stdlib.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdlib.h>
+ ^
+src\communication\message.c:2:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+src\communication\message.h:4:2: information: Include file: <stddef.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <stddef.h>
+ ^
+src\communication\message.c:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+src\communication\protocol.c:1:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <string.h>
+ ^
+src\core\cau_hinh.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\core\he_thong.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\database\cong_sac_repository.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\database\database.c:4:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <stdio.h>
+ ^
+src\database\database.c:5:2: information: Include file: <stdlib.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <stdlib.h>
+ ^
+src\database\database.c:6:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+src\database\database.c:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+src\database\database.c:11:2: information: Include file: <libpq-fe.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <libpq-fe.h>
+ ^
+src\database\phien_sac_repository.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\database\su_kien_an_toan_repository.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\database\telemetry_repository.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\database\tram_repository.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\database\xe_repository.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\logging\logger.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\logging\logger.c:2:2: information: Include file: <stdarg.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <stdarg.h>
+ ^
+src\logging\logger.c:3:2: information: Include file: <time.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <time.h>
+ ^
+src\logging\logger.c:4:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+src\logging\logger.c:46:16: style: Variable 'tm_info' can be declared as pointer to const [constVariablePointer]
+    struct tm *tm_info = localtime(&now);
+               ^
+src\logging\nhat_ky_su_kien.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\logging\nhat_ky_su_kien.c:2:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+src\main.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\main.c:2:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+src\main.c:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+src\monitoring\chi_so.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\monitoring\chi_so.c:2:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+src\monitoring\du_lieu_giam_sat.h:4:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <stdio.h>
+ ^
+src\monitoring\du_lieu_giam_sat.c:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+src\monitoring\du_lieu_giam_sat.c:7:2: information: Include file: <windows.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <windows.h>
+ ^
+src\monitoring\su_kien_he_thong.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <stdio.h>
+ ^
+src\monitoring\su_kien_he_thong.c:2:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+src\safety\dung_khan_cap.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\safety\giam_sat_an_toan.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\safety\giam_sat_an_toan.c:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+src\safety\giam_sat_an_toan.c:5:71: style: Parameter 'tram' can be declared as pointer to const [constParameterPointer]
+KetQuaGiamSat giam_sat_xe_va_cong(XeDien *xe, CongSac *cong, TramSac *tram) {
+                                                                      ^
+src\safety\quy_tac_an_toan.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\simulation\kich_ban.c:1:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+src\simulation\kich_ban.c:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+src\simulation\mo_phong.c:5:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <stdio.h>
+ ^
+src\simulation\mo_phong.c:6:2: information: Include file: <stdlib.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <stdlib.h>
+ ^
+src\simulation\mo_phong.c:7:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+src\simulation\mo_phong.c:11:2: information: Include file: <time.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <time.h>
+ ^
+src\simulation\mo_phong.c:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+src\simulation\mo_phong.c:201:25: style: The if condition is the same as the previous if condition [duplicateCondition]
+                    if (overheat_trip_moi) {
+                        ^
+src\simulation\mo_phong.c:191:25: note: First condition
+                    if (overheat_trip_moi) {
+                        ^
+src\simulation\mo_phong.c:201:25: note: Second condition
+                    if (overheat_trip_moi) {
+                        ^
+src\simulation\mo_phong.c:9:2: information: Include file: <windows.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <windows.h>
+ ^
+src\simulation\ngau_nhien.c:1:2: information: Include file: <stdlib.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdlib.h>
+ ^
+src\simulation\ngau_nhien.c:2:2: information: Include file: <time.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <time.h>
+ ^
+src\simulation\sinh_kich_ban.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\simulation\sinh_kich_ban.c:4:2: information: Include file: <stdlib.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <stdlib.h>
+ ^
+src\simulation\sinh_kich_ban.c:5:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+src\simulation\sinh_su_kien.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\station\cong_sac.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\station\dieu_phoi.c:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+src\station\quan_ly_cong_suat.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\station\quan_ly_cong_suat.c:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+src\station\quan_ly_cong_suat.c:99:18: style: Variable 'cong' can be declared as pointer to const [constVariablePointer]
+        CongSac *cong = &tram->cong[i];
+                 ^
+src\station\tram_sac.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\station\tram_sac.c:2:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+src\station\tram_sac.c:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+src\vehicle\pin.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\vehicle\xe_dien.c:1:2: information: Include file: <stdio.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+ï»¿#include <stdio.h>
+ ^
+src\vehicle\xe_dien.c:2:2: information: Include file: <string.h> not found. Please note: Standard library headers do not need to be provided to get proper results. [missingIncludeSystem]
+#include <string.h>
+ ^
+src\charging\che_do_sac.c:3:13: style: The function 'ten_che_do_sac' is never used. [unusedFunction]
+const char* ten_che_do_sac(CheDoSac cd) {
+            ^
+src\communication\message.c:13:5: style: The function 'parse_protocol_message' is never used. [unusedFunction]
+int parse_protocol_message(const char *input, size_t input_length, ProtocolMessage *message) {
+    ^
+src\communication\protocol.c:4:5: style: The function 'protocol_message_is_safe' is never used. [unusedFunction]
+int protocol_message_is_safe(const ProtocolMessage *message) {
+    ^
+src\core\cau_hinh.c:16:6: style: The function 'in_cau_hinh' is never used. [unusedFunction]
+void in_cau_hinh(const CauHinhHeThong *cfg) {
+     ^
+src\logging\nhat_ky_su_kien.c:50:6: style: The function 'them_su_kien_nhat_ky' is never used. [unusedFunction]
+void them_su_kien_nhat_ky(int tick, const char *ma_xe, int port_id, const char *su_kien, const char *muc_do) {
+     ^
+src\monitoring\du_lieu_giam_sat.c:208:5: style: The function 'ghi_snapshot_json' is never used. [unusedFunction]
+int ghi_snapshot_json(const char *duong_dan,
+    ^
+src\safety\quy_tac_an_toan.c:53:5: style: The function 'kiem_tra_sr06_soc_hop_le' is never used. [unusedFunction]
+int kiem_tra_sr06_soc_hop_le(const XeDien *xe) {
+    ^
+src\safety\quy_tac_an_toan.c:59:5: style: The function 'kiem_tra_sr07_doc_quyen_cong' is never used. [unusedFunction]
+int kiem_tra_sr07_doc_quyen_cong(const CongSac *cong, int vehicle_id) {
+    ^
+src\safety\quy_tac_an_toan.c:68:5: style: The function 'kiem_tra_sr08_ma_loi' is never used. [unusedFunction]
+int kiem_tra_sr08_ma_loi(const CongSac *cong) {
+    ^
+src\safety\quy_tac_an_toan.c:86:5: style: The function 'kiem_tra_sr10_gioi_han_cong_suat_tram' is never used. [unusedFunction]
+int kiem_tra_sr10_gioi_han_cong_suat_tram(float tong_cong_suat, float max_cong_suat) {
+    ^
+src\station\dieu_phoi.c:4:5: style: The function 'tim_cong_ranh' is never used. [unusedFunction]
+int tim_cong_ranh(const TramSac *tram) {
+    ^
+src\station\tram_sac.c:160:6: style: The function 'in_trang_thai_tram' is never used. [unusedFunction]
+void in_trang_thai_tram(const TramSac *tram, const XeDien ds_xe[], int so_xe) {
+     ^
+src\vehicle\pin.c:17:5: style: The function 'soc_hop_le' is never used. [unusedFunction]
+int soc_hop_le(const Pin *pin) {
+    ^
+src\vehicle\pin.c:22:5: style: The function 'pin_da_day' is never used. [unusedFunction]
+int pin_da_day(const Pin *pin) {
+    ^
+src\vehicle\pin.c:27:5: style: The function 'pin_qua_nhiet' is never used. [unusedFunction]
+int pin_qua_nhiet(const Pin *pin) {
+    ^
+src\vehicle\xe_dien.c:55:6: style: The function 'in_thong_tin_xe' is never used. [unusedFunction]
+void in_thong_tin_xe(const XeDien *xe) {
+     ^
+src\charging\dieu_khien_sac.c:8:5: style: The function 'co_the_bat_dau_sac' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+int co_the_bat_dau_sac(const XeDien *xe, const CongSac *cong) {
+    ^
+src\monitoring\du_lieu_giam_sat.c:73:6: style: The function 'xuat_snapshot_json' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+void xuat_snapshot_json(FILE *output,
+     ^
+src\safety\giam_sat_an_toan.c:5:15: style: The function 'giam_sat_xe_va_cong' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+KetQuaGiamSat giam_sat_xe_va_cong(XeDien *xe, CongSac *cong, TramSac *tram) {
+              ^
+src\simulation\mo_phong.c:39:6: style: The function 'in_dashboard_tick' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+void in_dashboard_tick(int tick, const TramSac *tram, const XeDien ds_xe[], int so_xe) {
+     ^
+src\simulation\mo_phong.c:74:6: style: The function 'thuc_hien_mot_tick' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+void thuc_hien_mot_tick(int *tick_hien_tai,
+     ^
+src\station\quan_ly_cong_suat.c:6:6: style: The function 'phan_phoi_cong_suat_chia_deu' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+void phan_phoi_cong_suat_chia_deu(TramSac *tram) {
+     ^
+src\station\quan_ly_cong_suat.c:91:6: style: The function 'xu_ly_qua_tai_cong_suat' should have static linkage since it is not used outside of its translation unit. [staticFunction]
+void xu_ly_qua_tai_cong_suat(TramSac *tram, XeDien ds_xe[], int so_xe) {
+     ^
+nofile:0:0: information: Active checkers: 119/186 (use --checkers-report=<filename> to see details) [checkersReport]
+

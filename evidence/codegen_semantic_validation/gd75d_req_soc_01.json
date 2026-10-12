@@ -1,0 +1,38 @@
+{
+  "requirement_id": "REQ-SOC-01",
+  "teacher_kind": "c/arithmetic",
+  "runtime_support": "CONFIRMED",
+  "generated_function": "probe_soc_delta",
+  "generated_body": "return soc + soc_max;",
+  "required_semantics": "return (soc >= 0) && (soc <= soc_max);",
+  "required_description": "Function must be a range predicate: returns true(1) when 0 <= soc <= soc_max, false(0) otherwise.",
+  "compile_verification": {
+    "source_file": "bin\\codegen_semantic\\src\\test_probe_soc_delta.c",
+    "compile_status": "PASS",
+    "compile_exit_code": 0,
+    "compile_stdout": "",
+    "run": {
+      "status": "PASS",
+      "stdout": "[COMPILE_TEST] probe_soc_delta: compiled and ran.\n"
+    }
+  },
+  "semantic_analysis": {
+    "match": false,
+    "reason": "Generated function computes soc + soc_max (addition). This is an arithmetic expression, NOT a range check. It does not evaluate whether soc is within [0, soc_max]. For example, soc=-10 and soc_max=100 returns 90 (truthy), but -10 is outside the valid range. The requirement is UNSUPPORTED by the generated code."
+  },
+  "negative_control": {
+    "description": "Verify that generated function incorrectly passes invalid SOC=-10",
+    "test_case": "soc=-10, soc_max=100",
+    "generated_result": "-10 + 100 = 90  (truthy -> function says SOC is valid)",
+    "correct_result": "(-10 >= 0) && (-10 <= 100) = 0  (false -> SOC is INVALID)",
+    "conclusion": "SEMANTIC_MISMATCH_CONFIRMED",
+    "compile_status": "PASS",
+    "run": {
+      "status": "FAIL",
+      "exit_code": 3,
+      "stdout": "[NEGATIVE_CONTROL] probe_soc_delta(-10, 100) = 90\nAssertion failed!\n\nProgram: E:\\smart-ev-charging-safety\\bin\\codegen_semantic\\nc_test_probe_soc_delta.exe\nFile: E:\\smart-ev-charging-safety\\bin\\codegen_semantic\\src\\nc_test_probe_soc_delta.c, Line 23\n\nExpression: result == 0 && \"SEMANTIC_MISMATCH: generated soc+soc_max passes invalid SOC=-10\"\n"
+    }
+  },
+  "codegen_requirement_status": "UNSUPPORTED",
+  "timestamp": "2026-09-28T16:06:41.462501+00:00"
+}

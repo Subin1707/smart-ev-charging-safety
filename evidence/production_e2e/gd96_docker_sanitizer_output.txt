@@ -1,0 +1,171 @@
+In file included from evidence/production_e2e/gd95_dynamic_harness.c:6:
+verification/harness/harness_common.h:40:13: warning: 'harness_pass' defined but not used [-Wunused-function]
+   40 | static void harness_pass(const char *name)
+      |             ^~~~~~~~~~~~
+verification/harness/harness_common.h:33:13: warning: 'harness_prepare_ready_to_charge' defined but not used [-Wunused-function]
+   33 | static void harness_prepare_ready_to_charge(TramSac *tram, XeDien *xe, int port_idx)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[AUTH] Dang xac thuc xe EV-GD95-AUTH voi token: 'bad-token'...
+[AUTH][FAILED] Xe EV-GD95-AUTH xac thuc that bai! Token khong hop le.
+[AUTH] Dang xac thuc xe EV-GD95-AUTH voi token: 'TOKEN_EV-GD95-AUTH'...
+[AUTH][SUCCESS] Xe EV-GD95-AUTH xac thuc thanh cong!
+[AUTH] Dang xac thuc xe EV-GD95-DISC voi token: 'TOKEN_EV-GD95-DISC'...
+[AUTH][SUCCESS] Xe EV-GD95-DISC xac thuc thanh cong!
+[PORT 1] Error: Port already occupied by vehicle 1
+[CHARGING CHECK] DENIED: Xe EV-GD95-P1 chua duoc xac thuc.
+[DENIED] Khong du dieu kien de bat dau sac xe EV-GD95-P1 tai cong 1.
+[AUTH] Dang xac thuc xe EV-GD95-P1 voi token: 'TOKEN_EV-GD95-P1'...
+[AUTH][SUCCESS] Xe EV-GD95-P1 xac thuc thanh cong!
+[CHARGING] Bat dau sac thanh cong cho xe EV-GD95-P1 tai Cong 1 voi cong suat 22.0 kW.
+[AUTH] Dang xac thuc xe EV-GD95-MON voi token: 'TOKEN_EV-GD95-MON'...
+[AUTH][SUCCESS] Xe EV-GD95-MON xac thuc thanh cong!
+[CHARGING CHECK] DENIED: Pin xe EV-GD95-MON da day (SOC=100.0%).
+[SAFETY][INFO] EV-GD95-MON battery full (100%). PORT 1 power off -> STOPPED
+[AUTH] Dang xac thuc xe EV-GD95-HOT voi token: 'TOKEN_EV-GD95-HOT'...
+[AUTH][SUCCESS] Xe EV-GD95-HOT xac thuc thanh cong!
+[CHARGING CHECK] DENIED: Pin xe EV-GD95-HOT qua nhiet (60.0 C >= 60.0 C).
+[SAFETY][CRITICAL] EV-GD95-HOT battery overheat (60.0 C >= 60.0 C)! PORT 1 power disabled -> FAULT
+[AUTH] Dang xac thuc xe EV-GD95-EMG voi token: 'TOKEN_EV-GD95-EMG'...
+[AUTH][SUCCESS] Xe EV-GD95-EMG xac thuc thanh cong!
+[EMERGENCY][PORT 1] Emergency stop activated! Port power cut off to 0 kW.
+[AUTH] Dang xac thuc xe EV-GD95-ALL voi token: 'TOKEN_EV-GD95-ALL'...
+[AUTH][SUCCESS] Xe EV-GD95-ALL xac thuc thanh cong!
+[SAFETY][CRITICAL] EV-GD95-ALL battery overheat (80.0 C >= 60.0 C)! PORT 1 power disabled -> FAULT
+[AUTH] Dang xac thuc xe EV-GD95-STP voi token: 'TOKEN_EV-GD95-STP'...
+[AUTH][SUCCESS] Xe EV-GD95-STP xac thuc thanh cong!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[STATION EMERGENCY] KICH HOAT DUNG KHAN CAP TOAN BO TRAM SAC!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+[STATION EMERGENCY] Tat ca cac cong da ngat cong suat ve 0 kW.
+
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Pin xe EV-GATE da day (SOC=100.0%).
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Pin xe EV-GATE qua nhiet (60.0 C >= 60.0 C).
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Pin xe EV-GATE da day (SOC=100.0%).
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Pin xe EV-GATE da day (SOC=100.0%).
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Pin xe EV-GATE qua nhiet (60.0 C >= 60.0 C).
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Pin xe EV-GATE da day (SOC=100.0%).
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Cong 1 dang trong trang thai dung khan cap.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Pin xe EV-GATE da day (SOC=100.0%).
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Pin xe EV-GATE qua nhiet (60.0 C >= 60.0 C).
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Pin xe EV-GATE da day (SOC=100.0%).
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Cong 1 dang bi loi (ma_loi=1).
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=1, cong_vehicle_id=-1)
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Pin xe EV-GATE da day (SOC=100.0%).
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Pin xe EV-GATE qua nhiet (60.0 C >= 60.0 C).
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Pin xe EV-GATE da day (SOC=100.0%).
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Xe EV-GATE chua duoc xac thuc.
+[CHARGING CHECK] DENIED: Xe chua ket noi vao cong (da_ket_noi=0, cong_vehicle_id=1)
+[CHARGING CHECK] DENIED: Cong 1 dang trong trang thai dung khan cap.
+BOUNDARY_CASES=14
+BOOLEAN_COMBINATIONS=128
+GD95_DYNAMIC_PASS
