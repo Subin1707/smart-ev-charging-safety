@@ -1,0 +1,9 @@
+﻿============================================================
+                    WHITE-BOX FUZZING
+============================================================
+Constraint-generated inputs: 4
+Target branch reached     : YES
+Rejected safety cases     : 4
+Execution time (s)        : 0.093
+Constraint knowledge      : YES
+============================================================

@@ -1,0 +1,15 @@
+============================================================
+                  BLACK-BOX PROTOCOL FUZZING
+============================================================
+Target            : fixed-smoke
+Seed corpus       : 6
+Generated inputs  : 100
+Normal executions : 100
+Rejected inputs   : 58
+Crashes           : 0
+Timeouts          : 0
+Safety violations: 0
+Execution time (s): 1.150
+
+RESULT             : PASS
+============================================================

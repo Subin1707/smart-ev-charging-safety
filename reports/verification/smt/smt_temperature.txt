@@ -1,0 +1,4 @@
+SMT-02: TEMPERATURE SAFETY
+[VULNERABLE] SAT - overheat while charging
+  counterexample: temperature=60, charging=True
+[FIXED] UNSAT - No counterexample; OVERHEAT -> NOT CHARGING

@@ -1,0 +1,22 @@
+# GD9.5 E2E Requirement Matrix
+
+Generated: 2026-09-29T08:51:47.202710+00:00
+
+| Requirement | Formal | SMT | Production Harness | Static | Dynamic | Sanitizer | Negative Control |
+|---|---|---|---|---|---|---|---|
+| REQ-AUTH-01 | PASS | NOT_APPLICABLE | PASS | INCONCLUSIVE | PASS | UNAVAILABLE | PASS |
+| REQ-AUTH-02 | PASS | NOT_APPLICABLE | PASS | INCONCLUSIVE | PASS | UNAVAILABLE | PASS |
+| REQ-SOC-01 | PASS | PASS | PASS | INCONCLUSIVE | PASS | UNAVAILABLE | PASS |
+| REQ-SOC-02 | PASS | PASS | PASS | INCONCLUSIVE | PASS | UNAVAILABLE | PASS |
+| REQ-TEMP-01 | PASS | PASS | PASS | INCONCLUSIVE | PASS | UNAVAILABLE | PASS |
+| REQ-PORT-01 | PASS | NOT_APPLICABLE | PASS | INCONCLUSIVE | PASS | UNAVAILABLE | PASS |
+| REQ-PORT-02 | PASS | NOT_APPLICABLE | PASS | INCONCLUSIVE | PASS | UNAVAILABLE | PASS |
+| REQ-PORT-03 | PASS | PASS | PASS | INCONCLUSIVE | PASS | UNAVAILABLE | PASS |
+| REQ-CHG-01 | PASS | NOT_APPLICABLE | PASS | INCONCLUSIVE | PASS | UNAVAILABLE | PASS |
+| REQ-CHG-02 | PASS | NOT_APPLICABLE | PASS | INCONCLUSIVE | PASS | UNAVAILABLE | PASS |
+| REQ-EMG-01 | PASS | PASS | PASS | INCONCLUSIVE | PASS | UNAVAILABLE | PASS |
+
+## Preserved Classifications
+
+- CWE-190: Preserved as teacher Z3 arithmetic candidate then classified TOOL_MODEL_LIMITATION by GD9.4; not confirmed on production Smart EV.
+- compute_charging_rate: Preserved as PROBE_ONLY; time_hours == 0 crash is not mapped to production Smart EV.
